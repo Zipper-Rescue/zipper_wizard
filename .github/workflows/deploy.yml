@@ -3,8 +3,12 @@ name: Deploy
 on:
   workflow_dispatch:
   push:
-    branches:
-      - main
+    tags:
+      - 'v**'
+
+permissions:
+  packages: write
+  contents: write
 
 jobs:
   build:
@@ -35,24 +39,12 @@ jobs:
       - name: Build
         run: yarn build
 
-      - name: Upload production-ready build files
-        uses: actions/upload-artifact@v4
+      - name: Create a Release
+        uses: elgohr/Github-Release-Action@v5
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          name: production-files
-          path: ./dist
-
-  deploy:
-    name: Deploy
-    needs: build
-    runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'
-
-    steps:
-      - name: Download artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: production-files
-          path: ./dist
-
-      # - name: Deploy to Wordpress
+          title: ${{ github.ref_name }}
+          tag: ${{ github.ref_name }}
+          workdir: ./dist
       
