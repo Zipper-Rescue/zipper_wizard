@@ -7,9 +7,9 @@
 }
 
 .step-component {
-  @apply w-full max-w-2xl bg-white shadow-md rounded-lg p-6 my-4;
+  @apply w-full max-w-md bg-white shadow-md rounded-lg p-4 my-4;
 }
 
 .option-component {
-  @apply cursor-pointer p-2 border border-gray-300 m-1 hover:bg-gray-100;
+  @apply cursor-pointer p-4 border border-gray-300 m-2 bg-blue-500 text-white text-lg font-semibold rounded-lg hover:bg-blue-600;
 }

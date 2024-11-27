@@ -1,7 +1,7 @@
 import Option from "./wizard/Option";
 import Step from "./wizard/Step";
 
-const CantFix = "I'm sorry, we can't fix that";
+const CantFix = <Step>{"I'm sorry, we can't fix that"}</Step>;
 
 function App() {
   return (
@@ -23,16 +23,18 @@ function App() {
           <Option path={"/missing_damaged/"} link= {
             <Step label={"Is it two-way or one-way?"}>
               <Option path={"/one_way/"} link={CantFix}>
-                One Way.
+              One Way.
               </Option>
               <Option path={"/two_way/"} link={
                 <Step label={"Is your zipper damaged in one place or more than one place?"}>
                   <Option path={"/one_place/"} link={
-                    <div>
-                      Take a top stop from our outdoor kit and crimp the top like this:<br/>
-                      <img src={'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDZaN3DMgHm01-6C8oAIuJyc1U2k5DM9Qb1g&s'}/><br/>
-                      Click <a href={"example.com"}>HERE</a> to add a top stop to your cart.
-                    </div>
+                    <Step>
+                      <div>
+                        Take a top stop from our outdoor kit and crimp the top like this:<br/>
+                        <img src={'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDZaN3DMgHm01-6C8oAIuJyc1U2k5DM9Qb1g&s'}/><br/>
+                        Click <a href={"example.com"}>HERE</a> to add a top stop to your cart.
+                      </div>
+                    </Step>
                   }>
                     One Place.
                   </Option>
