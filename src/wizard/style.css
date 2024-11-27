@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.page-container {
+  @apply flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4;
+}
+
+.step-component {
+  @apply w-full max-w-2xl bg-white shadow-md rounded-lg p-6 my-4;
+}
+
+.option-component {
+  @apply cursor-pointer p-2 border border-gray-300 m-1 hover:bg-gray-100;
+}

@@ -2,9 +2,15 @@ name: Deploy
 
 on:
   workflow_dispatch:
+      inputs:
+        tag:
+          description: 'Tag'
+          required: true
+          default: 'manual release'
+          type: string
   push:
     tags:
-      - 'v**'
+      - "v**"
 
 permissions:
   packages: write
@@ -23,12 +29,12 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          registry-url: 'https://registry.npmjs.org'
+          registry-url: "https://registry.npmjs.org"
 
       - name: Cache Node Modules
         uses: actions/cache@v4
         with:
-          path: 'node_modules'
+          path: "node_modules"
           key: ${{ runner.os }}-modules-${{ hashFiles('yarn.lock') }}
 
       - name: Yarn Install
@@ -48,6 +54,6 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           automatic_release_tag: latest
           title: ${{ github.ref_name }}
-          tag: ${{ github.ref_name }}
           files: ./dist
           prerelease: false
+          tag: ${{ inputs.tag || github.ref_name }}
