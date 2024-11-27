@@ -29,7 +29,7 @@ function App() {
                 <Step label={"Is your zipper damaged in one place or more than one place?"}>
                   <Option path={"/one_place/"} link={
                     <div>
-                      Take a Top stop from our outdoor kit and crimp the top like this:<br/>
+                      Take a top stop from our outdoor kit and crimp the top like this:<br/>
                       <img src={'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDZaN3DMgHm01-6C8oAIuJyc1U2k5DM9Qb1g&s'}/><br/>
                       Click <a href={"example.com"}>HERE</a> to add a top stop to your cart.
                     </div>
