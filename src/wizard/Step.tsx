@@ -1,23 +1,21 @@
-import { useLocation } from "wouter";
-import "./style.css";
 import React from "react";
+import useIsDisplayed from "./useIsDisplayed";
+import "./style.css";
 
 export default function Step({
-  children,
   label,
+  children,
 }: {
-  children?: React.ReactNode;
   label?: React.ReactNode;
+  children?: React.ReactNode;
 }) {
-  const [location] = useLocation();
-  const stepRef = React.useRef(location);
-  const current = stepRef.current === location;
-  return (
-    <div className={current ? "page-container" : undefined}>
-      <div className={current ? "step-component" : undefined}>
-        {current ? (label ?? "") : ""}
-        {children}
-      </div>
-    </div>
-  );
+    const isDisplayed = useIsDisplayed();
+    return (
+        <div className={isDisplayed ? "page-container" : undefined}>
+            <div className={isDisplayed ? "step-component" : undefined}>
+                {isDisplayed ? (label ?? null) : null}
+                {children}
+            </div>
+        </div>
+    );
 }

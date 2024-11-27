@@ -1,31 +1,29 @@
 import "./style.css";
 import React from "react";
-import { Route, Link, Switch, useLocation } from "wouter";
+import { Route, Link, Switch } from "wouter";
+import useIsDisplayed from "./useIsDisplayed";
 
 export default function Option({
   path,
-  children,
   link,
+  children,
 }: {
   path: string;
-  children?: React.ReactNode;
   link?: React.ReactNode;
+  children?: React.ReactNode;
 }) {
-  const [location] = useLocation();
-  const step = React.useRef(location);
+  const isDisplayed = useIsDisplayed();
   return (
     <Switch>
       <Route path={path} nest>
         {link}
       </Route>
       <Route>
-        {step.current === location ? (
+        { isDisplayed ? (
           <Link to={path}>
             <div className="option-component">{children}</div>
           </Link>
-        ) : (
-          <></>
-        )}
+        ) : null}
       </Route>
     </Switch>
   );
