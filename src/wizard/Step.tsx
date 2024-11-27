@@ -1,6 +1,7 @@
 import React from "react";
 import useIsDisplayed from "./useIsDisplayed";
 import "./style.css";
+import { useBrowserLocation } from "wouter/use-browser-location";
 
 export default function Step({
   label,
@@ -10,7 +11,7 @@ export default function Step({
   children?: React.ReactNode;
 }) {
   const isDisplayed = useIsDisplayed();
-
+  const [browserLocation] = useBrowserLocation();
   const handleBack = () => {
     window.history.back();
   };
@@ -22,11 +23,11 @@ export default function Step({
           <>
             {label ?? null}
             {children}
-            <div className="back-button-container">
+            {browserLocation !== '/' ? <div className="back-button-container">
               <button className="back-button" onClick={handleBack}>
                 Back
               </button>
-            </div>
+            </div> : null}
           </>
         ) : (
           children
