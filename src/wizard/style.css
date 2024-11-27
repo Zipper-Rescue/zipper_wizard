@@ -11,7 +11,7 @@
 }
 
 .option-component {
-  @apply cursor-pointer p-4 border border-gray-300 m-2 bg-blue-500 text-white text-xl font-semibold rounded-lg hover:bg-blue-600 transition duration-300 ease-in-out;
+  @apply cursor-pointer py-6 px-8 border border-gray-300 m-2 bg-gradient-to-b from-orange-600 to-orange-400 text-xl font-bold text-white rounded-full hover:from-orange-700 hover:to-orange-500 transition duration-300 ease-in-out font-sans drop-shadow-lg;
 }
 
 .step-component h1, .step-component p {
