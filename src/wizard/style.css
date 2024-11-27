@@ -6,16 +6,40 @@
   @apply flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4;
 }
 
+@media (max-width: 640px) {
+  .page-container {
+    @apply max-h-96;
+  }
+}
+
 .step-component {
   @apply w-full max-w-md bg-white shadow-lg rounded-lg p-6 my-4 text-center;
+}
+
+@media (max-width: 640px) {
+  .step-component {
+    @apply p-4 my-2;
+  }
 }
 
 .option-component {
   @apply cursor-pointer py-6 px-8 border border-gray-300 m-2 bg-gradient-to-b from-orange-600 to-orange-400 text-xl font-bold text-white rounded-full hover:from-orange-700 hover:to-orange-500 transition duration-300 ease-in-out font-sans shadow-md;
 }
 
+@media (max-width: 640px) {
+  .option-component {
+    @apply py-4 px-6 text-lg;
+  }
+}
+
 .step-component h1, .step-component p {
   @apply text-2xl font-bold mb-4;
+}
+
+@media (max-width: 640px) {
+  .step-component h1, .step-component p {
+    @apply text-xl;
+  }
 }
 
 .back-button-container {
@@ -24,4 +48,10 @@
 
 .back-button {
   @apply px-3 py-2 bg-gray-300 text-gray-700 rounded-full hover:bg-gray-400 transition duration-300 ease-in-out text-sm font-medium shadow-sm;
+}
+
+@media (max-width: 640px) {
+  .back-button {
+    @apply px-2 py-1 text-xs;
+  }
 }
