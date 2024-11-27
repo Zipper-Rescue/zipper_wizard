@@ -9,13 +9,29 @@ export default function Step({
   label?: React.ReactNode;
   children?: React.ReactNode;
 }) {
-    const isDisplayed = useIsDisplayed();
-    return (
-        <div className={isDisplayed ? "page-container" : undefined}>
-            <div className={isDisplayed ? "step-component" : undefined}>
-                {isDisplayed ? (label ?? null) : null}
-                {children}
+  const isDisplayed = useIsDisplayed();
+
+  const handleBack = () => {
+    window.history.back();
+  };
+
+  return (
+    <div className={isDisplayed ? "page-container" : undefined}>
+      <div className={isDisplayed ? "step-component" : undefined}>
+        {isDisplayed ? (
+          <>
+            {label ?? null}
+            {children}
+            <div className="back-button-container">
+              <button className="back-button" onClick={handleBack}>
+                Back
+              </button>
             </div>
-        </div>
-    );
+          </>
+        ) : (
+          children
+        )}
+      </div>
+    </div>
+  );
 }
