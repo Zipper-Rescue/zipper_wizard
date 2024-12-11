@@ -1,6 +1,7 @@
 import Step from '../../wizard/Step';
 
 export default function RepairInstructions() {
+  window.parent.postMessage({ type: 'ZIPPER_WIZARD_STEP', payload: 3 }, '*');
   return (
     <Step>
       <div className="space-y-4">
@@ -12,7 +13,7 @@ export default function RepairInstructions() {
         />
         <p>
           Click{' '}
-          <a href="example.com" className="text-primary hover:underline">
+          <a href="https://www.example.com" className="text-primary hover:underline">
             HERE
           </a>{' '}
           to add a top stop to your cart.

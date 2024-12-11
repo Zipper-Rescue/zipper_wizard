@@ -6,7 +6,8 @@
     "dist"
   ],
   "scripts": {
-    "dev": "vite",
+    "dev": "vite dev",
+    "dev-iframe": "npx vite serve --base ./iframe ./iframe",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
