@@ -3,6 +3,19 @@ import useIsDisplayed from "./useIsDisplayed";
 import "./style.css";
 import { useBrowserLocation } from "wouter/use-browser-location";
 
+function BackButton() {
+  const [browserLocation] = useBrowserLocation();
+  const handleBack = () => {
+    window.history.back();
+  };
+  return <>
+  {browserLocation !== '/' ? <div className="back-button-container">
+    <button className="back-button" onClick={handleBack}>
+      Back
+    </button>
+  </div> : null}</>
+}
+
 export default function Step({
   label,
   children,
@@ -11,10 +24,6 @@ export default function Step({
   children?: React.ReactNode;
 }) {
   const isDisplayed = useIsDisplayed();
-  const [browserLocation] = useBrowserLocation();
-  const handleBack = () => {
-    window.history.back();
-  };
 
   return (
     <div className={isDisplayed ? "page-container" : undefined}>
@@ -23,15 +32,11 @@ export default function Step({
           <>
             {label ?? null}
             {children}
-            {browserLocation !== '/' ? <div className="back-button-container">
-              <button className="back-button" onClick={handleBack}>
-                Back
-              </button>
-            </div> : null}
+            <BackButton />
           </>
         ) : (
           children
-        )}
+        )} 
       </div>
     </div>
   );
