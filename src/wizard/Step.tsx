@@ -1,20 +1,8 @@
 import React from "react";
 import useIsDisplayed from "./useIsDisplayed";
-import "./style.css";
-import { useBrowserLocation } from "wouter/use-browser-location";
+import BackButton from "./BackButton";
+import "./init_tailwind.css";
 
-function BackButton() {
-  const [browserLocation] = useBrowserLocation();
-  const handleBack = () => {
-    window.history.back();
-  };
-  return <>
-  {browserLocation !== '/' ? <div className="back-button-container">
-    <button className="back-button" onClick={handleBack}>
-      Back
-    </button>
-  </div> : null}</>
-}
 
 export default function Step({
   label,
@@ -26,8 +14,8 @@ export default function Step({
   const isDisplayed = useIsDisplayed();
 
   return (
-    <div className={isDisplayed ? "page-container" : undefined}>
-      <div className={isDisplayed ? "step-component" : undefined}>
+    <div className={isDisplayed ? "flex flex-col items-center justify-center min-h-screen bg-white p-4 max-h-96 lg:max-h-none" : undefined}>
+      <div className={isDisplayed ? "w-full bg-gray-100 shadow-lg rounded-lg p-4 my-2 text-center lg:max-w-md lg:p-6 lg:my-4" : undefined}>
         {isDisplayed ? (
           <>
             {label ?? null}
@@ -36,7 +24,7 @@ export default function Step({
           </>
         ) : (
           children
-        )} 
+        )}
       </div>
     </div>
   );
