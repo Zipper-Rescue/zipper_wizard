@@ -31,7 +31,7 @@ export default tseslint.config(
         { allowConstantExport: true },
       ],
       ...react.configs.recommended.rules,
-      ...react.configs["jsx-runtime"].rules
+      ...react.configs["jsx-runtime"].rules,
     },
   },
 );

@@ -2,12 +2,12 @@ name: Deploy
 
 on:
   workflow_dispatch:
-      inputs:
-        tag:
-          description: 'Tag'
-          required: true
-          default: 'manual release'
-          type: string
+    inputs:
+      tag:
+        description: "Tag"
+        required: true
+        default: "manual release"
+        type: string
   push:
     tags:
       - "v**"
