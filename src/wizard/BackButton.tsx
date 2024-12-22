@@ -2,9 +2,12 @@ import { useBrowserLocation } from "wouter/use-browser-location";
 import "./init_tailwind.css";
 
 export default function BackButton() {
-  const [browserLocation] = useBrowserLocation();
+  const [browserLocation, navigate] = useBrowserLocation();
+  const lastSlash = browserLocation
+      .slice(0, browserLocation.length - Number(browserLocation.endsWith('/')))
+      .lastIndexOf('/');
   const handleBack = () => {
-    window.history.back();
+    navigate(browserLocation.slice(0, lastSlash) || '/');
   };
   return (
     <>
