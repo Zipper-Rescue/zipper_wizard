@@ -2,12 +2,11 @@ import Option from "../../wizard/Option";
 import Step from "../../wizard/Step";
 import OneWayOption from "./OneWayOption";
 
-export default function TwoWayOption() {
+export default function NonSepOption() {
   return (
-    <Option path={"/two_way/"} label={"Two-way Separating"}>
-      <Step label='test12'>
+    <Option path={"/non_sep/"} label={"Non Separating"}>
+      <Step label='test13'>
         <OneWayOption />
-        <TwoWayOption />
       </Step>
     </Option>
   );
