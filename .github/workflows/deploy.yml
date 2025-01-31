@@ -35,18 +35,18 @@ jobs:
         uses: actions/cache@v4
         with:
           path: "node_modules"
-          key: ${{ runner.os }}-modules-${{ hashFiles('yarn.lock') }}
+          key: ${{ runner.os }}-modules-${{ hashFiles('package-lock.json') }}
 
-      - name: Yarn Install
+      - name: NPM Install
         run: |
           corepack enable
-          yarn
+          npm ci
 
       - name: Lint
-        run: yarn lint
+        run: npm run lint
 
       - name: Build
-        run: yarn build
+        run: npm run build
 
       - name: Create a Release
         uses: marvinpinto/action-automatic-releases@v1.2.1
