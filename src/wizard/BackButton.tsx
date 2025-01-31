@@ -1,5 +1,5 @@
 import { useBrowserLocation } from "wouter/use-browser-location";
-import "./init_tailwind.css";
+import "../index.css";
 
 export default function BackButton() {
   const [browserLocation, navigate] = useBrowserLocation();

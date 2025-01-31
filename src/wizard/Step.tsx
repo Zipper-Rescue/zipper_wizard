@@ -1,6 +1,6 @@
 import React from "react";
 import BackButton from "./BackButton";
-import "./init_tailwind.css";
+import "../index.css";
 import { Route, Switch } from "wouter";
 
 export default function Step({

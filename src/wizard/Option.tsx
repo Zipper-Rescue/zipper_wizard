@@ -1,6 +1,6 @@
 import React from "react";
 import { Route, Link, Switch } from "wouter";
-import "./init_tailwind.css";
+import "../index.css";
 
 export default function Option({
   path,
