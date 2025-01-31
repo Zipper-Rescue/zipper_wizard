@@ -29,7 +29,22 @@ To start the development server:
 npm run dev
 ```
 
-## Notes
+## Libraries
+
+### Tailwind
+
+Using tailwindcss for styling: https://tailwindcss.com/docs/installation
+
+### Shad-cn
+
+- Using `shad-cn` for ui components:
+
+Installation: https://ui.shadcn.com/docs/installation/vite
+
+Adding components:
+```
+npx shadcn@latest add button
+```
 
 ## TODO
 
