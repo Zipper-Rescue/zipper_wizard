@@ -12,10 +12,10 @@ export function StepLayout({
   return (
     <div className={cn("flex flex-col items-center gap-1", "bg-white")}>
       <h1 className={"text-3xl font-semibold"}>{ title }</h1>
-      <h2 className={"mb-1"}>{ subTitle }</h2>
-      <section className={"mb-4"}>{ description }</section>
+      <h2 className={"mb-1 text-center"}>{ subTitle }</h2>
+      <section className={"mb-4 text-center"}>{ description }</section>
 
-      { links?.length && <section className={"flex gap-2 flex-wrap"}>{ links }</section>}
+      { links?.length && <section className={"flex gap-2 flex-wrap justify-center"}>{ links }</section>}
     </div>
   );
 }
