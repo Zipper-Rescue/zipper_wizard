@@ -3,14 +3,14 @@ import { cn } from "@/lib/utils.ts";
 export function ImageOption({
   label,
   imageUrl,
-  href,
+  onClick,
 }: {
   label: string;
   imageUrl: string;
-  href?: string;
+  onClick?: () => void;
 }) {
   return (
-    <a
+    <button
       className={cn(
         "flex flex-col items-center",
         "border border-red-700 rounded-md",
@@ -20,11 +20,11 @@ export function ImageOption({
         "hover:text-blue-800 hover:border-blue-800 hover:shadow-blue-200",
         "focus:text-blue-800 focus:border-blue-800",
       )}
-      href={href ?? "javascript:void(0)"}
+      onClick={() => onClick?.()}
     >
       <img src={imageUrl} alt={label} className={""} />
 
       <div className={"py-1"}>{label}</div>
-    </a>
+    </button>
   );
 }

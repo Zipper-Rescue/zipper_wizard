@@ -1,5 +1,5 @@
-import Option from "../../wizard/Option";
-import Step from "../../wizard/Step";
+import Option from "../../wizard/option.tsx";
+import Step from "../../wizard/step.tsx";
 import TwoWayOption from "./TwoWayOption";
 
 export default function OneWayOption() {

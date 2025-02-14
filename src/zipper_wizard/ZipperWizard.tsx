@@ -1,4 +1,4 @@
-import Step from "../wizard/Step";
+import Step from "../wizard/step.tsx";
 import NonSepOption from "./options/NonSepOption";
 import OneWayOption from "./options/OneWayOption";
 import TwoWayOption from "./options/TwoWayOption";
