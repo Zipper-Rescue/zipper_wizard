@@ -46,11 +46,14 @@ Adding components:
 npx shadcn@latest add button
 ```
 
-## TODO
 
+# TODO
+
+## Yona
+
+- [ ] Dead-end step support in wizard data
+- [ ] Publish Storybook
+- [ ] Use new wizard
+
+## High-level
 - [ ] Integration with shopping cart
-
-## Ryan TODO
-
-- [ ] Make Yona and Clay admins on the https://github.com/orgs/Zipper-Rescue/ organization
-- [ ] Give Yona and Clay access to the Netlify account

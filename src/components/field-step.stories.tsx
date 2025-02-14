@@ -10,9 +10,21 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
-export const Default: Story = {
+//
+// -----------------------------------------------------------------------------
+//
+export const NoSelection: Story = {
   args: {
     fieldData: zipperTypeField,
+  },
+};
+
+//
+// -----------------------------------------------------------------------------
+//
+export const WithSelection: Story = {
+  args: {
+    fieldData: zipperTypeField,
+    selectedValue: "two-way",
   },
 };

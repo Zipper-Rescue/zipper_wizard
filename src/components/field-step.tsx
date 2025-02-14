@@ -1,11 +1,21 @@
 import { StepLayout } from "@/components/step-layout.tsx";
-import { DataField } from "@/data/data-field.ts";
+import { StepInfo } from "@/data/step-info.ts";
 import { ImageOption } from "@/components/image-option.tsx";
 import { useState } from "react";
 import { Button } from "@/components/ui/button.tsx";
 
-export function FieldStep({ fieldData }: { fieldData: DataField }) {
-  const [selectedValue, setSelectedValue] = useState<string | null>(null);
+export function FieldStep({
+  fieldData,
+  onDataChanged,
+  ...props
+}: {
+  fieldData: StepInfo;
+  onDataChanged?: (newData: object) => void;
+  selectedValue?: string;
+}) {
+  const [selectedValue, setSelectedValue] = useState<string | undefined>(
+    props.selectedValue,
+  );
 
   const selectedOption = fieldData.options.find(
     (option) => option.value === selectedValue,
@@ -24,13 +34,15 @@ export function FieldStep({ fieldData }: { fieldData: DataField }) {
             label={option.label}
             onClick={() => {
               setSelectedValue(option.value);
+              onDataChanged?.({ [fieldData.key]: option.value });
             }}
           />
 
-          {selectedOption != null && (
+          {selectedOption != undefined && (
             <Button
               onClick={() => {
-                setSelectedValue(null);
+                setSelectedValue(undefined);
+                onDataChanged?.({ [fieldData.key]: undefined });
               }}
             >
               Change

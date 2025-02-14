@@ -11,7 +11,13 @@ export function StepLayout({
   links?: React.ReactNode[];
 }) {
   return (
-    <div className={cn("flex flex-col items-center gap-1", "bg-white")}>
+    <div
+      className={cn(
+        "flex flex-col items-center gap-1",
+        "min-h-[100vh]",
+        "bg-white",
+      )}
+    >
       <h1 className={"text-3xl font-semibold"}>{title}</h1>
       <section className={"mb-4 text-center"}>{description}</section>
 

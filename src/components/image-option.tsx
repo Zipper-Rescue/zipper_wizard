@@ -1,4 +1,5 @@
 import { cn } from "@/lib/utils.ts";
+import { useEffect, useState } from "react";
 
 export function ImageOption({
   label,
@@ -6,9 +7,26 @@ export function ImageOption({
   onClick,
 }: {
   label: string;
-  imageUrl: string;
+  imageUrl: string | (() => Promise<{ default: string }>);
   onClick?: () => void;
 }) {
+  const [resolvedImageUrl, setResolvedImageUrl] = useState<string | undefined>(
+    typeof imageUrl === "string" ? imageUrl : undefined,
+  );
+
+  useEffect(() => {
+    if (typeof imageUrl === "function") {
+      imageUrl().then(
+        (module) => {
+          setResolvedImageUrl(module.default);
+        },
+        (error: unknown) => {
+          console.error(error);
+        },
+      );
+    }
+  }, [imageUrl]);
+
   return (
     <button
       className={cn(
@@ -22,7 +40,7 @@ export function ImageOption({
       )}
       onClick={() => onClick?.()}
     >
-      <img src={imageUrl} alt={label} className={""} />
+      <img src={resolvedImageUrl} alt={label} className={"w-[320px]"} />
 
       <div className={"py-1"}>{label}</div>
     </button>

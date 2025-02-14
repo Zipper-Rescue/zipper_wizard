@@ -1,9 +1,9 @@
-import { DataField } from "@/data/data-field.ts";
+import { StepInfo } from "@/data/step-info.ts";
 import nonSeparatingImage from "./non-separating.png";
 import separatingImage from "./separating.png";
 import twoWaySeparatingImage from "./two-way-separating.png";
 
-export const zipperTypeField: DataField = {
+export const zipperTypeField: StepInfo = {
   key: "type",
   label: "Zipper Type",
   options: [
