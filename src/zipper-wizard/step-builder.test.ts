@@ -1,5 +1,5 @@
 import { test, expect, describe } from "vitest";
-import { stepBuilder, StepOption } from "@/data/step-builder.ts";
+import { stepBuilder, StepOption } from "@/zipper-wizard/step-builder.ts";
 
 describe("basic steps", () => {
   const builder = stepBuilder()

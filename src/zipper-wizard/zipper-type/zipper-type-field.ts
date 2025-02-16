@@ -1,4 +1,4 @@
-import { StepInfo } from "@/data/step-builder.ts";
+import { StepInfo } from "@/zipper-wizard/step-builder.ts";
 import nonSeparatingImage from "./non-separating.png";
 import separatingImage from "./separating.png";
 import twoWaySeparatingImage from "./two-way-separating.png";

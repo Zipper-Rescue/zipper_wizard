@@ -2,7 +2,7 @@
 
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { ZipperWizard } from "@/data/zipper-wizard.tsx";
+import { ZipperWizard } from "@/zipper-wizard/zipper-wizard.tsx";
 
 const meta = {
   component: ZipperWizard,

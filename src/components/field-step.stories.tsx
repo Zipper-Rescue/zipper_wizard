@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { FieldStep } from "@/components/field-step.tsx";
-import { zipperTypeField } from "@/data/zipper-type/zipper-type-field.ts";
+import { zipperTypeField } from "@/zipper-wizard/zipper-type/zipper-type-field.ts";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {

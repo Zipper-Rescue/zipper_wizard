@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { ImageOption } from "@/components/image-option.tsx";
-import image from "../data/zipper-type/separating.png";
+import image from "@/zipper-wizard/zipper-type/separating.png";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {

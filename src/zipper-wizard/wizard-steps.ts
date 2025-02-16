@@ -1,4 +1,4 @@
-import { stepBuilder } from "@/data/step-builder.ts";
+import { stepBuilder } from "@/zipper-wizard/step-builder.ts";
 
 export const wizardSteps = stepBuilder()
   // ===========================================================================

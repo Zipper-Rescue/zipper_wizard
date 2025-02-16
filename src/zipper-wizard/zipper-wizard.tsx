@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { wizardSteps } from "@/data/wizard-steps.ts";
+import { wizardSteps } from "@/zipper-wizard/wizard-steps.ts";
 import { FieldStep } from "@/components/field-step.tsx";
 
 export function ZipperWizard() {
@@ -8,7 +8,7 @@ export function ZipperWizard() {
   const { steps, relevantInput } = wizardSteps.buildSteps(currentData);
 
   return (
-    <div className="flex flex-col gap-8">
+    <div className="flex flex-col gap-[100px]">
       {steps.map((step) => (
         <FieldStep
           fieldData={step}

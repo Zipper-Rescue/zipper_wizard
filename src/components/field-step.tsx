@@ -1,5 +1,5 @@
 import { StepLayout } from "@/components/step-layout.tsx";
-import { StepInfo } from "@/data/step-builder.ts";
+import { StepInfo } from "@/zipper-wizard/step-builder.ts";
 import { ImageOption } from "@/components/image-option.tsx";
 import { useState } from "react";
 import { Button } from "@/components/ui/button.tsx";
