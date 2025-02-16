@@ -3,9 +3,9 @@ import { stepBuilder, StepOption } from "@/zipper-wizard/step-builder.ts";
 
 describe("basic steps", () => {
   const builder = stepBuilder()
-    .step("first", () => ({ label: "First", options }) as const)
-    .step("second", () => ({ label: "Second", options }) as const)
-    .step("third", () => ({ label: "Third", options }) as const);
+    .step("first", {}, () => ({ label: "First", options }) as const)
+    .step("second", {}, () => ({ label: "Second", options }) as const)
+    .step("third", {}, () => ({ label: "Third", options }) as const);
 
   test("builds step after last data", () => {
     expect(builder.buildSteps({ first: "value" })).toEqual({
