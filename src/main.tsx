@@ -2,6 +2,7 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import App from "./App.tsx";
 import { Route } from "wouter";
+import "@open-iframe-resizer/core";
 
 const rootElement = document.getElementById("root");
 
