@@ -15,7 +15,11 @@ export default tseslint.config(
       ecmaVersion: 2020,
       globals: globals.browser,
       parserOptions: {
-        project: ["./tsconfig.node.json", "./tsconfig.app.json"],
+        project: [
+          "./tsconfig.node.json",
+          "./tsconfig.app.json",
+          "./tsconfig.storybook.json",
+        ],
         tsconfigRootDir: import.meta.dirname,
       },
     },
@@ -32,6 +36,15 @@ export default tseslint.config(
       ],
       ...react.configs.recommended.rules,
       ...react.configs["jsx-runtime"].rules,
+
+      // Causes an error:
+      // RangeError: Maximum call stack size exceeded
+      // Occurred while linting /Users/yona/dev/personal/zipper_wizard/src/data/step-builder.ts:3
+      // Rule: "@typescript-eslint/no-unnecessary-type-parameters"
+      //   at getIndexedAccessTypeOrUndefined (/Users/yona/dev/personal/zipper_wizard/node_modules/typescript/lib/typescript.js:65602:43)
+      //   at getIndexedAccessType (/Users/yona/dev/personal/zipper_wizard/node_modules/typescript/lib/typescript.js:65588:12)
+
+      "@typescript-eslint/no-unnecessary-type-parameters": "off",
     },
   },
 );
