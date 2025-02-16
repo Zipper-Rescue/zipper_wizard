@@ -1,6 +1,5 @@
 import * as React from "react";
 import { cn } from "@/lib/util/cn.ts";
-import { useEffect } from "react";
 
 export function StepLayout({
   title,
@@ -13,21 +12,17 @@ export function StepLayout({
 }) {
   const ref = React.useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    if (ref.current) {
-      ref.current.scrollIntoView({ behavior: "smooth" });
-    }
-  });
+  // useEffect(() => {
+  //   if (ref.current) {
+  //     ref.current.scrollIntoView({ behavior: "smooth" });
+  //   }
+  // });
+  //        "min-h-[100vh]",
 
   return (
     <div
       ref={ref}
-      className={cn(
-        "flex flex-col items-center gap-1",
-        "min-h-[100vh]",
-        "p-2",
-        "bg-white",
-      )}
+      className={cn("flex flex-col items-center gap-1", "p-2", "bg-white")}
     >
       <h1 className={"text-3xl font-semibold"}>{title}</h1>
       <section className={"mb-4 text-center"}>{description}</section>
