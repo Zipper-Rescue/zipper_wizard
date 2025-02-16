@@ -6,36 +6,35 @@ export const wizardSteps = stepBuilder()
   //
   .step(
     "zipperType",
-    () =>
+    {
+      oneWaySeparatingExample: import(
+        "./zipper-wizard-step-images/01-zipper-type/1-way-separating-example.jpg"
+      ),
+      twoWaySeparatingExample: import(
+        "./zipper-wizard-step-images/01-zipper-type/2-way-separating-example.jpg"
+      ),
+      nonSeparatingExample: import(
+        "./zipper-wizard-step-images/01-zipper-type/non-separating-example.jpg"
+      ),
+    },
+    (images) =>
       ({
         label: "Zipper Type",
         options: [
           {
             label: "One-way Separating",
             value: "one-way",
-            imageUrl: preloadImage(
-              import(
-                "./zipper-wizard-step-images/01-zipper-type/1-way-separating-example.jpg"
-              ),
-            ),
+            imageUrl: images.oneWaySeparatingExample,
           },
           {
             label: "Two-way Separating",
             value: "two-way",
-            imageUrl: preloadImage(
-              import(
-                "./zipper-wizard-step-images/01-zipper-type/2-way-separating-example.jpg"
-              ),
-            ),
+            imageUrl: images.twoWaySeparatingExample,
           },
           {
             label: "Non-separating",
             value: "non-sep",
-            imageUrl: preloadImage(
-              import(
-                "./zipper-wizard-step-images/01-zipper-type/non-separating-example.jpg"
-              ),
-            ),
+            imageUrl: images.nonSeparatingExample,
           },
         ],
       }) as const,
@@ -46,40 +45,39 @@ export const wizardSteps = stepBuilder()
   //
   .step(
     "failureType",
-    ({ zipperType }) =>
+    {
+      damagedTeeth: import(
+        "./zipper-wizard-step-images/02-failure-type/damaged-teeth.png"
+      ),
+      missingBoxOrPin: import(
+        "./zipper-wizard-step-images/02-failure-type/missing-box-or-pin.png"
+      ),
+      wornBrokenSlider: import(
+        "./zipper-wizard-step-images/02-failure-type/worn-broken-slider.png"
+      ),
+    },
+    (images, { zipperType }) =>
       ({
         label: "Failure Type",
         options: [
           {
             label: "Damaged Teeth",
             value: "damaged-teeth",
-            imageUrl: preloadImage(
-              import(
-                "./zipper-wizard-step-images/02-failure-type/damaged-teeth.png"
-              ),
-            ),
+            imageUrl: images.damagedTeeth,
           },
           ...(zipperType !== "non-sep"
             ? [
                 {
                   label: "Missing Box or Pin",
                   value: "missing-box-or-pin",
-                  imageUrl: preloadImage(
-                    import(
-                      "./zipper-wizard-step-images/02-failure-type/missing-box-or-pin.png"
-                    ),
-                  ),
+                  imageUrl: images.missingBoxOrPin,
                 },
               ]
             : []),
           {
             label: "Worn or Broken Slider",
             value: "worn-broken-slider",
-            imageUrl: preloadImage(
-              import(
-                "./zipper-wizard-step-images/02-failure-type/worn-broken-slider.png"
-              ),
-            ),
+            imageUrl: images.wornBrokenSlider,
           },
         ],
       }) as const,
@@ -89,218 +87,195 @@ export const wizardSteps = stepBuilder()
   // Tooth type
   //
 
-  .step("toothType", ({ failureType }) =>
-    failureType === "worn-broken-slider"
-      ? ({
-          label: "Tooth Type",
-          options: [
-            {
-              label: "Coil",
-              value: "coil",
-              imageUrl: preloadImage(
-                import("./zipper-wizard-step-images/03-tooth-type/coil.png"),
-              ),
-            },
-            {
-              label: "Metal",
-              value: "metal",
-              imageUrl: preloadImage(
-                import("./zipper-wizard-step-images/03-tooth-type/metal.png"),
-              ),
-            },
-            {
-              label: "Plastic",
-              value: "plastic",
-              imageUrl: preloadImage(
-                import("./zipper-wizard-step-images/03-tooth-type/plastic.png"),
-              ),
-            },
-          ],
-        } as const)
-      : {
-          label: "Can't fix",
-          description:
-            "Sorry, you need to take that to a seamstress or tailor.",
-          options: [],
-        },
+  .step(
+    "toothType",
+    {
+      coil: import("./zipper-wizard-step-images/03-tooth-type/coil.png"),
+      metal: import("./zipper-wizard-step-images/03-tooth-type/metal.png"),
+      plastic: import("./zipper-wizard-step-images/03-tooth-type/plastic.png"),
+    },
+    (images, { failureType }) =>
+      failureType === "worn-broken-slider"
+        ? ({
+            label: "Tooth Type",
+            options: [
+              {
+                label: "Coil",
+                value: "coil",
+                imageUrl: images.coil,
+              },
+              {
+                label: "Metal",
+                value: "metal",
+                imageUrl: images.metal,
+              },
+              {
+                label: "Plastic",
+                value: "plastic",
+                imageUrl: images.plastic,
+              },
+            ],
+          } as const)
+        : {
+            label: "Can't fix",
+            description:
+              "Sorry, you need to take that to a seamstress or tailor.",
+            options: [],
+          },
   )
 
   // ===========================================================================
   // Tooth count
   //
 
-  .step("toothCount", ({ toothType }) =>
-    toothType === "coil"
-      ? ({
-          label: "Tooth Count",
-          options: [
-            {
-              label: "3",
-              value: "3",
-              imageUrl: preloadImage(
-                import(
-                  "./zipper-wizard-step-images/04-tooth-count/coil-3_24-tpi.jpg"
-                ),
-              ),
-            },
-            {
-              label: "4.5",
-              value: "4.5",
-              imageUrl: preloadImage(
-                import(
-                  "./zipper-wizard-step-images/04-tooth-count/coil-4.5_20-tpi.jpg"
-                ),
-              ),
-            },
-            {
-              label: "5",
-              value: "5",
-              imageUrl: preloadImage(
-                import(
-                  "./zipper-wizard-step-images/04-tooth-count/coil-5_16.5-tpi.jpg"
-                ),
-              ),
-            },
-            {
-              label: "8",
-              value: "8",
-              imageUrl: preloadImage(
-                import(
-                  "./zipper-wizard-step-images/04-tooth-count/coil-8_14-tpi.jpg"
-                ),
-              ),
-            },
-            {
-              label: "10",
-              value: "10",
-              imageUrl: preloadImage(
-                import(
-                  "./zipper-wizard-step-images/04-tooth-count/coil-10_10-tpi.jpg"
-                ),
-              ),
-            },
-          ],
-        } as const)
-      : toothType === "metal"
+  .step(
+    "toothCount",
+    {
+      coil324Tpi: import(
+        "./zipper-wizard-step-images/04-tooth-count/coil-3_24-tpi.jpg"
+      ),
+      coil45Tpi: import(
+        "./zipper-wizard-step-images/04-tooth-count/coil-4.5_20-tpi.jpg"
+      ),
+      coil5165Tpi: import(
+        "./zipper-wizard-step-images/04-tooth-count/coil-5_16.5-tpi.jpg"
+      ),
+      coil814Tpi: import(
+        "./zipper-wizard-step-images/04-tooth-count/coil-8_14-tpi.jpg"
+      ),
+      coil1010Tpi: import(
+        "./zipper-wizard-step-images/04-tooth-count/coil-10_10-tpi.jpg"
+      ),
+      metal312Tpi: import(
+        "./zipper-wizard-step-images/04-tooth-count/metal-3_12-tpi.jpg"
+      ),
+      metal4511Tpi: import(
+        "./zipper-wizard-step-images/04-tooth-count/metal-4.5_11-tpi.jpg"
+      ),
+      metal510Tpi: import(
+        "./zipper-wizard-step-images/04-tooth-count/metal-5_10-tpi.jpg"
+      ),
+      metal79Tpi: import(
+        "./zipper-wizard-step-images/04-tooth-count/metal-7_9-tpi.jpg"
+      ),
+      metal88Tpi: import(
+        "./zipper-wizard-step-images/04-tooth-count/metal-8_8-tpi.jpg"
+      ),
+      metal107Tpi: import(
+        "./zipper-wizard-step-images/04-tooth-count/metal-10_7-tpi.jpg"
+      ),
+      plastic310Tpi: import(
+        "./zipper-wizard-step-images/04-tooth-count/plastic-3_10-tpi.jpg"
+      ),
+      plastic485Tpi: import(
+        "./zipper-wizard-step-images/04-tooth-count/plastic-4_8.5-tpi.jpg"
+      ),
+      plastic575Tpi: import(
+        "./zipper-wizard-step-images/04-tooth-count/plastic-5_7.5-tpi.jpg"
+      ),
+      plastic86Tpi: import(
+        "./zipper-wizard-step-images/04-tooth-count/plastic-8_6.5-tpi.jpg"
+      ),
+      plastic105Tpi: import(
+        "./zipper-wizard-step-images/04-tooth-count/plastic-10_5-tpi.jpg"
+      ),
+    },
+    (images, { toothType }) =>
+      toothType === "coil"
         ? ({
             label: "Tooth Count",
             options: [
               {
                 label: "3",
                 value: "3",
-                imageUrl: preloadImage(
-                  import(
-                    "./zipper-wizard-step-images/04-tooth-count/metal-3_12-tpi.jpg"
-                  ),
-                ),
+                imageUrl: images.coil324Tpi,
               },
               {
                 label: "4.5",
                 value: "4.5",
-                imageUrl: preloadImage(
-                  import(
-                    "./zipper-wizard-step-images/04-tooth-count/metal-4.5_11-tpi.jpg"
-                  ),
-                ),
+                imageUrl: images.coil45Tpi,
               },
               {
                 label: "5",
                 value: "5",
-                imageUrl: preloadImage(
-                  import(
-                    "./zipper-wizard-step-images/04-tooth-count/metal-5_10-tpi.jpg"
-                  ),
-                ),
-              },
-              {
-                label: "7",
-                value: "7",
-                imageUrl: preloadImage(
-                  import(
-                    "./zipper-wizard-step-images/04-tooth-count/metal-7_9-tpi.jpg"
-                  ),
-                ),
+                imageUrl: images.coil5165Tpi,
               },
               {
                 label: "8",
                 value: "8",
-                imageUrl: preloadImage(
-                  import(
-                    "./zipper-wizard-step-images/04-tooth-count/metal-8_8-tpi.jpg"
-                  ),
-                ),
+                imageUrl: images.coil814Tpi,
               },
               {
                 label: "10",
                 value: "10",
-                imageUrl: preloadImage(
-                  import(
-                    "./zipper-wizard-step-images/04-tooth-count/metal-10_7-tpi.jpg"
-                  ),
-                ),
+                imageUrl: images.coil1010Tpi,
               },
             ],
           } as const)
-        : ({
-            label: "Tooth Count",
-            options: [
-              {
-                label: "3",
-                value: "3",
-                imageUrl: preloadImage(
-                  import(
-                    "./zipper-wizard-step-images/04-tooth-count/plastic-3_10-tpi.jpg"
-                  ),
-                ),
-              },
-              {
-                label: "4",
-                value: "4",
-                imageUrl: preloadImage(
-                  import(
-                    "./zipper-wizard-step-images/04-tooth-count/plastic-4_8.5-tpi.jpg"
-                  ),
-                ),
-              },
-              {
-                label: "5",
-                value: "5",
-                imageUrl: preloadImage(
-                  import(
-                    "./zipper-wizard-step-images/04-tooth-count/plastic-5_7.5-tpi.jpg"
-                  ),
-                ),
-              },
-              {
-                label: "8",
-                value: "8",
-                imageUrl: preloadImage(
-                  import(
-                    "./zipper-wizard-step-images/04-tooth-count/plastic-8_6.5-tpi.jpg"
-                  ),
-                ),
-              },
-              {
-                label: "10",
-                value: "10",
-                imageUrl: preloadImage(
-                  import(
-                    "./zipper-wizard-step-images/04-tooth-count/plastic-10_5-tpi.jpg"
-                  ),
-                ),
-              },
-            ],
-          } as const),
+        : toothType === "metal"
+          ? ({
+              label: "Tooth Count",
+              options: [
+                {
+                  label: "3",
+                  value: "3",
+                  imageUrl: images.metal312Tpi,
+                },
+                {
+                  label: "4.5",
+                  value: "4.5",
+                  imageUrl: images.metal4511Tpi,
+                },
+                {
+                  label: "5",
+                  value: "5",
+                  imageUrl: images.metal510Tpi,
+                },
+                {
+                  label: "7",
+                  value: "7",
+                  imageUrl: images.metal79Tpi,
+                },
+                {
+                  label: "8",
+                  value: "8",
+                  imageUrl: images.metal88Tpi,
+                },
+                {
+                  label: "10",
+                  value: "10",
+                  imageUrl: images.metal107Tpi,
+                },
+              ],
+            } as const)
+          : ({
+              label: "Tooth Count",
+              options: [
+                {
+                  label: "3",
+                  value: "3",
+                  imageUrl: images.plastic310Tpi,
+                },
+                {
+                  label: "4",
+                  value: "4",
+                  imageUrl: images.plastic485Tpi,
+                },
+                {
+                  label: "5",
+                  value: "5",
+                  imageUrl: images.plastic575Tpi,
+                },
+                {
+                  label: "8",
+                  value: "8",
+                  imageUrl: images.plastic86Tpi,
+                },
+                {
+                  label: "10",
+                  value: "10",
+                  imageUrl: images.plastic105Tpi,
+                },
+              ],
+            } as const),
   );
-
-function preloadImage(promise: Promise<{ default: string }>) {
-  promise
-    .then((module) => {
-      const img = new Image();
-      img.src = module.default;
-    })
-    .catch((error: unknown) => {
-      console.error("preloadImage: failed to resolve path", error);
-    });
-  return promise;
-}

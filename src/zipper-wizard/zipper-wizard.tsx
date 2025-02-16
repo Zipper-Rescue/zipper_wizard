@@ -8,7 +8,7 @@ export function ZipperWizard() {
   const { steps, relevantInput } = wizardSteps.buildSteps(currentData);
 
   return (
-    <div className="flex flex-col gap-[100px]">
+    <div className="flex flex-col gap-[100px] pb-[320px]">
       {steps.map((step) => (
         <FieldStep
           fieldData={step}

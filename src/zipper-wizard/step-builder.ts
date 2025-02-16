@@ -3,23 +3,35 @@ export function stepBuilder<
 >(
   stepData: Array<{
     key: string;
-    stepFn: (input: unknown) => Omit<StepInfo, "key">;
+    images: Record<string, Promise<{ default: string }>>;
+    stepFn: (
+      images: Record<string, Promise<{ default: string }>>,
+      input: unknown,
+    ) => Omit<StepInfo, "key">;
   }> = [],
 ) {
   return {
-    step<TKey extends string, TStep extends Omit<StepInfo, "key">>(
-      key: TKey,
-      stepFn: (data: T) => TStep,
-    ) {
+    step<
+      TKey extends string,
+      TImages extends Record<string, Promise<{ default: string }>>,
+      TStep extends Omit<StepInfo, "key">,
+    >(key: TKey, images: TImages, stepFn: (images: TImages, data: T) => TStep) {
+      preloadImages(Object.values(images));
+
       return stepBuilder<T & Record<TKey, TStep["options"][number]["value"]>>([
         ...stepData,
         {
           key,
+          images,
           stepFn,
         },
       ] as Array<{
         key: string;
-        stepFn: (input: unknown) => Omit<StepInfo, "key">;
+        images: Record<string, Promise<{ default: string }>>;
+        stepFn: (
+          images: Record<string, Promise<{ default: string }>>,
+          input: unknown,
+        ) => Omit<StepInfo, "key">;
       }>);
     },
 
@@ -37,9 +49,9 @@ export function stepBuilder<
 
       const steps = stepData
         .slice(0, lastStepIndex + 1)
-        .map(({ stepFn, key }) => ({
+        .map(({ stepFn, images, key }) => ({
           key,
-          ...stepFn(input),
+          ...stepFn(images, input),
         }));
 
       return {
@@ -77,3 +89,17 @@ export type StepData<T extends StepInfo> = Record<
   T["key"],
   T["options"][number]["value"]
 >;
+
+function preloadImages(images: Promise<{ default: string }>[]) {
+  images.forEach((image) => {
+    image.then(
+      ({ default: src }) => {
+        const img = new Image();
+        img.src = src;
+      },
+      (error: unknown) => {
+        console.error(error);
+      },
+    );
+  });
+}
