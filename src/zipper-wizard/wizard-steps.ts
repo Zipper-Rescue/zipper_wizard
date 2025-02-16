@@ -134,7 +134,7 @@ export const wizardSteps = stepBuilder()
       coil324Tpi: import(
         "./zipper-wizard-step-images/04-tooth-count/coil-3_24-tpi.jpg"
       ),
-      coil45Tpi: import(
+      coil4520Tpi: import(
         "./zipper-wizard-step-images/04-tooth-count/coil-4.5_20-tpi.jpg"
       ),
       coil5165Tpi: import(
@@ -186,28 +186,28 @@ export const wizardSteps = stepBuilder()
             label: "Tooth Count",
             options: [
               {
-                label: "3",
-                value: "3",
+                label: "24 teeth per inch",
+                value: "coil-3",
                 imageUrl: images.coil324Tpi,
               },
               {
-                label: "4.5",
-                value: "4.5",
-                imageUrl: images.coil45Tpi,
+                label: "20 teeth per inch",
+                value: "coil-4.5",
+                imageUrl: images.coil4520Tpi,
               },
               {
-                label: "5",
-                value: "5",
+                label: "16.5 teeth per inch",
+                value: "coil-5",
                 imageUrl: images.coil5165Tpi,
               },
               {
-                label: "8",
-                value: "8",
+                label: "14 teeth per inch",
+                value: "coil-8",
                 imageUrl: images.coil814Tpi,
               },
               {
-                label: "10",
-                value: "10",
+                label: "10 teeth per inch",
+                value: "coil-10",
                 imageUrl: images.coil1010Tpi,
               },
             ],
@@ -217,32 +217,32 @@ export const wizardSteps = stepBuilder()
               label: "Tooth Count",
               options: [
                 {
-                  label: "3",
+                  label: "12 teeth per inch",
                   value: "3",
                   imageUrl: images.metal312Tpi,
                 },
                 {
-                  label: "4.5",
+                  label: "11 teeth per inch",
                   value: "4.5",
                   imageUrl: images.metal4511Tpi,
                 },
                 {
-                  label: "5",
+                  label: "10 teeth per inch",
                   value: "5",
                   imageUrl: images.metal510Tpi,
                 },
                 {
-                  label: "7",
+                  label: "9 teeth per inch",
                   value: "7",
                   imageUrl: images.metal79Tpi,
                 },
                 {
-                  label: "8",
+                  label: "8 teeth per inch",
                   value: "8",
                   imageUrl: images.metal88Tpi,
                 },
                 {
-                  label: "10",
+                  label: "7 teeth per inch",
                   value: "10",
                   imageUrl: images.metal107Tpi,
                 },
@@ -252,27 +252,27 @@ export const wizardSteps = stepBuilder()
               label: "Tooth Count",
               options: [
                 {
-                  label: "3",
+                  label: "10 teeth per inch",
                   value: "3",
                   imageUrl: images.plastic310Tpi,
                 },
                 {
-                  label: "4",
+                  label: "8.5 teeth per inch",
                   value: "4",
                   imageUrl: images.plastic485Tpi,
                 },
                 {
-                  label: "5",
+                  label: "7.5 teeth per inch",
                   value: "5",
                   imageUrl: images.plastic575Tpi,
                 },
                 {
-                  label: "8",
+                  label: "6.5 teeth per inch",
                   value: "8",
                   imageUrl: images.plastic86Tpi,
                 },
                 {
-                  label: "10",
+                  label: "5 teeth per inch",
                   value: "10",
                   imageUrl: images.plastic105Tpi,
                 },
