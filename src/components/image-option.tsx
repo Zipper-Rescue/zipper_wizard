@@ -14,7 +14,7 @@ export function ImageOption({
   onClick?: () => void;
 }) {
   const [resolvedImageUrl, setResolvedImageUrl] = useState<string | undefined>(
-    typeof imageUrl === "string" ? imageUrl : undefined,
+    typeof imageUrl === "string" ? imageUrl : loadingImageUrl,
   );
 
   useEffect(() => {
@@ -50,3 +50,7 @@ export function ImageOption({
     </button>
   );
 }
+
+// svg data uri for a 320x214 grey image
+const loadingImageUrl =
+  "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 214' fill='%23A0AEC0'%3E%3Crect width='100%25' height='100%25'/%3E%3C/svg%3E";
