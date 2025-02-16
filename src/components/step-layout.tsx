@@ -15,10 +15,11 @@ export function StepLayout({
 
   useEffect(() => {
     if (ref.current) {
-      // Let iframe resize before scrolling
-      requestAnimationFrame(() => {
+      // Wait for the component to render, and iframe to resize, before
+      // scrolling into view.
+      setTimeout(() => {
         ref.current?.scrollIntoView({ behavior: "smooth", block: "start" });
-      });
+      }, 100);
     }
   });
 
