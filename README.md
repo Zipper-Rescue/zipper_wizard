@@ -53,7 +53,7 @@ npx shadcn@latest add button
 
 - [ ] Dead-end step support in wizard data
 - [ ] Publish Storybook
-- [ ] Use new wizard
+- [ ] Set tailwind breakpoints to match Divi
 
 ## High-level
 - [ ] Integration with shopping cart
