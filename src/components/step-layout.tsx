@@ -33,7 +33,7 @@ export function StepLayout({
 
         // Padding top accounts for the fixed header, which will cover
         // the title of the step when it is scrolled into view.
-        "pt-[70]",
+        "pt-[70px]",
       )}
     >
       <h1 className={"text-3xl font-semibold"}>{title}</h1>
