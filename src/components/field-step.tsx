@@ -1,5 +1,5 @@
 import { StepLayout } from "@/components/step-layout.tsx";
-import { StepInfo } from "@/data/step-info.ts";
+import { StepInfo } from "@/data/step-builder.ts";
 import { ImageOption } from "@/components/image-option.tsx";
 import { useState } from "react";
 import { Button } from "@/components/ui/button.tsx";
@@ -10,7 +10,7 @@ export function FieldStep({
   ...props
 }: {
   fieldData: StepInfo;
-  onDataChanged?: (newData: object) => void;
+  onDataChanged?: (key: string, value: unknown) => void;
   selectedValue?: string;
 }) {
   const [selectedValue, setSelectedValue] = useState<string | undefined>(
@@ -34,15 +34,15 @@ export function FieldStep({
             label={option.label}
             onClick={() => {
               setSelectedValue(option.value);
-              onDataChanged?.({ [fieldData.key]: option.value });
+              onDataChanged?.(fieldData.key, option.value);
             }}
           />
 
-          {selectedOption != undefined && (
+          {selectedOption && (
             <Button
               onClick={() => {
                 setSelectedValue(undefined);
-                onDataChanged?.({ [fieldData.key]: undefined });
+                onDataChanged?.(fieldData.key, undefined);
               }}
             >
               Change
