@@ -1,4 +1,4 @@
-import ZipperWizard from "./zipper_wizard/ZipperWizard";
+import { ZipperWizard } from "@/data/zipper-wizard.tsx";
 
 export default function App() {
   return <ZipperWizard />;
