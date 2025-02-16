@@ -63,7 +63,10 @@ export interface StepInfo {
 export interface StepOption {
   value: string;
   label: string;
-  imageUrl: string | (() => Promise<{ default: string }>);
+  imageUrl:
+    | string
+    | (() => Promise<{ default: string }>)
+    | Promise<{ default: string }>;
 }
 
 export function StepInfo<T extends StepInfo>(data: T) {

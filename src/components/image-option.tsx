@@ -7,7 +7,10 @@ export function ImageOption({
   onClick,
 }: {
   label: string;
-  imageUrl: string | (() => Promise<{ default: string }>);
+  imageUrl:
+    | string
+    | (() => Promise<{ default: string }>)
+    | Promise<{ default: string }>;
   onClick?: () => void;
 }) {
   const [resolvedImageUrl, setResolvedImageUrl] = useState<string | undefined>(
@@ -15,8 +18,9 @@ export function ImageOption({
   );
 
   useEffect(() => {
-    if (typeof imageUrl === "function") {
-      imageUrl().then(
+    if (typeof imageUrl !== "string") {
+      const promise = typeof imageUrl === "function" ? imageUrl() : imageUrl;
+      promise.then(
         (module) => {
           setResolvedImageUrl(module.default);
         },
