@@ -19,7 +19,7 @@ export function StepLayout({
       // scrolling into view.
       setTimeout(() => {
         ref.current?.scrollIntoView({ behavior: "smooth", block: "start" });
-      }, 100);
+      }, 30);
     }
   });
 
