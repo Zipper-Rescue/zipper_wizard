@@ -1,21 +1,16 @@
 import { StepLayout } from "@/components/step-layout.tsx";
 import { StepInfo } from "@/zipper-wizard/step-builder.ts";
 import { ImageOption } from "@/components/image-option.tsx";
-import { useState } from "react";
 
 export function FieldStep({
   fieldData,
   onDataChanged,
-  ...props
+  selectedValue,
 }: {
   fieldData: StepInfo;
   onDataChanged?: (key: string, value: string) => void;
   selectedValue?: string;
 }) {
-  const [selectedValue, setSelectedValue] = useState<string | undefined>(
-    props.selectedValue,
-  );
-
   // const selectedOption = fieldData.options.find(
   //   (option) => option.value === selectedValue,
   // );
@@ -31,7 +26,6 @@ export function FieldStep({
             label={option.label}
             isSelected={option.value === selectedValue}
             onClick={() => {
-              setSelectedValue(option.value);
               onDataChanged?.(fieldData.key, option.value);
             }}
           />

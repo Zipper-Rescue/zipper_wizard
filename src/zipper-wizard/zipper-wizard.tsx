@@ -13,6 +13,7 @@ export function ZipperWizard() {
         <FieldStep
           fieldData={step}
           key={step.key}
+          selectedValue={currentData[index]?.[1]}
           onDataChanged={(key, value) => {
             setCurrentData([...currentData.slice(0, index), [key, value]]);
           }}
