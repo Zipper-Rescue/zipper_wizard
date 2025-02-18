@@ -35,31 +35,19 @@ export function stepBuilder<
       }>);
     },
 
-    buildSteps(input: Partial<T>): {
-      steps: StepInfo[];
-      relevantInput: Partial<T>;
-    } {
-      const nonNullishInputKeys = Object.entries(input)
-        .filter(([, value]) => value != null)
-        .map(([key]) => key) as (keyof T)[];
+    buildSteps(input: Array<[string, string]>): StepInfo[] {
+      const inputRecord = Object.fromEntries(input);
 
       const lastStepIndex = stepData.findIndex(
-        (step) => !nonNullishInputKeys.includes(step.key as keyof T),
+        (step) => !(step.key in inputRecord),
       );
 
-      const steps = stepData
+      return stepData
         .slice(0, lastStepIndex + 1)
         .map(({ stepFn, images, key }) => ({
           key,
-          ...stepFn(images, input),
+          ...stepFn(images, inputRecord),
         }));
-
-      return {
-        steps,
-        relevantInput: Object.fromEntries(
-          steps.map(({ key }) => [key, input[key]]),
-        ) as Partial<T>,
-      };
     },
   };
 }

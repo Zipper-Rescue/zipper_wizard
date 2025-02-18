@@ -3,18 +3,18 @@ import { wizardSteps } from "@/zipper-wizard/wizard-steps.ts";
 import { FieldStep } from "@/components/field-step.tsx";
 
 export function ZipperWizard() {
-  const [currentData, setCurrentData] = useState<object>({});
+  const [currentData, setCurrentData] = useState<Array<[string, string]>>([]);
 
-  const { steps, relevantInput } = wizardSteps.buildSteps(currentData);
+  const steps = wizardSteps.buildSteps(currentData);
 
   return (
     <div className="flex flex-col gap-2 pb-[320px]">
-      {steps.map((step) => (
+      {steps.map((step, index) => (
         <FieldStep
           fieldData={step}
           key={step.key}
           onDataChanged={(key, value) => {
-            setCurrentData({ ...relevantInput, [key]: value });
+            setCurrentData([...currentData.slice(0, index), [key, value]]);
           }}
         />
       ))}

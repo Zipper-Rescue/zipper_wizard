@@ -1,29 +1,21 @@
-import { test, expect, describe } from "vitest";
+import { test, expect, describe, vitest } from "vitest";
 import { stepBuilder, StepOption } from "@/zipper-wizard/step-builder.ts";
 
 describe("basic steps", () => {
+  const firstFn = vitest.fn(() => ({ label: "First", options }) as const);
+  const secondFn = vitest.fn(() => ({ label: "Second", options }) as const);
+  const thirdFn = vitest.fn(() => ({ label: "Third", options }) as const);
+
   const builder = stepBuilder()
-    .step("first", {}, () => ({ label: "First", options }) as const)
-    .step("second", {}, () => ({ label: "Second", options }) as const)
-    .step("third", {}, () => ({ label: "Third", options }) as const);
+    .step("first", {}, firstFn)
+    .step("second", {}, secondFn)
+    .step("third", {}, thirdFn);
 
   test("builds step after last data", () => {
-    expect(builder.buildSteps({ first: "value" })).toEqual({
-      steps: [
-        { key: "first", label: "First", options },
-        { key: "second", label: "Second", options },
-      ],
-      relevantInput: { first: "value" },
-    });
-  });
-
-  test("stops building steps when prop is nullish, even when there is later data", () => {
-    expect(
-      builder.buildSteps({ first: undefined, second: "b", third: "c" }),
-    ).toEqual({
-      steps: [{ key: "first", label: "First", options }],
-      relevantInput: { first: undefined },
-    });
+    expect(builder.buildSteps([["first", "value"]])).toEqual([
+      { key: "first", label: "First", options },
+      { key: "second", label: "Second", options },
+    ]);
   });
 });
 

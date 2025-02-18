@@ -278,4 +278,9 @@ export const wizardSteps = stepBuilder()
                 },
               ],
             } as const),
-  );
+  )
+  .step("lastStep", {}, () => ({
+    label: "Dummy Last Step",
+    description: "Will be replaced later",
+    options: [],
+  }));

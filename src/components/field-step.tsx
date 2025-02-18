@@ -2,7 +2,6 @@ import { StepLayout } from "@/components/step-layout.tsx";
 import { StepInfo } from "@/zipper-wizard/step-builder.ts";
 import { ImageOption } from "@/components/image-option.tsx";
 import { useState } from "react";
-import { Button } from "@/components/ui/button.tsx";
 
 export function FieldStep({
   fieldData,
@@ -10,7 +9,7 @@ export function FieldStep({
   ...props
 }: {
   fieldData: StepInfo;
-  onDataChanged?: (key: string, value: unknown) => void;
+  onDataChanged?: (key: string, value: string) => void;
   selectedValue?: string;
 }) {
   const [selectedValue, setSelectedValue] = useState<string | undefined>(
