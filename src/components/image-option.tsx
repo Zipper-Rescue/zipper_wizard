@@ -20,14 +20,25 @@ export function ImageOption({
   useEffect(() => {
     if (typeof imageUrl !== "string") {
       const promise = typeof imageUrl === "function" ? imageUrl() : imageUrl;
-      promise.then(
-        (module) => {
-          setResolvedImageUrl(module.default);
-        },
-        (error: unknown) => {
-          console.error(error);
-        },
-      );
+      promise
+        .then((module) => {
+          const image = new Image();
+          image.src = module.default;
+          return new Promise<string>((resolve, reject) => {
+            image.onload = () => {
+              resolve(module.default);
+            };
+            image.onerror = reject;
+          });
+        })
+        .then(
+          (src) => {
+            setResolvedImageUrl(src);
+          },
+          (error: unknown) => {
+            console.error(error);
+          },
+        );
     }
   }, [imageUrl]);
 
