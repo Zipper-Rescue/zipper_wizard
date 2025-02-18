@@ -5,6 +5,7 @@ export function ImageOption({
   label,
   imageUrl,
   onClick,
+  isSelected,
 }: {
   label: string;
   imageUrl:
@@ -12,6 +13,7 @@ export function ImageOption({
     | (() => Promise<{ default: string }>)
     | Promise<{ default: string }>;
   onClick?: () => void;
+  isSelected?: boolean;
 }) {
   const [resolvedImageUrl, setResolvedImageUrl] = useState<string | undefined>(
     typeof imageUrl === "string" ? imageUrl : loadingImageUrl,
@@ -46,7 +48,8 @@ export function ImageOption({
     <button
       className={cn(
         "flex flex-col items-center",
-        "border border-red-700 rounded-md",
+        "border rounded-md",
+        isSelected ? "border-blue-800 border-4" : "border-red-700",
         "overflow-hidden",
         "cursor-pointer",
         "shadow-md",

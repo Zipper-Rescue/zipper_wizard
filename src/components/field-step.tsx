@@ -17,37 +17,25 @@ export function FieldStep({
     props.selectedValue,
   );
 
-  const selectedOption = fieldData.options.find(
-    (option) => option.value === selectedValue,
-  );
-  const optionChoices =
-    selectedOption != null ? [selectedOption] : fieldData.options;
+  // const selectedOption = fieldData.options.find(
+  //   (option) => option.value === selectedValue,
+  // );
 
   return (
     <StepLayout
       title={fieldData.label}
       description={fieldData.description}
-      links={optionChoices.map((option) => (
+      links={fieldData.options.map((option) => (
         <div className={"flex flex-col gap-2"} key={option.value}>
           <ImageOption
             imageUrl={option.imageUrl}
             label={option.label}
+            isSelected={option.value === selectedValue}
             onClick={() => {
               setSelectedValue(option.value);
               onDataChanged?.(fieldData.key, option.value);
             }}
           />
-
-          {selectedOption && (
-            <Button
-              onClick={() => {
-                setSelectedValue(undefined);
-                onDataChanged?.(fieldData.key, undefined);
-              }}
-            >
-              Change
-            </Button>
-          )}
         </div>
       ))}
     ></StepLayout>
