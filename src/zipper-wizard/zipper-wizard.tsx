@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { wizardSteps } from "@/zipper-wizard/wizard-steps.ts";
+import { wizardSteps } from "@/zipper-wizard/wizard-steps.tsx";
 import { FieldStep } from "@/components/field-step.tsx";
 
 export function ZipperWizard() {

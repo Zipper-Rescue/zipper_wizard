@@ -1,4 +1,5 @@
 import { stepBuilder } from "@/zipper-wizard/step-builder.ts";
+import { Button } from "@/components/ui/button.tsx";
 
 export const wizardSteps = stepBuilder()
   // ===========================================================================
@@ -281,6 +282,19 @@ export const wizardSteps = stepBuilder()
   )
   .step("lastStep", {}, () => ({
     label: "Dummy Last Step",
-    description: "Will be replaced later",
+    description: (
+      <div>
+        <Button
+          onClick={() => {
+            window.parent.postMessage(
+              { command: "add-to-cart", productId: 388, quantity: 1 },
+              "*",
+            );
+          }}
+        >
+          Add to cart
+        </Button>
+      </div>
+    ),
     options: [],
   }));

@@ -49,12 +49,12 @@ export function ImageOption({
       className={cn(
         "flex flex-col items-center",
         "border rounded-md",
-        isSelected ? "border-blue-800 border-4" : "border-red-700",
+        isSelected ? "border-red-950 bg-red-100" : "border-red-700",
         "overflow-hidden",
         "cursor-pointer",
         "shadow-md",
-        "hover:text-blue-800 hover:border-blue-800 hover:shadow-blue-200",
-        "focus:text-blue-800 focus:border-blue-800",
+        "hover:text-red-800 hover:border-red-800 hover:shadow-red-200 hover:bg-red-100",
+        "focus:text-red-800 focus:border-red-800",
       )}
       onClick={() => onClick?.()}
     >

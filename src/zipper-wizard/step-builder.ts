@@ -1,3 +1,5 @@
+import { JSX } from "react";
+
 export function stepBuilder<
   T extends Record<string, string> = Record<never, string>,
 >(
@@ -55,7 +57,7 @@ export function stepBuilder<
 export interface StepInfo {
   key: string;
   label: string;
-  description?: string;
+  description?: string | JSX.Element;
 
   options: StepOption[];
 }
