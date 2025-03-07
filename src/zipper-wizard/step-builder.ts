@@ -19,6 +19,10 @@ export function stepBuilder<
   T extends Record<string, string> = Record<never, string>,
 >(stepData: BuilderStep[] = []) {
   return {
+    get T(): T {
+      throw new Error("type only");
+    },
+
     step<
       TKey extends string,
       TImages extends Record<string, Promise<{ default: string }>>,

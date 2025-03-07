@@ -80,7 +80,7 @@ export const wizardSteps = stepBuilder()
             value: "worn-broken-slider",
             imageUrl: images.wornBrokenSlider,
           },
-        ],
+        ] as const,
       }) as const,
   )
 
@@ -89,7 +89,7 @@ export const wizardSteps = stepBuilder()
   //
 
   .step(
-    "toothType",
+    "toothMaterial",
     {
       coil: import("./zipper-wizard-step-images/03-tooth-type/coil.png"),
       metal: import("./zipper-wizard-step-images/03-tooth-type/metal.png"),
@@ -117,12 +117,12 @@ export const wizardSteps = stepBuilder()
               },
             ],
           } as const)
-        : {
+        : ({
             label: "Can't fix",
             description:
               "Sorry, you need to take that to a seamstress or tailor.",
             options: [],
-          },
+          } as const),
   )
 
   // ===========================================================================
@@ -141,9 +141,9 @@ export const wizardSteps = stepBuilder()
         "./zipper-wizard-step-images/04-coil-type/invisible-coil.png"
       ),
     },
-    (images, { toothType }) =>
-      toothType === "coil"
-        ? {
+    (images, { toothMaterial }) =>
+      toothMaterial === "coil"
+        ? ({
             label: "Coil Type",
             options: [
               {
@@ -162,7 +162,7 @@ export const wizardSteps = stepBuilder()
                 imageUrl: images.invisibleCoil,
               },
             ],
-          }
+          } as const)
         : null,
   )
 
@@ -171,7 +171,7 @@ export const wizardSteps = stepBuilder()
   //
 
   .step(
-    "toothCount",
+    "sliderSize",
     {
       coil324Tpi: import(
         "@/zipper-wizard/zipper-wizard-step-images/05-tooth-count/coil-3_24-tpi.jpg"
@@ -222,39 +222,39 @@ export const wizardSteps = stepBuilder()
         "@/zipper-wizard/zipper-wizard-step-images/05-tooth-count/plastic-10_5-tpi.jpg"
       ),
     },
-    (images, { toothType }) =>
-      toothType === "coil"
+    (images, { toothMaterial }) =>
+      toothMaterial === "coil"
         ? ({
             label: "Tooth Count",
             options: [
               {
                 label: "24 teeth per inch",
-                value: "coil-3",
+                value: "3",
                 imageUrl: images.coil324Tpi,
               },
               {
                 label: "20 teeth per inch",
-                value: "coil-4.5",
+                value: "4.5",
                 imageUrl: images.coil4520Tpi,
               },
               {
                 label: "16.5 teeth per inch",
-                value: "coil-5",
+                value: "5",
                 imageUrl: images.coil5165Tpi,
               },
               {
                 label: "14 teeth per inch",
-                value: "coil-8",
+                value: "8",
                 imageUrl: images.coil814Tpi,
               },
               {
                 label: "10 teeth per inch",
-                value: "coil-10",
+                value: "10",
                 imageUrl: images.coil1010Tpi,
               },
             ],
           } as const)
-        : toothType === "metal"
+        : toothMaterial === "metal"
           ? ({
               label: "Tooth Count",
               options: [
@@ -339,3 +339,5 @@ export const wizardSteps = stepBuilder()
     ),
     options: [],
   }));
+
+export type WizardResult = (typeof wizardSteps)["T"];
