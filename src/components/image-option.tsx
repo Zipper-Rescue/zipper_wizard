@@ -1,6 +1,8 @@
 import { cn } from "@/lib/util/cn.ts";
 import { useEffect, useState } from "react";
 
+// TODO: Zoom function
+
 export function ImageOption({
   label,
   imageUrl,

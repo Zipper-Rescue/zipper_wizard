@@ -19,7 +19,35 @@ describe("basic steps", () => {
   });
 });
 
-const options: StepOption[] = [
+describe("conditional steps", () => {
+  const firstFn = vitest.fn(() => ({ label: "First", options }) as const);
+  const secondFn = vitest.fn(
+    (_images, { first }: { first: "a" | "b" | "c" }) =>
+      first === "a" ? ({ label: "Second", options } as const) : null,
+  );
+  const thirdFn = vitest.fn(() => ({ label: "Third", options }) as const);
+
+  const builder = stepBuilder()
+    .step("first", {}, firstFn)
+    .stepConditional("second", {}, secondFn)
+    .step("third", {}, thirdFn);
+
+  test("true", () => {
+    expect(builder.buildSteps([["first", "a" as const]])).toEqual([
+      { key: "first", label: "First", options },
+      { key: "second", label: "Second", options },
+    ]);
+  });
+
+  test("false", () => {
+    expect(builder.buildSteps([["first", "b" as const]])).toEqual([
+      { key: "first", label: "First", options },
+      { key: "third", label: "Third", options },
+    ]);
+  });
+});
+
+const options = [
   {
     label: "A",
     value: "a",
@@ -35,4 +63,4 @@ const options: StepOption[] = [
     value: "c",
     imageUrl: "c.png",
   },
-];
+] as const satisfies StepOption[];

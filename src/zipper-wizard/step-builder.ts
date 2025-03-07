@@ -1,17 +1,23 @@
 import { JSX } from "react";
 
+type StepFn<
+  TImages extends Record<string, Promise<{ default: string }>> = Record<
+    string,
+    Promise<{ default: string }>
+  >,
+  TStep extends Omit<StepInfo, "key"> = Omit<StepInfo, "key">,
+  TData = object,
+> = (images: TImages, input: TData) => TStep | undefined | null;
+
+type BuilderStep = {
+  key: string;
+  images: Record<string, Promise<{ default: string }>>;
+  stepFn: StepFn;
+};
+
 export function stepBuilder<
   T extends Record<string, string> = Record<never, string>,
->(
-  stepData: Array<{
-    key: string;
-    images: Record<string, Promise<{ default: string }>>;
-    stepFn: (
-      images: Record<string, Promise<{ default: string }>>,
-      input: unknown,
-    ) => Omit<StepInfo, "key">;
-  }> = [],
-) {
+>(stepData: BuilderStep[] = []) {
   return {
     step<
       TKey extends string,
@@ -27,14 +33,26 @@ export function stepBuilder<
           images,
           stepFn,
         },
-      ] as Array<{
-        key: string;
-        images: Record<string, Promise<{ default: string }>>;
-        stepFn: (
-          images: Record<string, Promise<{ default: string }>>,
-          input: unknown,
-        ) => Omit<StepInfo, "key">;
-      }>);
+      ] as BuilderStep[]);
+    },
+
+    stepConditional<
+      TKey extends string,
+      TImages extends Record<string, Promise<{ default: string }>>,
+      TStep extends Omit<StepInfo, "key">,
+    >(key: TKey, images: TImages, stepFn: StepFn<TImages, TStep, T>) {
+      preloadImages(Object.values(images));
+
+      return stepBuilder<
+        T & Record<TKey, TStep["options"][number]["value"] | undefined>
+      >([
+        ...stepData,
+        {
+          key,
+          images,
+          stepFn,
+        },
+      ] as BuilderStep[]);
     },
 
     buildSteps(input: Array<[string, string]>): StepInfo[] {
@@ -44,12 +62,36 @@ export function stepBuilder<
         (step) => !(step.key in inputRecord),
       );
 
-      return stepData
-        .slice(0, lastStepIndex + 1)
-        .map(({ stepFn, images, key }) => ({
-          key,
-          ...stepFn(images, inputRecord),
-        }));
+      const nextStep = stepData
+        .slice(lastStepIndex)
+        .map(
+          ({ stepFn, images, key }) =>
+            [
+              key,
+              stepFn(images, inputRecord as Record<string, unknown>),
+            ] as const,
+        )
+        .find(([, step]) => step !== null);
+
+      return [
+        // Known steps
+        ...stepData
+          .slice(0, lastStepIndex)
+          .flatMap(({ stepFn, images, key }) => {
+            const result = stepFn(images, inputRecord);
+            return result ? [{ key, ...result } as StepInfo] : [];
+          }),
+
+        // Find the next step that doesn't return nullish for the given input
+        ...(nextStep != null
+          ? [
+              {
+                key: nextStep[0],
+                ...nextStep[1],
+              } as StepInfo,
+            ]
+          : []),
+      ];
     },
   };
 }

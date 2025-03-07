@@ -126,6 +126,47 @@ export const wizardSteps = stepBuilder()
   )
 
   // ===========================================================================
+  // (Conditional) Coil type (standard, reverse, invisible)
+  //
+  .stepConditional(
+    "coilType",
+    {
+      standardCoil: import(
+        "./zipper-wizard-step-images/04-coil-type/standard-coil.png"
+      ),
+      reverseCoil: import(
+        "./zipper-wizard-step-images/04-coil-type/reverse-coil.png"
+      ),
+      invisibleCoil: import(
+        "./zipper-wizard-step-images/04-coil-type/invisible-coil.png"
+      ),
+    },
+    (images, { toothType }) =>
+      toothType === "coil"
+        ? {
+            label: "Coil Type",
+            options: [
+              {
+                label: "Standard",
+                value: "standard",
+                imageUrl: images.standardCoil,
+              },
+              {
+                label: "Reverse",
+                value: "reverse",
+                imageUrl: images.reverseCoil,
+              },
+              {
+                label: "Invisible",
+                value: "invisible",
+                imageUrl: images.invisibleCoil,
+              },
+            ],
+          }
+        : null,
+  )
+
+  // ===========================================================================
   // Tooth count
   //
 
@@ -133,52 +174,52 @@ export const wizardSteps = stepBuilder()
     "toothCount",
     {
       coil324Tpi: import(
-        "./zipper-wizard-step-images/04-tooth-count/coil-3_24-tpi.jpg"
+        "@/zipper-wizard/zipper-wizard-step-images/05-tooth-count/coil-3_24-tpi.jpg"
       ),
       coil4520Tpi: import(
-        "./zipper-wizard-step-images/04-tooth-count/coil-4.5_20-tpi.jpg"
+        "@/zipper-wizard/zipper-wizard-step-images/05-tooth-count/coil-4.5_20-tpi.jpg"
       ),
       coil5165Tpi: import(
-        "./zipper-wizard-step-images/04-tooth-count/coil-5_16.5-tpi.jpg"
+        "@/zipper-wizard/zipper-wizard-step-images/05-tooth-count/coil-5_16.5-tpi.jpg"
       ),
       coil814Tpi: import(
-        "./zipper-wizard-step-images/04-tooth-count/coil-8_14-tpi.jpg"
+        "@/zipper-wizard/zipper-wizard-step-images/05-tooth-count/coil-8_14-tpi.jpg"
       ),
       coil1010Tpi: import(
-        "./zipper-wizard-step-images/04-tooth-count/coil-10_10-tpi.jpg"
+        "@/zipper-wizard/zipper-wizard-step-images/05-tooth-count/coil-10_10-tpi.jpg"
       ),
       metal312Tpi: import(
-        "./zipper-wizard-step-images/04-tooth-count/metal-3_12-tpi.jpg"
+        "@/zipper-wizard/zipper-wizard-step-images/05-tooth-count/metal-3_12-tpi.jpg"
       ),
       metal4511Tpi: import(
-        "./zipper-wizard-step-images/04-tooth-count/metal-4.5_11-tpi.jpg"
+        "@/zipper-wizard/zipper-wizard-step-images/05-tooth-count/metal-4.5_11-tpi.jpg"
       ),
       metal510Tpi: import(
-        "./zipper-wizard-step-images/04-tooth-count/metal-5_10-tpi.jpg"
+        "@/zipper-wizard/zipper-wizard-step-images/05-tooth-count/metal-5_10-tpi.jpg"
       ),
       metal79Tpi: import(
-        "./zipper-wizard-step-images/04-tooth-count/metal-7_9-tpi.jpg"
+        "@/zipper-wizard/zipper-wizard-step-images/05-tooth-count/metal-7_9-tpi.jpg"
       ),
       metal88Tpi: import(
-        "./zipper-wizard-step-images/04-tooth-count/metal-8_8-tpi.jpg"
+        "@/zipper-wizard/zipper-wizard-step-images/05-tooth-count/metal-8_8-tpi.jpg"
       ),
       metal107Tpi: import(
-        "./zipper-wizard-step-images/04-tooth-count/metal-10_7-tpi.jpg"
+        "@/zipper-wizard/zipper-wizard-step-images/05-tooth-count/metal-10_7-tpi.jpg"
       ),
       plastic310Tpi: import(
-        "./zipper-wizard-step-images/04-tooth-count/plastic-3_10-tpi.jpg"
+        "@/zipper-wizard/zipper-wizard-step-images/05-tooth-count/plastic-3_10-tpi.jpg"
       ),
       plastic485Tpi: import(
-        "./zipper-wizard-step-images/04-tooth-count/plastic-4_8.5-tpi.jpg"
+        "@/zipper-wizard/zipper-wizard-step-images/05-tooth-count/plastic-4_8.5-tpi.jpg"
       ),
       plastic575Tpi: import(
-        "./zipper-wizard-step-images/04-tooth-count/plastic-5_7.5-tpi.jpg"
+        "@/zipper-wizard/zipper-wizard-step-images/05-tooth-count/plastic-5_7.5-tpi.jpg"
       ),
       plastic86Tpi: import(
-        "./zipper-wizard-step-images/04-tooth-count/plastic-8_6.5-tpi.jpg"
+        "@/zipper-wizard/zipper-wizard-step-images/05-tooth-count/plastic-8_6.5-tpi.jpg"
       ),
       plastic105Tpi: import(
-        "./zipper-wizard-step-images/04-tooth-count/plastic-10_5-tpi.jpg"
+        "@/zipper-wizard/zipper-wizard-step-images/05-tooth-count/plastic-10_5-tpi.jpg"
       ),
     },
     (images, { toothType }) =>
