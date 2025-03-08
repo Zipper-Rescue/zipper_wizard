@@ -1,6 +1,8 @@
 import { test, expect, describe, vitest } from "vitest";
 import { stepBuilder, StepOption } from "@/zipper-wizard/step-builder.ts";
 
+const options = [{ value: "test", label: "Test", imageUrl: "test.jpg" }];
+
 describe("basic steps", () => {
   const firstFn = vitest.fn(() => ({ label: "First", options }) as const);
   const secondFn = vitest.fn(() => ({ label: "Second", options }) as const);
@@ -22,8 +24,8 @@ describe("basic steps", () => {
 describe("conditional steps", () => {
   const firstFn = vitest.fn(() => ({ label: "First", options }) as const);
   const secondFn = vitest.fn(
-    (_images, { first }: { first: "a" | "b" | "c" }) =>
-      first === "a" ? ({ label: "Second", options } as const) : null,
+    (_images: {}, data: { first: string }) =>
+      data.first === "a" ? ({ label: "Second", options } as const) : null,
   );
   const thirdFn = vitest.fn(() => ({ label: "Third", options }) as const);
 
@@ -33,34 +35,78 @@ describe("conditional steps", () => {
     .step("third", {}, thirdFn);
 
   test("true", () => {
-    expect(builder.buildSteps([["first", "a" as const]])).toEqual([
+    expect(builder.buildSteps([["first", "a"]])).toEqual([
       { key: "first", label: "First", options },
       { key: "second", label: "Second", options },
     ]);
   });
 
   test("false", () => {
-    expect(builder.buildSteps([["first", "b" as const]])).toEqual([
+    expect(builder.buildSteps([["first", "b"]])).toEqual([
       { key: "first", label: "First", options },
       { key: "third", label: "Third", options },
     ]);
   });
 });
 
-const options = [
-  {
-    label: "A",
-    value: "a",
-    imageUrl: "a.png",
-  },
-  {
-    label: "B",
-    value: "b",
-    imageUrl: "b.png",
-  },
-  {
-    label: "C",
-    value: "c",
-    imageUrl: "c.png",
-  },
-] as const satisfies StepOption[];
+describe("conditional step near end", () => {
+  const materialFn = vitest.fn(() => ({ label: "Material", options }) as const);
+  const coilTypeFn = vitest.fn(
+    (_images: {}, data: { material: string }) =>
+      data.material === "coil" ? ({ label: "Coil Type", options } as const) : null,
+  );
+  const sizeFn = vitest.fn(() => ({ label: "Size", options }) as const);
+  const lastStepFn = vitest.fn(() => ({ label: "Results", options: [] as StepOption[] }) as const);
+
+  const builder = stepBuilder()
+    .step("material", {}, materialFn)
+    .stepConditional("coilType", {}, coilTypeFn)
+    .step("size", {}, sizeFn)
+    .step("lastStep", {}, lastStepFn);
+
+  test("with conditional step (coil material)", () => {
+    const steps = builder.buildSteps([
+      ["material", "coil"],
+      ["coilType", "standard"],
+      ["size", "5"],
+    ]);
+
+    expect(steps).toEqual([
+      { key: "material", label: "Material", options },
+      { key: "coilType", label: "Coil Type", options },
+      { key: "size", label: "Size", options },
+      { key: "lastStep", label: "Results", options: [] },
+    ]);
+  });
+
+  test("without conditional step (metal material)", () => {
+    const steps = builder.buildSteps([
+      ["material", "metal"],
+      ["size", "5"],
+    ]);
+
+    expect(steps).toEqual([
+      { key: "material", label: "Material", options },
+      { key: "size", label: "Size", options },
+      { key: "lastStep", label: "Results", options: [] },
+    ]);
+  });
+
+  test("partial steps with conditional", () => {
+    const steps = builder.buildSteps([["material", "coil"]]);
+
+    expect(steps).toEqual([
+      { key: "material", label: "Material", options },
+      { key: "coilType", label: "Coil Type", options },
+    ]);
+  });
+
+  test("partial steps without conditional", () => {
+    const steps = builder.buildSteps([["material", "metal"]]);
+
+    expect(steps).toEqual([
+      { key: "material", label: "Material", options },
+      { key: "size", label: "Size", options },
+    ]);
+  });
+});

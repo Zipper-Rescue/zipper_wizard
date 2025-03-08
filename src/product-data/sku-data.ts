@@ -8,7 +8,7 @@ export const skuData: SkuItem[] = [
     productId: 358,
     productType: "stop",
     label: "Top Stop - Small Gold",
-    imageName: "top-stop_small_gold_ID-358.jpg",
+    imageFn: () => import("./images/top-stop_small_gold_ID-358.jpg"),
   },
 
   // top-stop_large_black_ID-357.jpg
@@ -16,7 +16,7 @@ export const skuData: SkuItem[] = [
     productId: 357,
     productType: "stop",
     label: "Top Stop - Large Black",
-    imageName: "top-stop_large_black_ID-357.jpg",
+    imageFn: () => import("./images/top-stop_large_black_ID-357.jpg"),
   },
 
   // ===========================================================================
@@ -28,7 +28,7 @@ export const skuData: SkuItem[] = [
     productId: 360,
     productType: "stop",
     label: "Bottom End Stop - Large Black",
-    imageName: "bottom-end-stop_large_black_ID-360.jpg",
+    imageFn: () => import("./images/bottom-end-stop_large_black_ID-360.jpg"),
   },
 
   // bottom-end-stop_small_gold_ID-359.jpg
@@ -36,7 +36,7 @@ export const skuData: SkuItem[] = [
     productId: 359,
     productType: "stop",
     label: "Bottom End Stop - Small Gold",
-    imageName: "bottom-end-stop_small_gold_ID-359.jpg",
+    imageFn: () => import("./images/bottom-end-stop_small_gold_ID-359.jpg"),
   },
 
   // ===========================================================================
@@ -48,7 +48,7 @@ export const skuData: SkuItem[] = [
     productId: 1514,
     productType: "slider",
     label: "#3 Coil Tooth Slider (Double)",
-    imageName: "coil_3mm_double_non-locking_ID-1514.jpg",
+    imageFn: () => import("./images/coil_3mm_double_non-locking_ID-1514.jpg"),
     toothType: "coil",
     sliderSize: 3,
     pullStyle: "double",
@@ -60,7 +60,7 @@ export const skuData: SkuItem[] = [
     productId: 376,
     productType: "slider",
     label: "#3 Coil Tooth Slider (Locking)",
-    imageName: "coil_3mm_single_locking_ID-376.jpg",
+    imageFn: () => import("./images/coil_3mm_single_locking_ID-376.jpg"),
     toothType: "coil",
     sliderSize: 3,
     pullStyle: "single",
@@ -72,7 +72,7 @@ export const skuData: SkuItem[] = [
     productId: 383,
     productType: "slider",
     label: "#4.5 Coil Tooth Slider (Double)",
-    imageName: "coil_4.5mm_double_non-locking_ID-383.jpg",
+    imageFn: () => import("./images/coil_4.5mm_double_non-locking_ID-383.jpg"),
     toothType: "coil",
     sliderSize: 4.5,
     pullStyle: "double",
@@ -84,7 +84,7 @@ export const skuData: SkuItem[] = [
     productId: 356,
     productType: "slider",
     label: "#4.5 Coil Tooth Slider (Locking)",
-    imageName: "coil_4.5mm_single_locking_ID-356.jpg",
+    imageFn: () => import("./images/coil_4.5mm_single_locking_ID-356.jpg"),
     toothType: "coil",
     sliderSize: 4.5,
     pullStyle: "single",
@@ -96,7 +96,7 @@ export const skuData: SkuItem[] = [
     productId: 384,
     productType: "slider",
     label: "#4.5 Coil Tooth Slider (Single)",
-    imageName: "coil_4.5mm_single_non-locking_ID-384.jpg",
+    imageFn: () => import("./images/coil_4.5mm_single_non-locking_ID-384.jpg"),
     toothType: "coil",
     sliderSize: 4.5,
     pullStyle: "single",
@@ -108,7 +108,7 @@ export const skuData: SkuItem[] = [
     productId: 385,
     productType: "slider",
     label: "#5 Coil Tooth Slider (Double)",
-    imageName: "coil_5mm_double_non-locking_ID-385.jpg",
+    imageFn: () => import("./images/coil_5mm_double_non-locking_ID-385.jpg"),
     toothType: "coil",
     sliderSize: 5,
     pullStyle: "double",
@@ -120,7 +120,7 @@ export const skuData: SkuItem[] = [
     productId: 364,
     productType: "slider",
     label: "#5 Coil Tooth Slider (Locking)",
-    imageName: "coil_5mm_single_locking_ID-364.jpg",
+    imageFn: () => import("./images/coil_5mm_single_locking_ID-364.jpg"),
     toothType: "coil",
     sliderSize: 5,
     pullStyle: "single",
@@ -132,7 +132,7 @@ export const skuData: SkuItem[] = [
     productId: 386,
     productType: "slider",
     label: "#5 Coil Tooth Slider (Single)",
-    imageName: "coil_5mm_single_non-locking_ID-386.jpg",
+    imageFn: () => import("./images/coil_5mm_single_non-locking_ID-386.jpg"),
     toothType: "coil",
     sliderSize: 5,
     pullStyle: "single",
@@ -144,7 +144,8 @@ export const skuData: SkuItem[] = [
     productId: 379,
     productType: "slider",
     label: "#5 Coil Tooth Slider (Marine)",
-    imageName: "coil_5mm_single_non-locking_marine_ID-379.jpg",
+    imageFn: () =>
+      import("./images/coil_5mm_single_non-locking_marine_ID-379.jpg"),
     toothType: "coil",
     sliderSize: 5,
     pullStyle: "single",
@@ -156,7 +157,7 @@ export const skuData: SkuItem[] = [
     productId: 389,
     productType: "slider",
     label: "#8 Coil Tooth Slider (Double)",
-    imageName: "coil_8mm_double_non-locking_ID_389.jpeg",
+    imageFn: () => import("./images/coil_8mm_double_non-locking_ID_389.jpeg"),
     toothType: "coil",
     sliderSize: 8,
     pullStyle: "double",
@@ -168,7 +169,7 @@ export const skuData: SkuItem[] = [
     productId: 388,
     productType: "slider",
     label: "#8 Coil Tooth Slider",
-    imageName: "coil_8mm_single_non-locking_ID-388.jpg",
+    imageFn: () => import("./images/coil_8mm_single_non-locking_ID-388.jpg"),
     toothType: "coil",
     sliderSize: 8,
     pullStyle: "single",
@@ -180,7 +181,7 @@ export const skuData: SkuItem[] = [
     productId: 303,
     productType: "slider",
     label: "#10 Coil Tooth Slider (Double)",
-    imageName: "coil_10mm_double_non-locking_ID-303.jpg",
+    imageFn: () => import("./images/coil_10mm_double_non-locking_ID-303.jpg"),
     toothType: "coil",
     sliderSize: 10,
     pullStyle: "double",
@@ -192,7 +193,7 @@ export const skuData: SkuItem[] = [
     productId: 302,
     productType: "slider",
     label: "#10 Coil Tooth Slider",
-    imageName: "coil_10mm_single_non-locking_ID-302.jpg",
+    imageFn: () => import("./images/coil_10mm_single_non-locking_ID-302.jpg"),
     toothType: "coil",
     sliderSize: 10,
     pullStyle: "single",
@@ -209,7 +210,8 @@ export const skuData: SkuItem[] = [
     productId: 361,
     productType: "slider",
     label: "#5 Reverse Coil Tooth Slider (Locking)",
-    imageName: "coil_reverse_5mm_single_locking_ID-361.jpg",
+    imageFn: () =>
+      import("./images/coil_reverse_5mm_single_locking_ID-361.jpg"),
     toothType: "coil-reverse",
     sliderSize: 5,
     pullStyle: "single",
@@ -226,7 +228,7 @@ export const skuData: SkuItem[] = [
     productId: 301,
     productType: "slider",
     label: "#3 Metal Tooth Slider (Locking)",
-    imageName: "metal-tooth_3mm_single_locking_ID-301.jpg",
+    imageFn: () => import("./images/metal-tooth_3mm_single_locking_ID-301.jpg"),
     toothType: "metal",
     sliderSize: 3,
     pullStyle: "single",
@@ -238,7 +240,8 @@ export const skuData: SkuItem[] = [
     productId: 377,
     productType: "slider",
     label: "#4.5 Metal Tooth Slider (Locking)",
-    imageName: "metal-tooth_4.5mm_single_locking_ID-377.jpg",
+    imageFn: () =>
+      import("./images/metal-tooth_4.5mm_single_locking_ID-377.jpg"),
     toothType: "metal",
     sliderSize: 4.5,
     pullStyle: "single",
@@ -250,7 +253,7 @@ export const skuData: SkuItem[] = [
     productId: 378,
     productType: "slider",
     label: "#5 Metal Tooth Slider (Locking)",
-    imageName: "metal-tooth_5mm_single_locking_ID-378.jpg",
+    imageFn: () => import("./images/metal-tooth_5mm_single_locking_ID-378.jpg"),
     toothType: "metal",
     sliderSize: 5,
     pullStyle: "single",
@@ -262,7 +265,7 @@ export const skuData: SkuItem[] = [
     productId: 300,
     productType: "slider",
     label: "#7 Metal Tooth Slider (Locking)",
-    imageName: "metal-tooth_7mm_single_locking_ID-300.jpg",
+    imageFn: () => import("./images/metal-tooth_7mm_single_locking_ID-300.jpg"),
     toothType: "metal",
     sliderSize: 7,
     pullStyle: "single",
@@ -274,7 +277,7 @@ export const skuData: SkuItem[] = [
     productId: 299,
     productType: "slider",
     label: "#8 Metal Tooth Slider (Locking)",
-    imageName: "metal-tooth_8mm_single_locking_ID-299.jpg",
+    imageFn: () => import("./images/metal-tooth_8mm_single_locking_ID-299.jpg"),
     toothType: "metal",
     sliderSize: 8,
     pullStyle: "single",
@@ -286,7 +289,8 @@ export const skuData: SkuItem[] = [
     productId: 304,
     productType: "slider",
     label: "#10 Metal Tooth Slider (Locking)",
-    imageName: "metal-tooth_10mm_single_locking_ID-304.jpg",
+    imageFn: () =>
+      import("./images/metal-tooth_10mm_single_locking_ID-304.jpg"),
     toothType: "metal",
     sliderSize: 10,
     pullStyle: "single",
@@ -303,7 +307,8 @@ export const skuData: SkuItem[] = [
     productId: 375,
     productType: "slider",
     label: "#3 Plastic Tooth Slider (Locking)",
-    imageName: "plastic-tooth_3mm_single_locking_vs_ID-375.jpg",
+    imageFn: () =>
+      import("./images/plastic-tooth_3mm_single_locking_vs_ID-375.jpg"),
     toothType: "plastic",
     sliderSize: 3,
     pullStyle: "single",
@@ -315,7 +320,8 @@ export const skuData: SkuItem[] = [
     productId: 297,
     productType: "slider",
     label: "#4 Plastic Tooth Slider (Locking)",
-    imageName: "plastic-tooth_4mm_single_locking_vs_ID-297.jpg",
+    imageFn: () =>
+      import("./images/plastic-tooth_4mm_single_locking_vs_ID-297.jpg"),
     toothType: "plastic",
     sliderSize: 4,
     pullStyle: "single",
@@ -327,7 +333,8 @@ export const skuData: SkuItem[] = [
     productId: 1515,
     productType: "slider",
     label: "#5 Plastic Tooth Slider (Double)",
-    imageName: "plastic-tooth_5mm_double_non-locking_v_ID-1515.jpg",
+    imageFn: () =>
+      import("./images/plastic-tooth_5mm_double_non-locking_v_ID-1515.jpg"),
     toothType: "plastic",
     sliderSize: 5,
     pullStyle: "double",
@@ -339,7 +346,8 @@ export const skuData: SkuItem[] = [
     productId: 380,
     productType: "slider",
     label: "#5 Plastic Tooth Slider (Marine)",
-    imageName: "plastic-tooth_5mm_single_locking_marine_v_ID-380.jpg",
+    imageFn: () =>
+      import("./images/plastic-tooth_5mm_single__locking_marine_v_ID-380.jpg"),
     toothType: "plastic",
     sliderSize: 5,
     pullStyle: "single",
@@ -351,7 +359,8 @@ export const skuData: SkuItem[] = [
     productId: 380,
     productType: "slider",
     label: "#5 Plastic Tooth Slider (Locking)",
-    imageName: "plastic-tooth_5mm_single_locking_v_ID-380.jpg",
+    imageFn: () =>
+      import("./images/plastic-tooth_5mm_single_locking_v_ID-380.jpg"),
     toothType: "plastic",
     sliderSize: 5,
     pullStyle: "single",
@@ -363,7 +372,8 @@ export const skuData: SkuItem[] = [
     productId: 1516,
     productType: "slider",
     label: "#5 Plastic Tooth Slider (Locking)",
-    imageName: "plastic-tooth_5mm_single_locking_vs_ID-1516.jpg",
+    imageFn: () =>
+      import("./images/plastic-tooth_5mm_single_locking_vs_ID-1516.jpg"),
     toothType: "plastic",
     sliderSize: 5,
     pullStyle: "single",
@@ -375,7 +385,8 @@ export const skuData: SkuItem[] = [
     productId: 381,
     productType: "slider",
     label: "#8 Plastic Tooth Slider (Double)",
-    imageName: "plastic-tooth_8mm_double_non-locking_v_ID-381.jpg",
+    imageFn: () =>
+      import("./images/plastic-tooth_8mm_double_non-locking_v_ID-381.jpg"),
     toothType: "plastic",
     sliderSize: 8,
     pullStyle: "double",
@@ -387,7 +398,8 @@ export const skuData: SkuItem[] = [
     productId: 298,
     productType: "slider",
     label: "#8 Plastic Tooth Slider (Locking)",
-    imageName: "plastic-tooth_8mm_single_locking_v_ID-298.jpg",
+    imageFn: () =>
+      import("./images/plastic-tooth_8mm_single_locking_v_ID-298.jpg"),
     toothType: "plastic",
     sliderSize: 8,
     pullStyle: "single",
@@ -399,7 +411,8 @@ export const skuData: SkuItem[] = [
     productId: 366,
     productType: "slider",
     label: "#10 Plastic Tooth Slider (Double, Locking)",
-    imageName: "plastic-tooth_10mm_double_locking_v_ID-366.jpg",
+    imageFn: () =>
+      import("./images/plastic-tooth_10mm_double_locking_v_ID-366.jpg"),
     toothType: "plastic",
     sliderSize: 10,
     pullStyle: "double",
@@ -412,7 +425,10 @@ export const skuData: SkuItem[] = [
     productId: 1518,
     productType: "slider",
     label: "#10 Plastic Tooth Slider (2-Way Set)",
-    imageName: "plastic-tooth_10mm_single_2-way-set_locking_v_ID-1518.jpg",
+    imageFn: () =>
+      import(
+        "./images/plastic-tooth_10mm_single_2-way-set_locking_v_ID-1518.jpg"
+      ),
     toothType: "plastic",
     sliderSize: 10,
     pullStyle: "single",
@@ -425,7 +441,8 @@ export const skuData: SkuItem[] = [
     productId: 382,
     productType: "slider",
     label: "#10 Plastic Tooth Slider (Marine)",
-    imageName: "plastic-tooth_10mm_single_locking_marine_v_ID-382.jpg",
+    imageFn: () =>
+      import("./images/plastic-tooth_10mm_single_locking_marine_v_ID-382.jpg"),
     toothType: "plastic",
     sliderSize: 10,
     pullStyle: "single",
@@ -438,7 +455,8 @@ export const skuData: SkuItem[] = [
     productId: 1517,
     productType: "slider",
     label: "#10 Plastic Tooth Slider (Locking)",
-    imageName: "plastic-tooth_10mm_single_locking_v_ID-1517.jpg",
+    imageFn: () =>
+      import("./images/plastic-tooth_10mm_single_locking_v_ID-1517.jpg"),
     toothType: "plastic",
     sliderSize: 10,
     pullStyle: "single",
@@ -453,7 +471,7 @@ export interface SkuBase {
   productId: number;
   productType: "slider" | "stop";
   label: string;
-  imageName: string;
+  imageFn: () => Promise<{ default: string }>;
 }
 
 export interface StopSku extends SkuBase {
@@ -468,7 +486,6 @@ export interface SliderSku extends SkuBase {
   pullStyle: "single" | "double";
   lockingType: "locking" | "non-locking";
   toothType: "coil" | "coil-reverse" | "coil-invisible" | "metal" | "plastic";
-  imageName: string;
   teethPerInch: number;
 }
 

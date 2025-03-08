@@ -1,5 +1,9 @@
 import { stepBuilder } from "@/zipper-wizard/step-builder.ts";
 import { Button } from "@/components/ui/button.tsx";
+import { skuData } from "@/product-data/sku-data";
+import { matchSkuForWizardResult } from "@/product-data/match-sku-for-wizard-result";
+import { SkuCard } from "@/components/sku-card";
+import { AddToCartButton } from "@/components/add-to-cart-button";
 
 export const wizardSteps = stepBuilder()
   // ===========================================================================
@@ -38,7 +42,7 @@ export const wizardSteps = stepBuilder()
             imageUrl: images.nonSeparatingExample,
           },
         ],
-      }) as const,
+      }) as const
   )
 
   // ===========================================================================
@@ -81,7 +85,7 @@ export const wizardSteps = stepBuilder()
             imageUrl: images.wornBrokenSlider,
           },
         ] as const,
-      }) as const,
+      }) as const
   )
 
   // ===========================================================================
@@ -122,7 +126,7 @@ export const wizardSteps = stepBuilder()
             description:
               "Sorry, you need to take that to a seamstress or tailor.",
             options: [],
-          } as const),
+          } as const)
   )
 
   // ===========================================================================
@@ -163,7 +167,7 @@ export const wizardSteps = stepBuilder()
               },
             ],
           } as const)
-        : null,
+        : null
   )
 
   // ===========================================================================
@@ -319,25 +323,31 @@ export const wizardSteps = stepBuilder()
                   imageUrl: images.plastic105Tpi,
                 },
               ],
-            } as const),
+            } as const)
   )
-  .step("lastStep", {}, () => ({
-    label: "Dummy Last Step",
-    description: (
-      <div>
-        <Button
-          onClick={() => {
-            window.parent.postMessage(
-              { command: "add-to-cart", productId: 388, quantity: 1 },
-              "*",
-            );
-          }}
-        >
-          Add to cart
-        </Button>
-      </div>
-    ),
-    options: [],
-  }));
+  .step("lastStep", {}, (_, result) => {
+    const products = skuData.filter((it) =>
+      matchSkuForWizardResult(result, it)
+    );
 
-export type WizardResult = (typeof wizardSteps)["T"];
+    return {
+      label: "Matching Products",
+      description: (
+        <div className="flex flex-col gap-2">
+          <div>
+            <em>Et volia!</em> We found {products.length} parts to help you fix
+            your zipper.
+          </div>
+          <div className="flex flex-wrap gap-2 justify-center">
+            {products.map((skuItem) => (
+              <SkuCard sku={skuItem}>
+                <AddToCartButton className="w-full" sku={skuItem} />
+              </SkuCard>
+            ))}
+          </div>
+        </div>
+      ),
+      options: [],
+    };
+  });
+export type WizardResult = Omit<(typeof wizardSteps)["T"], "lastStep">;

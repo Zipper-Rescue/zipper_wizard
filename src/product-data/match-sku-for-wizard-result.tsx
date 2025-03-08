@@ -1,4 +1,4 @@
-import { SkuItem } from "@/zipper-wizard/sku-data.ts";
+import { SkuItem } from "@/product-data/sku-data.js";
 import { WizardResult } from "@/zipper-wizard/wizard-steps.tsx";
 
 export function matchSkuForWizardResult(
