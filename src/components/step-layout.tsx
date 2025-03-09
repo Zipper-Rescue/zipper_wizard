@@ -1,6 +1,7 @@
 import * as React from "react";
-import { cn } from "@/lib/util/cn.ts";
 import { useEffect } from "react";
+
+import { cn } from "@/lib/util/cn.ts";
 
 export function StepLayout({
   title,

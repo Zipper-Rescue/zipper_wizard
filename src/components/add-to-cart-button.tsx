@@ -1,6 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { SkuItem } from "@/product-data/sku-data";
 
+import { postAddToCartMessage } from "./postAddToCartMessage";
+
 export function AddToCartButton({
   sku,
   className,
@@ -10,18 +12,13 @@ export function AddToCartButton({
 }) {
   return (
     <Button
-      onClick={() => postAddToCartMessage(sku.productId)}
+      onClick={() => {
+        postAddToCartMessage(sku.productId);
+      }}
       title={`Add ${sku.label} to cart`}
       className={className}
     >
       Add to cart
     </Button>
-  );
-}
-
-export function postAddToCartMessage(productId: number) {
-  window.parent.postMessage(
-    { command: "add-to-cart", productId, quantity: 1 },
-    "*"
   );
 }

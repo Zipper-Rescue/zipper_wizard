@@ -1,9 +1,8 @@
-import { stepBuilder } from "@/zipper-wizard/step-builder.ts";
-import { Button } from "@/components/ui/button.tsx";
-import { skuData } from "@/product-data/sku-data";
-import { matchSkuForWizardResult } from "@/product-data/match-sku-for-wizard-result";
-import { SkuCard } from "@/components/sku-card";
 import { AddToCartButton } from "@/components/add-to-cart-button";
+import { SkuCard } from "@/components/sku-card";
+import { matchSkuForWizardResult } from "@/product-data/match-sku-for-wizard-result";
+import { skuData } from "@/product-data/sku-data";
+import { stepBuilder } from "@/zipper-wizard/step-builder.ts";
 
 export const wizardSteps = stepBuilder()
   // ===========================================================================
@@ -42,7 +41,7 @@ export const wizardSteps = stepBuilder()
             imageUrl: images.nonSeparatingExample,
           },
         ],
-      }) as const
+      }) as const,
   )
 
   // ===========================================================================
@@ -85,7 +84,7 @@ export const wizardSteps = stepBuilder()
             imageUrl: images.wornBrokenSlider,
           },
         ] as const,
-      }) as const
+      }) as const,
   )
 
   // ===========================================================================
@@ -126,7 +125,7 @@ export const wizardSteps = stepBuilder()
             description:
               "Sorry, you need to take that to a seamstress or tailor.",
             options: [],
-          } as const)
+          } as const),
   )
 
   // ===========================================================================
@@ -167,7 +166,7 @@ export const wizardSteps = stepBuilder()
               },
             ],
           } as const)
-        : null
+        : null,
   )
 
   // ===========================================================================
@@ -323,11 +322,11 @@ export const wizardSteps = stepBuilder()
                   imageUrl: images.plastic105Tpi,
                 },
               ],
-            } as const)
+            } as const),
   )
   .step("lastStep", {}, (_, result) => {
     const products = skuData.filter((it) =>
-      matchSkuForWizardResult(result, it)
+      matchSkuForWizardResult(result, it),
     );
 
     return {
@@ -340,7 +339,7 @@ export const wizardSteps = stepBuilder()
           </div>
           <div className="flex flex-wrap gap-2 justify-center">
             {products.map((skuItem) => (
-              <SkuCard sku={skuItem}>
+              <SkuCard sku={skuItem} key={skuItem.productId}>
                 <AddToCartButton className="w-full" sku={skuItem} />
               </SkuCard>
             ))}

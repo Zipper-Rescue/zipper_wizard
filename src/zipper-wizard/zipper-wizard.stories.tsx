@@ -1,8 +1,8 @@
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 
-import type { Meta, StoryObj } from "@storybook/react";
-
 import { ZipperWizard } from "@/zipper-wizard/zipper-wizard.tsx";
+
+import type { Meta, StoryObj } from "@storybook/react";
 
 const meta = {
   component: ZipperWizard,

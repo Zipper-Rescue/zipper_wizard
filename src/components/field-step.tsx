@@ -1,6 +1,6 @@
+import { ImageOption } from "@/components/image-option.tsx";
 import { StepLayout } from "@/components/step-layout.tsx";
 import { StepInfo } from "@/zipper-wizard/step-builder.ts";
-import { ImageOption } from "@/components/image-option.tsx";
 
 export function FieldStep({
   fieldData,

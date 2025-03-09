@@ -1,11 +1,11 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import { ImageOption } from "@/components/image-option.tsx";
+import nonSeparatingImage from "@/zipper-wizard/zipper-type/non-separating.png";
+import separatingImage from "@/zipper-wizard/zipper-type/separating.png";
+import twoWaySeparatingImage from "@/zipper-wizard/zipper-type/two-way-separating.png";
 
 import { StepLayout } from "./step-layout.tsx";
-import { ImageOption } from "@/components/image-option.tsx";
 
-import separatingImage from "@/zipper-wizard/zipper-type/separating.png";
-import nonSeparatingImage from "@/zipper-wizard/zipper-type/non-separating.png";
-import twoWaySeparatingImage from "@/zipper-wizard/zipper-type/two-way-separating.png";
+import type { Meta, StoryObj } from "@storybook/react";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {

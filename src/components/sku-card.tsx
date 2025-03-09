@@ -1,5 +1,6 @@
 import { cn } from "@/lib/util/cn.ts";
 import { SkuItem } from "@/product-data/sku-data.js";
+
 import { AsyncImage } from "./async-image.tsx";
 
 export function SkuCard({
@@ -26,7 +27,7 @@ export function SkuCard({
         "focus:outline-none focus:ring-2 focus:ring-red-500",
         isSelected
           ? "border-red-600 bg-red-50 shadow-md"
-          : "border-gray-200 bg-white hover:border-red-200"
+          : "border-gray-200 bg-white hover:border-red-200",
       )}
     >
       {/* Image Container */}
@@ -47,15 +48,17 @@ export function SkuCard({
         {sku.productType === "slider" && (
           <div className="grid grid-cols-2 gap-2 text-sm text-gray-600">
             {[
-              `Size ${sku.sliderSize}`,
-              `${sku.teethPerInch} teeth per inch`,
+              `Size ${String(sku.sliderSize)}`,
+              `${String(sku.teethPerInch)} teeth per inch`,
               sku.toothType
                 .replace("-", " ")
                 .replace(/^\w/, (c) => c.toUpperCase()),
               `${sku.pullStyle.replace("-", " ").replace(/^\w/, (c) => c.toUpperCase())} pull`,
-              `${sku.lockingType.replace("-", " ").replace(/^\w/, (c) => c.toUpperCase())}`,
-            ].map((value) => (
-              <div>{value}</div>
+              sku.lockingType
+                .replace("-", " ")
+                .replace(/^\w/, (c) => c.toUpperCase()),
+            ].map((value, index) => (
+              <div key={index}>{value}</div>
             ))}
           </div>
         )}

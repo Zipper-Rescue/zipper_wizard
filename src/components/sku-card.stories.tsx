@@ -1,6 +1,8 @@
-import type { Meta, StoryObj } from "@storybook/react";
 import { SkuCard } from "@/components/sku-card.tsx";
+import { Throw } from "@/lib/util/throw.js";
 import { skuData } from "@/product-data/sku-data.js";
+
+import type { Meta, StoryObj } from "@storybook/react";
 
 const meta = {
   component: SkuCard,
@@ -10,9 +12,11 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 // Get a slider example
-const sliderExample = skuData.find((sku) => sku.productType === "slider")!;
+const sliderExample =
+  skuData.find((sku) => sku.productType === "slider") ?? Throw("missing");
 // Get a stop example
-const stopExample = skuData.find((sku) => sku.productType === "stop")!;
+const stopExample =
+  skuData.find((sku) => sku.productType === "stop") ?? Throw("missing");
 
 export const SliderExample: Story = {
   args: {

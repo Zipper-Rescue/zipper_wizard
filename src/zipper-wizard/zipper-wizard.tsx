@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { wizardSteps } from "@/zipper-wizard/wizard-steps.tsx";
+
 import { FieldStep } from "@/components/field-step.tsx";
+import { wizardSteps } from "@/zipper-wizard/wizard-steps.tsx";
 
 export function ZipperWizard() {
   const [currentData, setCurrentData] = useState<Array<[string, string]>>([]);

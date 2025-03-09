@@ -1,4 +1,5 @@
 import { test, expect, describe, vitest } from "vitest";
+
 import { stepBuilder, StepOption } from "@/zipper-wizard/step-builder.ts";
 
 const options = [{ value: "test", label: "Test", imageUrl: "test.jpg" }];
@@ -23,9 +24,8 @@ describe("basic steps", () => {
 
 describe("conditional steps", () => {
   const firstFn = vitest.fn(() => ({ label: "First", options }) as const);
-  const secondFn = vitest.fn(
-    (_images: {}, data: { first: string }) =>
-      data.first === "a" ? ({ label: "Second", options } as const) : null,
+  const secondFn = vitest.fn((_images: object, data: { first: string }) =>
+    data.first === "a" ? ({ label: "Second", options } as const) : null,
   );
   const thirdFn = vitest.fn(() => ({ label: "Third", options }) as const);
 
@@ -51,12 +51,15 @@ describe("conditional steps", () => {
 
 describe("conditional step near end", () => {
   const materialFn = vitest.fn(() => ({ label: "Material", options }) as const);
-  const coilTypeFn = vitest.fn(
-    (_images: {}, data: { material: string }) =>
-      data.material === "coil" ? ({ label: "Coil Type", options } as const) : null,
+  const coilTypeFn = vitest.fn((_images: object, data: { material: string }) =>
+    data.material === "coil"
+      ? ({ label: "Coil Type", options } as const)
+      : null,
   );
   const sizeFn = vitest.fn(() => ({ label: "Size", options }) as const);
-  const lastStepFn = vitest.fn(() => ({ label: "Results", options: [] as StepOption[] }) as const);
+  const lastStepFn = vitest.fn(
+    () => ({ label: "Results", options: [] as StepOption[] }) as const,
+  );
 
   const builder = stepBuilder()
     .step("material", {}, materialFn)
