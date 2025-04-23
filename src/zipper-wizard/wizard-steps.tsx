@@ -383,49 +383,58 @@ export const wizardSteps = stepBuilder()
               ],
             } as const),
   )
-  .stepConditional("itemType", {}, (_, result) => {
-    // Get all products that match the current criteria
-    const matchingProducts: SkuItem[] = skuData.filter((it) =>
-      matchSkuForWizardResult(result, it),
-    );
+  .stepConditional(
+    "itemType",
+    Object.fromEntries(
+      Object.entries(itemTypeRecord).map(([key, value]) => [
+        key,
+        value.imageFn(),
+      ]),
+    ) as Record<string, Promise<{ default: string }>>,
+    (_, result) => {
+      // Get all products that match the current criteria
+      const matchingProducts: SkuItem[] = skuData.filter((it) =>
+        matchSkuForWizardResult(result, it),
+      );
 
-    // Get unique applicable item types from matching products
-    const itemTypes = new Set<ItemTypeId>(
-      matchingProducts.flatMap((product) => {
-        if (product.productType === "slider") {
-          return product.applicableItemTypes;
-        }
-        return [];
-      }),
-    );
+      // Get unique applicable item types from matching products
+      const itemTypes = new Set<ItemTypeId>(
+        matchingProducts.flatMap((product) => {
+          if (product.productType === "slider") {
+            return product.applicableItemTypes;
+          }
+          return [];
+        }),
+      );
 
-    // If there's only one item type or none, skip this step
-    if (itemTypes.size <= 1) {
-      return null;
-    }
+      // If there's only one item type or none, skip this step
+      if (itemTypes.size <= 1) {
+        return null;
+      }
 
-    return {
-      label: "Select Item Type",
-      description: (
-        <StepDescription>
-          <div>Select the type of item your zipper is on.</div>
-        </StepDescription>
-      ),
-      options: [
-        ...Array.from(itemTypes).map((type) => ({
-          label: itemTypeRecord[type].label,
-          value: type,
-          imageUrl: itemTypeRecord[type].imageFn,
-          imageWidth: "120px",
-        })),
-        {
-          label: "Show all",
-          value: "all",
-          imageWidth: "140px",
-        },
-      ],
-    };
-  })
+      return {
+        label: "Select Item Type",
+        description: (
+          <StepDescription>
+            <div>Select the type of item your zipper is on.</div>
+          </StepDescription>
+        ),
+        options: [
+          ...Array.from(itemTypes).map((type) => ({
+            label: itemTypeRecord[type].label,
+            value: type,
+            imageUrl: itemTypeRecord[type].imageFn,
+            imageWidth: "120px",
+          })),
+          {
+            label: "Show all",
+            value: "all",
+            imageWidth: "140px",
+          },
+        ],
+      };
+    },
+  )
   .step("lastStep", {}, (_, result) => {
     const products = skuData.filter((it) => {
       const matchesWizard = matchSkuForWizardResult(result, it);

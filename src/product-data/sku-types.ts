@@ -92,7 +92,10 @@ export const itemTypeRecord = {
     imageFn: () =>
       import("@/product-data/item-type-images/Wetsuits & Lifejackets.png"),
   },
-} as const;
+} as const satisfies Record<
+  string,
+  { label: string; imageFn: () => Promise<{ default: string }> }
+>;
 export const itemTypes = Object.values(itemTypeRecord);
 export type ItemTypeId = keyof typeof itemTypeRecord;
 
