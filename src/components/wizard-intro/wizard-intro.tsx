@@ -4,7 +4,7 @@ export function WizardIntro() {
   return (
     <div className="space-y-4">
       <h1 className="text-4xl p-4 text-center">
-        Welcome to the Zipper Wizard!
+        Welcome to the <strong className="text-nowrap">Zipper Wizard!</strong>
       </h1>
       <div className="flex flex-col md:flex-row gap-4">
         <AsyncImage

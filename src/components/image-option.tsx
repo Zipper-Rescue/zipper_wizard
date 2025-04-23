@@ -8,7 +8,6 @@ export function ImageOption({
   label,
   imageUrl,
   onClick,
-  isSelected,
   imageClass,
 }: {
   label: string;
@@ -58,12 +57,12 @@ export function ImageOption({
       className={cn(
         "flex flex-col items-center justify-center",
         "border rounded-md",
-        isSelected ? "border-red-950 bg-red-100" : "border-red-700",
+        "border-primary",
         "overflow-hidden",
         "cursor-pointer",
         "shadow-md",
-        "hover:text-red-800 hover:border-red-800 hover:shadow-red-200 hover:bg-red-100",
-        "focus:text-red-800 focus:border-red-800",
+        "hover:text-primary hover:border-primary hover:shadow-red-200",
+        "focus:text-primary focus:border-primary",
         !imageUrl && "h-full",
       )}
       onClick={() => onClick?.()}
@@ -75,7 +74,7 @@ export function ImageOption({
             alt={label}
             className={cn("h-auto", imageClass ?? "w-[320px]")}
           />
-          <div className={"py-1 px-2"}>{label}</div>
+          <div className={"py-1 px-2 font-semibold"}>{label}</div>
         </>
       ) : (
         <div

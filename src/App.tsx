@@ -7,7 +7,7 @@ export default function App() {
   return (
     <div
       className={cn(
-        "flex flex-col items-center gap-4",
+        "flex flex-col items-center gap-20",
         // Padding top accounts for the fixed header, which will cover
         // the title of the step when it is scrolled into view.
         "pt-[100px] md:pt-[120px]",
