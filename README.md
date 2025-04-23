@@ -7,7 +7,10 @@
 
 ## Deployment
 
-Deployed with netlify
+Deployed with netlify:
+
+- Config: https://app.netlify.com/sites/cozy-crepe-84d5f1/review
+- Deployed: https://cozy-crepe-84d5f1.netlify.app/
 
 ## Stackblitz
 
@@ -42,10 +45,10 @@ Using tailwindcss for styling: https://tailwindcss.com/docs/installation
 Installation: https://ui.shadcn.com/docs/installation/vite
 
 Adding components:
+
 ```
 npx shadcn@latest add button
 ```
-
 
 # TODO
 
@@ -56,4 +59,5 @@ npx shadcn@latest add button
 - [ ] Set tailwind breakpoints to match Divi
 
 ## High-level
+
 - [ ] Integration with shopping cart

@@ -23,7 +23,9 @@ export const wizardSteps = stepBuilder()
     },
     (images) =>
       ({
-        label: "Zipper Type",
+        label: "Select zipper type",
+        description:
+          "Inspect only the end / bottom where it unzips, do not compare the tooth material.",
         options: [
           {
             label: "One-way Separating",
@@ -62,8 +64,23 @@ export const wizardSteps = stepBuilder()
     },
     (images, { zipperType }) =>
       ({
-        label: "Failure Type",
+        label: "Select Failure Type",
+        description: (
+          <StepDescription>
+            <span>
+              <strong>Worn or Broken Slider</strong> is the most common and easy
+              to fix! If the teeth won’t stay closed it’s likely a worn slider.
+              This step is very important!
+            </span>
+          </StepDescription>
+        ),
+
         options: [
+          {
+            label: "Worn or Broken Slider",
+            value: "worn-broken-slider",
+            imageUrl: images.wornBrokenSlider,
+          },
           {
             label: "Damaged Teeth",
             value: "damaged-teeth",
@@ -78,11 +95,6 @@ export const wizardSteps = stepBuilder()
                 },
               ]
             : []),
-          {
-            label: "Worn or Broken Slider",
-            value: "worn-broken-slider",
-            imageUrl: images.wornBrokenSlider,
-          },
         ] as const,
       }) as const,
   )
@@ -101,7 +113,16 @@ export const wizardSteps = stepBuilder()
     (images, { failureType }) =>
       failureType === "worn-broken-slider"
         ? ({
-            label: "Tooth Type",
+            label: "Select tooth type",
+            description: (
+              <StepDescription>
+                <div>Look closely at the shape of the teeth.</div>
+                <div>
+                  Some zippers may appear to be metal but are actually plastic.
+                </div>
+                <div>Coil zippers can be very small and hard to see.</div>
+              </StepDescription>
+            ),
             options: [
               {
                 label: "Coil",
@@ -147,7 +168,25 @@ export const wizardSteps = stepBuilder()
     (images, { toothMaterial }) =>
       toothMaterial === "coil"
         ? ({
-            label: "Coil Type",
+            label: "Select coil type",
+            description: (
+              <StepDescription>
+                <ul>
+                  <li>
+                    <strong>Standard Coil</strong> - you’ll see and feel the
+                    coils on the outside
+                  </li>
+                  <li>
+                    <strong>Reverse Coil</strong> - same as standard but the
+                    coils face inwards
+                  </li>
+                  <li>
+                    <strong>Invisible coil</strong> - not common, most often
+                    found on dresses and skirts
+                  </li>
+                </ul>
+              </StepDescription>
+            ),
             options: [
               {
                 label: "Standard",
@@ -228,7 +267,16 @@ export const wizardSteps = stepBuilder()
     (images, { toothMaterial }) =>
       toothMaterial === "coil"
         ? ({
-            label: "Tooth Count",
+            label: "Count the teeth in 1 inch",
+            description: (
+              <StepDescription>
+                <div className="font-bold">
+                  This is not always exact, select the closest match!
+                </div>
+                <div>Start counting midway between two teeth as shown.</div>
+              </StepDescription>
+            ),
+
             options: [
               {
                 label: "24 teeth per inch",
@@ -259,7 +307,16 @@ export const wizardSteps = stepBuilder()
           } as const)
         : toothMaterial === "metal"
           ? ({
-              label: "Tooth Count",
+              label: "Count the teeth in 1 inch",
+              description: (
+                <StepDescription>
+                  <div>
+                    This is not always an exact science. Select the closest
+                    match!
+                  </div>
+                  <div>Start midway between two teeth as shown.</div>
+                </StepDescription>
+              ),
               options: [
                 {
                   label: "12 teeth per inch",
@@ -350,3 +407,22 @@ export const wizardSteps = stepBuilder()
     };
   });
 export type WizardResult = Omit<(typeof wizardSteps)["T"], "lastStep">;
+
+function StepDescription({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="flex flex-col gap-2">
+      <div>{children}</div>
+      <div>
+        If you’re stumped,{" "}
+        <a
+          className="text-blue-500 active:underline hover:underline"
+          href="https://zipperrescue.com/wizard-help-form/"
+          target="_top"
+        >
+          use this help form
+        </a>{" "}
+        to send us a photo.
+      </div>
+    </div>
+  );
+}
