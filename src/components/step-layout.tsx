@@ -1,5 +1,4 @@
 import * as React from "react";
-import { useEffect } from "react";
 
 import { cn } from "@/lib/util/cn.ts";
 
@@ -14,15 +13,15 @@ export function StepLayout({
 }) {
   const ref = React.useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    if (ref.current) {
-      // Wait for the component to render, and iframe to resize, before
-      // scrolling into view.
-      setTimeout(() => {
-        ref.current?.scrollIntoView({ behavior: "smooth", block: "start" });
-      }, 30);
-    }
-  });
+  // useEffect(() => {
+  //   if (ref.current) {
+  //     // Wait for the component to render, and iframe to resize, before
+  //     // scrolling into view.
+  //     setTimeout(() => {
+  //       ref.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+  //     }, 30);
+  //   }
+  // });
 
   return (
     <div
