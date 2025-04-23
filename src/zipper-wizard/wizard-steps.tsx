@@ -1,8 +1,9 @@
-import { AddToCartButton } from "@/components/add-to-cart-button";
+import { AddToCartButton } from "@/components/add-to-cart-button.tsx";
 import { SkuCard } from "@/components/sku-card";
 import { matchSkuForWizardResult } from "@/product-data/match-sku-for-wizard-result";
-import { skuData } from "@/product-data/sku-data";
+import { skuData } from "@/product-data/sku-data.generated";
 import { stepBuilder } from "@/zipper-wizard/step-builder.ts";
+import { StepDescription } from "@/zipper-wizard/step-description.tsx";
 
 export const wizardSteps = stepBuilder()
   // ===========================================================================
@@ -69,8 +70,8 @@ export const wizardSteps = stepBuilder()
           <StepDescription>
             <span>
               <strong>Worn or Broken Slider</strong> is the most common and easy
-              to fix! If the teeth won’t stay closed it’s likely a worn slider.
-              This step is very important!
+              to fix! If the teeth won&apos;t stay closed it&apos;s likely a
+              worn slider. This step is very important!
             </span>
           </StepDescription>
         ),
@@ -173,8 +174,8 @@ export const wizardSteps = stepBuilder()
               <StepDescription>
                 <ul>
                   <li>
-                    <strong>Standard Coil</strong> - you’ll see and feel the
-                    coils on the outside
+                    <strong>Standard Coil</strong> - you&apos;ll see and feel
+                    the coils on the outside
                   </li>
                   <li>
                     <strong>Reverse Coil</strong> - same as standard but the
@@ -407,22 +408,3 @@ export const wizardSteps = stepBuilder()
     };
   });
 export type WizardResult = Omit<(typeof wizardSteps)["T"], "lastStep">;
-
-function StepDescription({ children }: { children: React.ReactNode }) {
-  return (
-    <div className="flex flex-col gap-2">
-      <div>{children}</div>
-      <div>
-        If you’re stumped,{" "}
-        <a
-          className="text-blue-500 active:underline hover:underline"
-          href="https://zipperrescue.com/wizard-help-form/"
-          target="_top"
-        >
-          use this help form
-        </a>{" "}
-        to send us a photo.
-      </div>
-    </div>
-  );
-}

@@ -5,16 +5,22 @@
 - Staging: https://staging2.zipperrescue.com/
   Admin: https://staging2.zipperrescue.com/wp-admin
 
+## Updating product database
+
+The product data is updated on build from the spreadsheet: [the google sheet](https://docs.google.com/spreadsheets/d/1Qgz4_OpzAwhGpBsJ635ZHsEmbZSqegtHEvKqLHB4Y1s/edit?gid=593122402#gid=593122402)
+
+It can be manually updated with:
+
+```shell
+npm run update-product-info
+```
+
 ## Deployment
 
 Deployed with netlify:
 
 - Config: https://app.netlify.com/sites/cozy-crepe-84d5f1/review
 - Deployed: https://cozy-crepe-84d5f1.netlify.app/
-
-## Stackblitz
-
-- [Stackblitz](https://stackblitz.com/edit/zipper-wizard)
 
 ## Local Development
 

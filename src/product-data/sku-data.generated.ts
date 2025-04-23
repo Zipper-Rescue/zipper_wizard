@@ -46,6 +46,9 @@ export const skuData: SkuItem[] = [
     pullStyle: "single",
     lockingType: "locking",
     teethPerInch: 8.5,
+    applicableItemTypes: ["jacketsAndCoats"],
+    containedInProductIds: undefined,
+    suggestedKitProductId: 292,
   },
 
   {
@@ -61,6 +64,9 @@ export const skuData: SkuItem[] = [
     pullStyle: "single",
     lockingType: "locking",
     teethPerInch: 6.5,
+    applicableItemTypes: ["bootsAndShoes", "jacketsAndCoats"],
+    containedInProductIds: [315],
+    suggestedKitProductId: 315,
   },
 
   {
@@ -76,6 +82,9 @@ export const skuData: SkuItem[] = [
     pullStyle: "single",
     lockingType: "locking",
     teethPerInch: 8,
+    applicableItemTypes: ["bootsAndShoes", "jacketsAndCoats"],
+    containedInProductIds: [315],
+    suggestedKitProductId: 315,
   },
 
   {
@@ -91,6 +100,9 @@ export const skuData: SkuItem[] = [
     pullStyle: "single",
     lockingType: "locking",
     teethPerInch: 9,
+    applicableItemTypes: ["jacketsAndCoats"],
+    containedInProductIds: [315],
+    suggestedKitProductId: 315,
   },
 
   {
@@ -106,6 +118,14 @@ export const skuData: SkuItem[] = [
     pullStyle: "single",
     lockingType: "locking",
     teethPerInch: 12,
+    applicableItemTypes: [
+      "dressesAndSkirts",
+      "jacketsAndCoats",
+      "pantsAndShorts",
+      "purses",
+    ],
+    containedInProductIds: undefined,
+    suggestedKitProductId: 292,
   },
 
   {
@@ -118,6 +138,15 @@ export const skuData: SkuItem[] = [
     pullStyle: "single",
     lockingType: "non-locking",
     teethPerInch: 10,
+    applicableItemTypes: [
+      "automotiveTops",
+      "backpacksAndBags",
+      "boatCoversAndCushions",
+      "luggage",
+      "tentsAndCanopies",
+    ],
+    containedInProductIds: undefined,
+    suggestedKitProductId: 296,
   },
 
   {
@@ -130,6 +159,13 @@ export const skuData: SkuItem[] = [
     pullStyle: "double",
     lockingType: "non-locking",
     teethPerInch: 10,
+    applicableItemTypes: [
+      "boatCoversAndCushions",
+      "sleepingBags",
+      "tentsAndCanopies",
+    ],
+    containedInProductIds: undefined,
+    suggestedKitProductId: 296,
   },
 
   {
@@ -145,6 +181,9 @@ export const skuData: SkuItem[] = [
     pullStyle: "single",
     lockingType: "locking",
     teethPerInch: 7,
+    applicableItemTypes: ["jacketsAndCoats"],
+    containedInProductIds: [315],
+    suggestedKitProductId: 315,
   },
 
   {
@@ -160,6 +199,9 @@ export const skuData: SkuItem[] = [
     pullStyle: "single",
     lockingType: "locking",
     teethPerInch: 20,
+    applicableItemTypes: ["jacketsAndCoats", "pantsAndShorts"],
+    containedInProductIds: undefined,
+    suggestedKitProductId: 292,
   },
 
   {
@@ -175,6 +217,9 @@ export const skuData: SkuItem[] = [
     pullStyle: "single",
     lockingType: "locking",
     teethPerInch: 15,
+    applicableItemTypes: ["bootsAndShoes", "jacketsAndCoats", "pantsAndShorts"],
+    containedInProductIds: [292],
+    suggestedKitProductId: 292,
   },
 
   {
@@ -188,6 +233,14 @@ export const skuData: SkuItem[] = [
     pullStyle: "single",
     lockingType: "locking",
     teethPerInch: 16.5,
+    applicableItemTypes: [
+      "bootsAndShoes",
+      "jacketsAndCoats",
+      "pantsAndShorts",
+      "purses",
+    ],
+    containedInProductIds: [292],
+    suggestedKitProductId: 292,
   },
 
   {
@@ -203,6 +256,9 @@ export const skuData: SkuItem[] = [
     pullStyle: "double",
     lockingType: "locking",
     teethPerInch: 5,
+    applicableItemTypes: ["boatCoversAndCushions", "tentsAndCanopies"],
+    containedInProductIds: [295],
+    suggestedKitProductId: 295,
   },
 
   {
@@ -218,6 +274,9 @@ export const skuData: SkuItem[] = [
     pullStyle: "single",
     lockingType: "locking",
     teethPerInch: 10,
+    applicableItemTypes: ["jacketsAndCoats"],
+    containedInProductIds: [292],
+    suggestedKitProductId: 292,
   },
 
   {
@@ -231,6 +290,14 @@ export const skuData: SkuItem[] = [
     pullStyle: "single",
     lockingType: "locking",
     teethPerInch: 24,
+    applicableItemTypes: [
+      "dressesAndSkirts",
+      "jacketsAndCoats",
+      "pantsAndShorts",
+      "purses",
+    ],
+    containedInProductIds: [292],
+    suggestedKitProductId: 292,
   },
 
   {
@@ -246,6 +313,9 @@ export const skuData: SkuItem[] = [
     pullStyle: "single",
     lockingType: "locking",
     teethPerInch: 11,
+    applicableItemTypes: ["pantsAndShorts"],
+    containedInProductIds: [292],
+    suggestedKitProductId: 292,
   },
 
   {
@@ -261,6 +331,9 @@ export const skuData: SkuItem[] = [
     pullStyle: "single",
     lockingType: "locking",
     teethPerInch: 10,
+    applicableItemTypes: ["bootsAndShoes", "jacketsAndCoats", "purses"],
+    containedInProductIds: [292],
+    suggestedKitProductId: 292,
   },
 
   {
@@ -276,6 +349,9 @@ export const skuData: SkuItem[] = [
     pullStyle: "single",
     lockingType: "non-locking",
     teethPerInch: 16.5,
+    applicableItemTypes: ["boatCoversAndCushions"],
+    containedInProductIds: [295],
+    suggestedKitProductId: 295,
   },
 
   {
@@ -291,6 +367,9 @@ export const skuData: SkuItem[] = [
     pullStyle: "single",
     lockingType: "locking",
     teethPerInch: 7.5,
+    applicableItemTypes: ["boatCoversAndCushions", "wetsuitsAndLifejackets"],
+    containedInProductIds: [295],
+    suggestedKitProductId: 295,
   },
 
   {
@@ -306,6 +385,9 @@ export const skuData: SkuItem[] = [
     pullStyle: "double",
     lockingType: "non-locking",
     teethPerInch: 6.5,
+    applicableItemTypes: ["boatCoversAndCushions", "tentsAndCanopies"],
+    containedInProductIds: [295],
+    suggestedKitProductId: 295,
   },
 
   {
@@ -321,6 +403,9 @@ export const skuData: SkuItem[] = [
     pullStyle: "single",
     lockingType: "locking",
     teethPerInch: 5,
+    applicableItemTypes: ["boatCoversAndCushions", "wetsuitsAndLifejackets"],
+    containedInProductIds: [295],
+    suggestedKitProductId: 295,
   },
 
   {
@@ -336,6 +421,9 @@ export const skuData: SkuItem[] = [
     pullStyle: "double",
     lockingType: "non-locking",
     teethPerInch: 20,
+    applicableItemTypes: ["sleepingBags", "tentsAndCanopies"],
+    containedInProductIds: [296],
+    suggestedKitProductId: 296,
   },
 
   {
@@ -351,6 +439,9 @@ export const skuData: SkuItem[] = [
     pullStyle: "single",
     lockingType: "non-locking",
     teethPerInch: 20,
+    applicableItemTypes: ["backpacksAndBags", "luggage", "purses"],
+    containedInProductIds: [296],
+    suggestedKitProductId: 296,
   },
 
   {
@@ -366,6 +457,9 @@ export const skuData: SkuItem[] = [
     pullStyle: "double",
     lockingType: "non-locking",
     teethPerInch: 16.5,
+    applicableItemTypes: ["sleepingBags", "tentsAndCanopies"],
+    containedInProductIds: [296],
+    suggestedKitProductId: 296,
   },
 
   {
@@ -381,6 +475,9 @@ export const skuData: SkuItem[] = [
     pullStyle: "single",
     lockingType: "non-locking",
     teethPerInch: 16.5,
+    applicableItemTypes: ["backpacksAndBags", "luggage"],
+    containedInProductIds: [296],
+    suggestedKitProductId: 296,
   },
 
   {
@@ -396,6 +493,9 @@ export const skuData: SkuItem[] = [
     pullStyle: "single",
     lockingType: "locking",
     teethPerInch: 7.5,
+    applicableItemTypes: ["bootsAndShoes", "jacketsAndCoats"],
+    containedInProductIds: [292],
+    suggestedKitProductId: 292,
   },
 
   {
@@ -411,6 +511,9 @@ export const skuData: SkuItem[] = [
     pullStyle: "single",
     lockingType: "non-locking",
     teethPerInch: 14,
+    applicableItemTypes: ["backpacksAndBags", "luggage"],
+    containedInProductIds: [296],
+    suggestedKitProductId: 296,
   },
 
   {
@@ -426,6 +529,9 @@ export const skuData: SkuItem[] = [
     pullStyle: "double",
     lockingType: "non-locking",
     teethPerInch: 14,
+    applicableItemTypes: ["sleepingBags", "tentsAndCanopies"],
+    containedInProductIds: [296],
+    suggestedKitProductId: 296,
   },
 
   {
@@ -441,6 +547,9 @@ export const skuData: SkuItem[] = [
     pullStyle: "double",
     lockingType: "non-locking",
     teethPerInch: 24,
+    applicableItemTypes: ["sleepingBags", "tentsAndCanopies"],
+    containedInProductIds: [296],
+    suggestedKitProductId: 296,
   },
 
   {
@@ -456,6 +565,9 @@ export const skuData: SkuItem[] = [
     pullStyle: "double",
     lockingType: "non-locking",
     teethPerInch: 7.5,
+    applicableItemTypes: ["sleepingBags", "tentsAndCanopies"],
+    containedInProductIds: undefined,
+    suggestedKitProductId: 296,
   },
 
   {
@@ -471,6 +583,9 @@ export const skuData: SkuItem[] = [
     pullStyle: "single",
     lockingType: "locking",
     teethPerInch: 7.5,
+    applicableItemTypes: ["bootsAndShoes", "jacketsAndCoats"],
+    containedInProductIds: undefined,
+    suggestedKitProductId: 292,
   },
 
   {
@@ -486,6 +601,13 @@ export const skuData: SkuItem[] = [
     pullStyle: "single",
     lockingType: "locking",
     teethPerInch: 5,
+    applicableItemTypes: [
+      "boatCoversAndCushions",
+      "jacketsAndCoats",
+      "wetsuitsAndLifejackets",
+    ],
+    containedInProductIds: undefined,
+    suggestedKitProductId: 295,
   },
 
   {
@@ -501,6 +623,9 @@ export const skuData: SkuItem[] = [
     pullStyle: "single",
     lockingType: "locking",
     teethPerInch: 5,
+    applicableItemTypes: ["boatCoversAndCushions", "jacketsAndCoats"],
+    containedInProductIds: undefined,
+    suggestedKitProductId: 295,
   },
 
   {
@@ -516,6 +641,9 @@ export const skuData: SkuItem[] = [
     pullStyle: "single",
     lockingType: "locking",
     teethPerInch: 14,
+    applicableItemTypes: ["bootsAndShoes", "jacketsAndCoats", "pantsAndShorts"],
+    containedInProductIds: undefined,
+    suggestedKitProductId: 292,
   },
 
   {
@@ -531,6 +659,14 @@ export const skuData: SkuItem[] = [
     pullStyle: "single",
     lockingType: "locking",
     teethPerInch: 24,
+    applicableItemTypes: [
+      "dressesAndSkirts",
+      "jacketsAndCoats",
+      "pantsAndShorts",
+      "purses",
+    ],
+    containedInProductIds: undefined,
+    suggestedKitProductId: 292,
   },
 
   {
@@ -546,6 +682,9 @@ export const skuData: SkuItem[] = [
     pullStyle: "single",
     lockingType: "non-locking",
     teethPerInch: 15,
+    applicableItemTypes: ["backpacksAndBags", "luggage"],
+    containedInProductIds: undefined,
+    suggestedKitProductId: 296,
   },
 
   {
@@ -561,6 +700,9 @@ export const skuData: SkuItem[] = [
     pullStyle: "single",
     lockingType: "locking",
     teethPerInch: 6.5,
+    applicableItemTypes: ["bootsAndShoes", "jacketsAndCoats"],
+    containedInProductIds: undefined,
+    suggestedKitProductId: 315,
   },
 
   {
@@ -576,6 +718,9 @@ export const skuData: SkuItem[] = [
     pullStyle: "single",
     lockingType: "locking",
     teethPerInch: 6.5,
+    applicableItemTypes: ["jacketsAndCoats"],
+    containedInProductIds: undefined,
+    suggestedKitProductId: 292,
   },
 
   {
@@ -591,5 +736,8 @@ export const skuData: SkuItem[] = [
     pullStyle: "single",
     lockingType: "locking",
     teethPerInch: 6.5,
+    applicableItemTypes: ["jacketsAndCoats"],
+    containedInProductIds: undefined,
+    suggestedKitProductId: 292,
   },
 ];

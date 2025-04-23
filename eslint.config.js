@@ -86,6 +86,16 @@ export default tseslint.config(
       "import/no-unresolved": "error",
       "import/no-unused-modules": "error",
       "@typescript-eslint/no-unnecessary-type-parameters": "off",
+      "@typescript-eslint/restrict-template-expressions": "off",
+
+      "@typescript-eslint/no-unused-vars": [
+        "error",
+        {
+          argsIgnorePattern: "^_",
+          ignoreRestSiblings: true,
+          varsIgnorePattern: "^_",
+        },
+      ],
     },
   },
 );
