@@ -27,15 +27,7 @@ export function StepLayout({
   return (
     <div
       ref={ref}
-      className={cn(
-        "flex flex-col items-center gap-1",
-        "p-2",
-        "bg-white",
-
-        // Padding top accounts for the fixed header, which will cover
-        // the title of the step when it is scrolled into view.
-        "pt-[100px] md:pt-[120px]",
-      )}
+      className={cn("flex flex-col items-center gap-1", "p-2", "bg-white")}
     >
       <h1 className={"text-3xl font-semibold"}>{title}</h1>
       <section className={"mb-4 text-center"}>{description}</section>

@@ -397,6 +397,11 @@ export const wizardSteps = stepBuilder()
         matchSkuForWizardResult(result, it),
       );
 
+      // If only 1 or no products match, skip this step
+      if (matchingProducts.length <= 1) {
+        return null;
+      }
+
       // Get unique applicable item types from matching products
       const itemTypes = new Set<ItemTypeId>(
         matchingProducts.flatMap((product) => {
@@ -424,12 +429,13 @@ export const wizardSteps = stepBuilder()
             label: itemTypeRecord[type].label,
             value: type,
             imageUrl: itemTypeRecord[type].imageFn,
-            imageWidth: "120px",
+            imageClass: "w-[120px] p-2",
           })),
           {
             label: "Show all",
             value: "all",
-            imageWidth: "140px",
+            imageClass:
+              "w-[140px] min-h-[140px] flex justify-center items-center",
           },
         ],
       };

@@ -9,7 +9,7 @@ export function ImageOption({
   imageUrl,
   onClick,
   isSelected,
-  imageWidth,
+  imageClass,
 }: {
   label: string;
   imageUrl?:
@@ -18,7 +18,7 @@ export function ImageOption({
     | Promise<{ default: string }>;
   onClick?: () => void;
   isSelected?: boolean;
-  imageWidth?: string;
+  imageClass?: string;
 }) {
   const [resolvedImageUrl, setResolvedImageUrl] = useState<string | undefined>(
     typeof imageUrl === "string"
@@ -73,20 +73,16 @@ export function ImageOption({
           <img
             src={resolvedImageUrl}
             alt={label}
-            className={"p-2"}
-            style={{
-              width: imageWidth ?? "320px",
-              height: "auto",
-            }}
+            className={cn("h-auto", imageClass ?? "w-[320px]")}
           />
           <div className={"py-1 px-2"}>{label}</div>
         </>
       ) : (
         <div
-          className="text-xl font-medium text-center px-4 h-auto"
-          style={{
-            width: imageWidth ?? "auto",
-          }}
+          className={cn(
+            "text-xl font-medium text-center px-4 h-auto",
+            imageClass,
+          )}
         >
           {label}
         </div>

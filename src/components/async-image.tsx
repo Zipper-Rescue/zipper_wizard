@@ -14,10 +14,12 @@ export function AsyncImage({
   src,
   alt,
   className,
+  title,
 }: {
   src: ImageSource;
   alt: string;
   className?: string;
+  title?: string;
 }) {
   const [resolvedSrc, setResolvedSrc] = useState<string>(loadingImageUrl);
 
@@ -61,5 +63,7 @@ export function AsyncImage({
     });
   }, [src]);
 
-  return <img src={resolvedSrc} alt={alt} className={className} />;
+  return (
+    <img src={resolvedSrc} alt={alt} className={className} title={title} />
+  );
 }

@@ -117,6 +117,7 @@ export interface StepOption {
     | string
     | (() => Promise<{ default: string }>)
     | Promise<{ default: string }>;
+  imageClass?: string;
 }
 
 export function StepInfo<T extends StepInfo>(data: T) {

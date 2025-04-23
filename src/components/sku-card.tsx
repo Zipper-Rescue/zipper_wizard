@@ -1,5 +1,5 @@
 import { cn } from "@/lib/util/cn.ts";
-import { SkuItem } from "@/product-data/sku-types.ts";
+import { SkuItem, itemTypeRecord } from "@/product-data/sku-types.ts";
 
 import { AsyncImage } from "./async-image.tsx";
 
@@ -37,6 +37,24 @@ export function SkuCard({
           alt={sku.label}
           className="w-full h-full object-contain"
         />
+        {/* Item Type Images Overlay */}
+        {sku.productType === "slider" && (
+          <div className="absolute top-2 left-2 flex flex-wrap gap-1 justify-start">
+            {sku.applicableItemTypes.map((itemType) => (
+              <div
+                key={itemType}
+                className="w-10 h-10 rounded-md bg-white p-1 border-2"
+              >
+                <AsyncImage
+                  src={itemTypeRecord[itemType].imageFn}
+                  alt={itemTypeRecord[itemType].label}
+                  className="w-full h-full object-contain"
+                  title={itemTypeRecord[itemType].label}
+                />
+              </div>
+            ))}
+          </div>
+        )}
       </div>
 
       {/* Content Container */}
