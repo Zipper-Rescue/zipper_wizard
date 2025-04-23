@@ -25,6 +25,7 @@ export function FieldStep({
             imageUrl={option.imageUrl}
             label={option.label}
             isSelected={option.value === selectedValue}
+            imageWidth={option.imageWidth}
             onClick={() => {
               onDataChanged?.(fieldData.key, option.value);
             }}

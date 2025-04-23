@@ -63,7 +63,8 @@ export function stepBuilder<
       const inputRecord = Object.fromEntries(input);
 
       const inputKeys = input.map(([key]) => key);
-      const lastStepIndex = stepData.findLastIndex(step => inputKeys.includes(step.key)) + 1;
+      const lastStepIndex =
+        stepData.findLastIndex((step) => inputKeys.includes(step.key)) + 1;
 
       const nextStep = stepData
         .slice(lastStepIndex)
@@ -88,11 +89,11 @@ export function stepBuilder<
         // Find the next step that doesn't return nullish for the given input
         ...(nextStep != null
           ? [
-            {
-              key: nextStep[0],
-              ...nextStep[1],
-            } as StepInfo,
-          ]
+              {
+                key: nextStep[0],
+                ...nextStep[1],
+              } as StepInfo,
+            ]
           : []),
       ];
     },
@@ -104,16 +105,18 @@ export interface StepInfo {
   label: string;
   description?: string | JSX.Element;
 
+  imageWidth?: string;
   options: StepOption[];
 }
 
 export interface StepOption {
   value: string;
   label: string;
-  imageUrl:
-  | string
-  | (() => Promise<{ default: string }>)
-  | Promise<{ default: string }>;
+  imageWidth?: string;
+  imageUrl?:
+    | string
+    | (() => Promise<{ default: string }>)
+    | Promise<{ default: string }>;
 }
 
 export function StepInfo<T extends StepInfo>(data: T) {

@@ -9,21 +9,27 @@ export function ImageOption({
   imageUrl,
   onClick,
   isSelected,
+  imageWidth,
 }: {
   label: string;
-  imageUrl:
+  imageUrl?:
     | string
     | (() => Promise<{ default: string }>)
     | Promise<{ default: string }>;
   onClick?: () => void;
   isSelected?: boolean;
+  imageWidth?: string;
 }) {
   const [resolvedImageUrl, setResolvedImageUrl] = useState<string | undefined>(
-    typeof imageUrl === "string" ? imageUrl : loadingImageUrl,
+    typeof imageUrl === "string"
+      ? imageUrl
+      : imageUrl
+        ? loadingImageUrl
+        : undefined,
   );
 
   useEffect(() => {
-    if (typeof imageUrl !== "string") {
+    if (imageUrl && typeof imageUrl !== "string") {
       const promise = typeof imageUrl === "function" ? imageUrl() : imageUrl;
       promise
         .then((module) => {
@@ -50,7 +56,7 @@ export function ImageOption({
   return (
     <button
       className={cn(
-        "flex flex-col items-center",
+        "flex flex-col items-center justify-center",
         "border rounded-md",
         isSelected ? "border-red-950 bg-red-100" : "border-red-700",
         "overflow-hidden",
@@ -58,12 +64,33 @@ export function ImageOption({
         "shadow-md",
         "hover:text-red-800 hover:border-red-800 hover:shadow-red-200 hover:bg-red-100",
         "focus:text-red-800 focus:border-red-800",
+        !imageUrl && "h-full",
       )}
       onClick={() => onClick?.()}
     >
-      <img src={resolvedImageUrl} alt={label} className={"w-[320px]"} />
-
-      <div className={"py-1"}>{label}</div>
+      {imageUrl ? (
+        <>
+          <img
+            src={resolvedImageUrl}
+            alt={label}
+            className={"p-2"}
+            style={{
+              width: imageWidth ?? "320px",
+              height: "auto",
+            }}
+          />
+          <div className={"py-1 px-2"}>{label}</div>
+        </>
+      ) : (
+        <div
+          className="text-xl font-medium text-center px-4 h-auto"
+          style={{
+            width: imageWidth ?? "auto",
+          }}
+        >
+          {label}
+        </div>
+      )}
     </button>
   );
 }

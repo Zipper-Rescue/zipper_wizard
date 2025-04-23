@@ -2,6 +2,7 @@ import { AddToCartButton } from "@/components/add-to-cart-button.tsx";
 import { SkuCard } from "@/components/sku-card";
 import { matchSkuForWizardResult } from "@/product-data/match-sku-for-wizard-result";
 import { skuData } from "@/product-data/sku-data.generated";
+import { itemTypeRecord, ItemTypeId, SkuItem } from "@/product-data/sku-types";
 import { stepBuilder } from "@/zipper-wizard/step-builder.ts";
 import { StepDescription } from "@/zipper-wizard/step-description.tsx";
 
@@ -382,10 +383,65 @@ export const wizardSteps = stepBuilder()
               ],
             } as const),
   )
-  .step("lastStep", {}, (_, result) => {
-    const products = skuData.filter((it) =>
+  .stepConditional("itemType", {}, (_, result) => {
+    // Get all products that match the current criteria
+    const matchingProducts: SkuItem[] = skuData.filter((it) =>
       matchSkuForWizardResult(result, it),
     );
+
+    // Get unique applicable item types from matching products
+    const itemTypes = new Set<ItemTypeId>(
+      matchingProducts.flatMap((product) => {
+        if (product.productType === "slider") {
+          return product.applicableItemTypes;
+        }
+        return [];
+      }),
+    );
+
+    // If there's only one item type or none, skip this step
+    if (itemTypes.size <= 1) {
+      return null;
+    }
+
+    return {
+      label: "Select Item Type",
+      description: (
+        <StepDescription>
+          <div>Select the type of item your zipper is on.</div>
+        </StepDescription>
+      ),
+      options: [
+        ...Array.from(itemTypes).map((type) => ({
+          label: itemTypeRecord[type].label,
+          value: type,
+          imageUrl: itemTypeRecord[type].imageFn,
+          imageWidth: "120px",
+        })),
+        {
+          label: "Show all",
+          value: "all",
+          imageWidth: "140px",
+        },
+      ],
+    };
+  })
+  .step("lastStep", {}, (_, result) => {
+    const products = skuData.filter((it) => {
+      const matchesWizard = matchSkuForWizardResult(result, it);
+      if (!matchesWizard) return false;
+
+      // If item type is selected and not "all", filter by it
+      if (
+        result.itemType &&
+        result.itemType !== "all" &&
+        it.productType === "slider"
+      ) {
+        return it.applicableItemTypes.includes(result.itemType as ItemTypeId);
+      }
+
+      return true;
+    });
 
     return {
       label: "Matching Products",
@@ -407,4 +463,7 @@ export const wizardSteps = stepBuilder()
       options: [],
     };
   });
-export type WizardResult = Omit<(typeof wizardSteps)["T"], "lastStep">;
+export type WizardResult = Omit<
+  (typeof wizardSteps)["T"],
+  "lastStep" | "itemType"
+>;
