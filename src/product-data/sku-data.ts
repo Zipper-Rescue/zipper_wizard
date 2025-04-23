@@ -1,344 +1,75 @@
+import { SkuItem } from "@/product-data/sku-types.ts";
+
 export const skuData: SkuItem[] = [
-  // ===========================================================================
-  // Top stops
-  //
-
-  // top-stop_small_gold_ID-358.jpg
   {
-    productId: 358,
-    productType: "stop",
-    label: "Top Stop - Small Gold",
+    productId: 292,
+    productType: "kit",
+    label: "Clothing - Zipper Rescue Kit®",
     imageFn: () =>
-      import("@/product-data/product-images/top-stop_small_gold_ID-358.jpg"),
+      import("@/product-data/product-images/292_amzn-clothing-kit-page-1.jpg"),
   },
 
-  // top-stop_large_black_ID-357.jpg
   {
-    productId: 357,
-    productType: "stop",
-    label: "Top Stop - Large Black",
+    productId: 296,
+    productType: "kit",
+    label: "Outdoor - Zipper Rescue Kit®",
     imageFn: () =>
-      import("@/product-data/product-images/top-stop_large_black_ID-357.jpg"),
+      import("@/product-data/product-images/296_amzn-outdoor-kit-page-1.jpg"),
   },
 
-  // ===========================================================================
-  // Bottom stops
-  //
-
-  // bottom-end-stop_large_black_ID-360.jpg
   {
-    productId: 360,
-    productType: "stop",
-    label: "Bottom End Stop - Large Black",
+    productId: 315,
+    productType: "kit",
+    label: "Moto - Zipper Rescue Kit®",
     imageFn: () =>
-      import(
-        "@/product-data/product-images/bottom-end-stop_large_black_ID-360.jpg"
-      ),
+      import("@/product-data/product-images/315_amzn-moto-kit-page-1.jpg"),
   },
 
-  // bottom-end-stop_small_gold_ID-359.jpg
   {
-    productId: 359,
-    productType: "stop",
-    label: "Bottom End Stop - Small Gold",
+    productId: 295,
+    productType: "kit",
+    label: "Marine - Zipper Rescue Kit®",
     imageFn: () =>
-      import(
-        "@/product-data/product-images/bottom-end-stop_small_gold_ID-359.jpg"
-      ),
+      import("@/product-data/product-images/295_amzn-marine-kit-page-1.jpg"),
   },
 
-  // ===========================================================================
-  // Coil Sliders
-  //
-
-  // coil_3mm_double_non-locking_ID-1514.jpg
   {
-    productId: 1514,
+    productId: 297,
     productType: "slider",
-    label: "#3 Coil Tooth Slider (Double)",
+    label: "#4 Plastic Tooth Slider - (Locking)",
     imageFn: () =>
       import(
-        "@/product-data/product-images/coil_3mm_double_non-locking_ID-1514.jpg"
+        "@/product-data/product-images/297_plastic-tooth_4mm_single_locking_vs.jpg"
       ),
-    toothType: "coil",
-    sliderSize: 3,
-    pullStyle: "double",
-    lockingType: "non-locking",
-    teethPerInch: 24,
-  },
-  // coil_3mm_single_locking_ID-376.jpg
-  {
-    productId: 376,
-    productType: "slider",
-    label: "#3 Coil Tooth Slider (Locking)",
-    imageFn: () =>
-      import(
-        "@/product-data/product-images/coil_3mm_single_locking_ID-376.jpg"
-      ),
-    toothType: "coil",
-    sliderSize: 3,
+    toothType: "plastic",
+    sliderSize: 4,
     pullStyle: "single",
     lockingType: "locking",
-    teethPerInch: 24,
+    teethPerInch: 8.5,
   },
-  // coil_4.5mm_double_non-locking_ID-383.jpg
+
   {
-    productId: 383,
+    productId: 298,
     productType: "slider",
-    label: "#4.5 Coil Tooth Slider (Double)",
+    label: "#8 Plastic Tooth Slider (Locking)",
     imageFn: () =>
       import(
-        "@/product-data/product-images/coil_4.5mm_double_non-locking_ID-383.jpg"
+        "@/product-data/product-images/298_plastic-tooth_8mm_single_locking_v.jpg"
       ),
-    toothType: "coil",
-    sliderSize: 4.5,
-    pullStyle: "double",
-    lockingType: "non-locking",
-    teethPerInch: 20,
-  },
-  // coil_4.5mm_single_locking_ID-356.jpg
-  {
-    productId: 356,
-    productType: "slider",
-    label: "#4.5 Coil Tooth Slider (Locking)",
-    imageFn: () =>
-      import(
-        "@/product-data/product-images/coil_4.5mm_single_locking_ID-356.jpg"
-      ),
-    toothType: "coil",
-    sliderSize: 4.5,
-    pullStyle: "single",
-    lockingType: "locking",
-    teethPerInch: 24,
-  },
-  // coil_4.5mm_single_non-locking_ID-384.jpg
-  {
-    productId: 384,
-    productType: "slider",
-    label: "#4.5 Coil Tooth Slider (Single)",
-    imageFn: () =>
-      import(
-        "@/product-data/product-images/coil_4.5mm_single_non-locking_ID-384.jpg"
-      ),
-    toothType: "coil",
-    sliderSize: 4.5,
-    pullStyle: "single",
-    lockingType: "non-locking",
-    teethPerInch: 24,
-  },
-  // coil_5mm_double_non-locking_ID-385.jpg
-  {
-    productId: 385,
-    productType: "slider",
-    label: "#5 Coil Tooth Slider (Double)",
-    imageFn: () =>
-      import(
-        "@/product-data/product-images/coil_5mm_double_non-locking_ID-385.jpg"
-      ),
-    toothType: "coil",
-    sliderSize: 5,
-    pullStyle: "double",
-    lockingType: "non-locking",
-    teethPerInch: 20,
-  },
-  // coil_5mm_single_locking_ID-364.jpg
-  {
-    productId: 364,
-    productType: "slider",
-    label: "#5 Coil Tooth Slider (Locking)",
-    imageFn: () =>
-      import(
-        "@/product-data/product-images/coil_5mm_single_locking_ID-364.jpg"
-      ),
-    toothType: "coil",
-    sliderSize: 5,
-    pullStyle: "single",
-    lockingType: "locking",
-    teethPerInch: 24,
-  },
-  // coil_5mm_single_non-locking_ID-386.jpg
-  {
-    productId: 386,
-    productType: "slider",
-    label: "#5 Coil Tooth Slider (Single)",
-    imageFn: () =>
-      import(
-        "@/product-data/product-images/coil_5mm_single_non-locking_ID-386.jpg"
-      ),
-    toothType: "coil",
-    sliderSize: 5,
-    pullStyle: "single",
-    lockingType: "non-locking",
-    teethPerInch: 24,
-  },
-  // coil_5mm_single_non-locking_marine_ID-379.jpg
-  {
-    productId: 379,
-    productType: "slider",
-    label: "#5 Coil Tooth Slider (Marine)",
-    imageFn: () =>
-      import(
-        "@/product-data/product-images/coil_5mm_single_non-locking_marine_ID-379.jpg"
-      ),
-    toothType: "coil",
-    sliderSize: 5,
-    pullStyle: "single",
-    lockingType: "non-locking",
-    teethPerInch: 24,
-  },
-  // coil_8mm_double_non-locking_ID_389.jpeg
-  {
-    productId: 389,
-    productType: "slider",
-    label: "#8 Coil Tooth Slider (Double)",
-    imageFn: () =>
-      import(
-        "@/product-data/product-images/coil_8mm_double_non-locking_ID_389.jpeg"
-      ),
-    toothType: "coil",
-    sliderSize: 8,
-    pullStyle: "double",
-    lockingType: "non-locking",
-    teethPerInch: 14,
-  },
-  // coil_8mm_single_non-locking_ID-388.jpg
-  {
-    productId: 388,
-    productType: "slider",
-    label: "#8 Coil Tooth Slider",
-    imageFn: () =>
-      import(
-        "@/product-data/product-images/coil_8mm_single_non-locking_ID-388.jpg"
-      ),
-    toothType: "coil",
+    toothType: "plastic",
     sliderSize: 8,
     pullStyle: "single",
-    lockingType: "non-locking",
-    teethPerInch: 14,
-  },
-  // coil_10mm_double_non-locking_ID-303.jpg
-  {
-    productId: 303,
-    productType: "slider",
-    label: "#10 Coil Tooth Slider (Double)",
-    imageFn: () =>
-      import(
-        "@/product-data/product-images/coil_10mm_double_non-locking_ID-303.jpg"
-      ),
-    toothType: "coil",
-    sliderSize: 10,
-    pullStyle: "double",
-    lockingType: "non-locking",
-    teethPerInch: 10,
-  },
-  // coil_10mm_single_non-locking_ID-302.jpg
-  {
-    productId: 302,
-    productType: "slider",
-    label: "#10 Coil Tooth Slider",
-    imageFn: () =>
-      import(
-        "@/product-data/product-images/coil_10mm_single_non-locking_ID-302.jpg"
-      ),
-    toothType: "coil",
-    sliderSize: 10,
-    pullStyle: "single",
-    lockingType: "non-locking",
-    teethPerInch: 10,
+    lockingType: "locking",
+    teethPerInch: 6.5,
   },
 
-  // ===========================================================================
-  // Reverse Coil Sliders
-  //
-
-  // coil_reverse_5mm_single_locking_ID-361.jpg
-  {
-    productId: 361,
-    productType: "slider",
-    label: "#5 Reverse Coil Tooth Slider (Locking)",
-    imageFn: () =>
-      import(
-        "@/product-data/product-images/coil_reverse_5mm_single_locking_ID-361.jpg"
-      ),
-    toothType: "coil-reverse",
-    sliderSize: 5,
-    pullStyle: "single",
-    lockingType: "locking",
-    teethPerInch: 24,
-  },
-
-  // ===========================================================================
-  // Metal Tooth Sliders
-  //
-
-  // metal-tooth_3mm_single_locking_ID-301.jpg
-  {
-    productId: 301,
-    productType: "slider",
-    label: "#3 Metal Tooth Slider (Locking)",
-    imageFn: () =>
-      import(
-        "@/product-data/product-images/metal-tooth_3mm_single_locking_ID-301.jpg"
-      ),
-    toothType: "metal",
-    sliderSize: 3,
-    pullStyle: "single",
-    lockingType: "locking",
-    teethPerInch: 12,
-  },
-  // metal-tooth_4.5mm_single_locking_ID-377.jpg
-  {
-    productId: 377,
-    productType: "slider",
-    label: "#4.5 Metal Tooth Slider (Locking)",
-    imageFn: () =>
-      import(
-        "@/product-data/product-images/metal-tooth_4.5mm_single_locking_ID-377.jpg"
-      ),
-    toothType: "metal",
-    sliderSize: 4.5,
-    pullStyle: "single",
-    lockingType: "locking",
-    teethPerInch: 11,
-  },
-  // metal-tooth_5mm_single_locking_ID-378.jpg
-  {
-    productId: 378,
-    productType: "slider",
-    label: "#5 Metal Tooth Slider (Locking)",
-    imageFn: () =>
-      import(
-        "@/product-data/product-images/metal-tooth_5mm_single_locking_ID-378.jpg"
-      ),
-    toothType: "metal",
-    sliderSize: 5,
-    pullStyle: "single",
-    lockingType: "locking",
-    teethPerInch: 10,
-  },
-  // metal-tooth_7mm_single_locking_ID-300.jpg
-  {
-    productId: 300,
-    productType: "slider",
-    label: "#7 Metal Tooth Slider (Locking)",
-    imageFn: () =>
-      import(
-        "@/product-data/product-images/metal-tooth_7mm_single_locking_ID-300.jpg"
-      ),
-    toothType: "metal",
-    sliderSize: 7,
-    pullStyle: "single",
-    lockingType: "locking",
-    teethPerInch: 9,
-  },
-  // metal-tooth_8mm_single_locking_ID-299.jpg
   {
     productId: 299,
     productType: "slider",
     label: "#8 Metal Tooth Slider (Locking)",
     imageFn: () =>
       import(
-        "@/product-data/product-images/metal-tooth_8mm_single_locking_ID-299.jpg"
+        "@/product-data/product-images/299_metal-tooth_8mm_single_locking.jpg"
       ),
     toothType: "metal",
     sliderSize: 8,
@@ -346,14 +77,68 @@ export const skuData: SkuItem[] = [
     lockingType: "locking",
     teethPerInch: 8,
   },
-  // metal-tooth_10mm_single_locking_ID-304.jpg
+
+  {
+    productId: 300,
+    productType: "slider",
+    label: "#7 Metal Tooth Slider (Locking)",
+    imageFn: () =>
+      import(
+        "@/product-data/product-images/300_metal-tooth_7mm_single_locking.jpg"
+      ),
+    toothType: "metal",
+    sliderSize: 7,
+    pullStyle: "single",
+    lockingType: "locking",
+    teethPerInch: 9,
+  },
+
+  {
+    productId: 301,
+    productType: "slider",
+    label: "#3 Metal Tooth Slider (Locking)",
+    imageFn: () =>
+      import(
+        "@/product-data/product-images/301_metal-tooth_3mm_single_locking.jpg"
+      ),
+    toothType: "metal",
+    sliderSize: 3,
+    pullStyle: "single",
+    lockingType: "locking",
+    teethPerInch: 12,
+  },
+
+  {
+    productId: 302,
+    productType: "slider",
+    label: "#10 Coil Slider",
+    imageFn: () => import("@/product-data/product-images/302_10-c-sp.jpg"),
+    toothType: "coil",
+    sliderSize: 10,
+    pullStyle: "single",
+    lockingType: "non-locking",
+    teethPerInch: 10,
+  },
+
+  {
+    productId: 303,
+    productType: "slider",
+    label: "#10 Coil Slider - Double Pull",
+    imageFn: () => import("@/product-data/product-images/303_10-c-dp.jpg"),
+    toothType: "coil",
+    sliderSize: 10,
+    pullStyle: "double",
+    lockingType: "non-locking",
+    teethPerInch: 10,
+  },
+
   {
     productId: 304,
     productType: "slider",
     label: "#10 Metal Tooth Slider (Locking)",
     imageFn: () =>
       import(
-        "@/product-data/product-images/metal-tooth_10mm_single_locking_ID-304.jpg"
+        "@/product-data/product-images/304_metal-tooth_10mm_single_locking.jpg"
       ),
     toothType: "metal",
     sliderSize: 10,
@@ -362,138 +147,56 @@ export const skuData: SkuItem[] = [
     teethPerInch: 7,
   },
 
-  // ===========================================================================
-  // Plastic Tooth Sliders
-  //
+  {
+    productId: 356,
+    productType: "slider",
+    label: "#4.5 Coil Slider (Locking)",
+    imageFn: () =>
+      import(
+        "@/product-data/product-images/356_coil_4.5mm_single_locking_id-356.jpg"
+      ),
+    toothType: "coil",
+    sliderSize: 4.5,
+    pullStyle: "single",
+    lockingType: "locking",
+    teethPerInch: 20,
+  },
 
-  // plastic-tooth_3mm_single_locking_vs_ID-375.jpg
   {
-    productId: 375,
+    productId: 361,
     productType: "slider",
-    label: "#3 Plastic Tooth Slider (Locking)",
+    label: "#5 Reverse Coil Slider (Locking)",
     imageFn: () =>
       import(
-        "@/product-data/product-images/plastic-tooth_3mm_single_locking_vs_ID-375.jpg"
+        "@/product-data/product-images/361_coil_reverse_5mm_single_locking_id-.jpg"
       ),
-    toothType: "plastic",
-    sliderSize: 3,
-    pullStyle: "single",
-    lockingType: "locking",
-    teethPerInch: 10,
-  },
-  // plastic-tooth_4mm_single_locking_vs_ID-297.jpg
-  {
-    productId: 297,
-    productType: "slider",
-    label: "#4 Plastic Tooth Slider (Locking)",
-    imageFn: () =>
-      import(
-        "@/product-data/product-images/plastic-tooth_4mm_single_locking_vs_ID-297.jpg"
-      ),
-    toothType: "plastic",
-    sliderSize: 4,
-    pullStyle: "single",
-    lockingType: "locking",
-    teethPerInch: 8.5,
-  },
-  // plastic-tooth_5mm_double_non-locking_v_ID-1515.jpg
-  {
-    productId: 1515,
-    productType: "slider",
-    label: "#5 Plastic Tooth Slider (Double)",
-    imageFn: () =>
-      import(
-        "@/product-data/product-images/plastic-tooth_5mm_double_non-locking_v_ID-1515.jpg"
-      ),
-    toothType: "plastic",
-    sliderSize: 5,
-    pullStyle: "double",
-    lockingType: "non-locking",
-    teethPerInch: 7.5,
-  },
-  // plastic-tooth_5mm_single_locking_marine_v_ID-380.jpg
-  {
-    productId: 380,
-    productType: "slider",
-    label: "#5 Plastic Tooth Slider (Marine)",
-    imageFn: () =>
-      import(
-        "@/product-data/product-images/plastic-tooth_5mm_single__locking_marine_v_ID-380.jpg"
-      ),
-    toothType: "plastic",
+    toothType: "coil-reverse",
     sliderSize: 5,
     pullStyle: "single",
     lockingType: "locking",
-    teethPerInch: 7.5,
+    teethPerInch: 15,
   },
-  // plastic-tooth_5mm_single_locking_v_ID-380.jpg
+
   {
-    productId: 380,
+    productId: 364,
     productType: "slider",
-    label: "#5 Plastic Tooth Slider (Locking)",
+    label: "#5 Coil Slider (Locking)",
     imageFn: () =>
-      import(
-        "@/product-data/product-images/plastic-tooth_5mm_single_locking_v_ID-380.jpg"
-      ),
-    toothType: "plastic",
+      import("@/product-data/product-images/364_coil_5mm_single_locking.jpg"),
+    toothType: "coil",
     sliderSize: 5,
     pullStyle: "single",
     lockingType: "locking",
-    teethPerInch: 7.5,
+    teethPerInch: 16.5,
   },
-  // plastic-tooth_5mm_single_locking_vs_ID-1516.jpg
-  {
-    productId: 1516,
-    productType: "slider",
-    label: "#5 Plastic Tooth Slider (Locking)",
-    imageFn: () =>
-      import(
-        "@/product-data/product-images/plastic-tooth_5mm_single_locking_vs_ID-1516.jpg"
-      ),
-    toothType: "plastic",
-    sliderSize: 5,
-    pullStyle: "single",
-    lockingType: "locking",
-    teethPerInch: 7.5,
-  },
-  // plastic-tooth_8mm_double_non-locking_v_ID-381.jpg
-  {
-    productId: 381,
-    productType: "slider",
-    label: "#8 Plastic Tooth Slider (Double)",
-    imageFn: () =>
-      import(
-        "@/product-data/product-images/plastic-tooth_8mm_double_non-locking_v_ID-381.jpg"
-      ),
-    toothType: "plastic",
-    sliderSize: 8,
-    pullStyle: "double",
-    lockingType: "non-locking",
-    teethPerInch: 6.5,
-  },
-  // plastic-tooth_8mm_single_locking_v_ID-298.jpg
-  {
-    productId: 298,
-    productType: "slider",
-    label: "#8 Plastic Tooth Slider (Locking)",
-    imageFn: () =>
-      import(
-        "@/product-data/product-images/plastic-tooth_8mm_single_locking_v_ID-298.jpg"
-      ),
-    toothType: "plastic",
-    sliderSize: 8,
-    pullStyle: "single",
-    lockingType: "locking",
-    teethPerInch: 6.5,
-  },
-  // plastic-tooth_10mm_double_locking_v_ID-366.jpg
+
   {
     productId: 366,
     productType: "slider",
-    label: "#10 Plastic Tooth Slider (Double, Locking)",
+    label: "#10 Plastic Tooth Slider - Double Pull (Locking)",
     imageFn: () =>
       import(
-        "@/product-data/product-images/plastic-tooth_10mm_double_locking_v_ID-366.jpg"
+        "@/product-data/product-images/366_plastic-tooth_10mm_double_locking_v.jpg"
       ),
     toothType: "plastic",
     sliderSize: 10,
@@ -502,132 +205,391 @@ export const skuData: SkuItem[] = [
     teethPerInch: 5,
   },
 
-  // plastic-tooth_10mm_single_2-way-set_locking_v_ID-1518.jpg
   {
-    productId: 1518,
+    productId: 375,
     productType: "slider",
-    label: "#10 Plastic Tooth Slider (2-Way Set)",
+    label: "#3 Plastic Tooth Slider (Locking)",
     imageFn: () =>
       import(
-        "@/product-data/product-images/plastic-tooth_10mm_single_2-way-set_locking_v_ID-1518.jpg"
+        "@/product-data/product-images/375_plastic-tooth_3mm_single_locking_vs.jpg"
       ),
     toothType: "plastic",
-    sliderSize: 10,
+    sliderSize: 3,
     pullStyle: "single",
     lockingType: "locking",
-    teethPerInch: 12,
+    teethPerInch: 10,
   },
 
-  // plastic-tooth_10mm_single_locking_marine_v_ID-382.jpg
+  {
+    productId: 376,
+    productType: "slider",
+    label: "#3 Coil Slider (Locking)",
+    imageFn: () =>
+      import("@/product-data/product-images/376_coil_3_single_locking.jpg"),
+    toothType: "coil",
+    sliderSize: 3,
+    pullStyle: "single",
+    lockingType: "locking",
+    teethPerInch: 24,
+  },
+
+  {
+    productId: 377,
+    productType: "slider",
+    label: "#4.5 Metal Tooth Slider (Locking)",
+    imageFn: () =>
+      import(
+        "@/product-data/product-images/377_metal-tooth_4.5mm_single_locking.jpg"
+      ),
+    toothType: "metal",
+    sliderSize: 4.5,
+    pullStyle: "single",
+    lockingType: "locking",
+    teethPerInch: 11,
+  },
+
+  {
+    productId: 378,
+    productType: "slider",
+    label: "#5 Metal Tooth Slider (Locking)",
+    imageFn: () =>
+      import(
+        "@/product-data/product-images/378_metal-tooth_5mm_single_locking.jpg"
+      ),
+    toothType: "metal",
+    sliderSize: 5,
+    pullStyle: "single",
+    lockingType: "locking",
+    teethPerInch: 10,
+  },
+
+  {
+    productId: 379,
+    productType: "slider",
+    label: "#5 Coil Slider (Plastic)",
+    imageFn: () =>
+      import(
+        "@/product-data/product-images/379_coil_5mm_single_non-locking_marine.jpg"
+      ),
+    toothType: "coil",
+    sliderSize: 5,
+    pullStyle: "single",
+    lockingType: "non-locking",
+    teethPerInch: 16.5,
+  },
+
+  {
+    productId: 380,
+    productType: "slider",
+    label: "#5 Plastic Tooth Slider (Plastic, Locking)",
+    imageFn: () =>
+      import(
+        "@/product-data/product-images/380_plastic-tooth_5mm_single__locking_marine_v.jpg"
+      ),
+    toothType: "plastic",
+    sliderSize: 5,
+    pullStyle: "single",
+    lockingType: "locking",
+    teethPerInch: 7.5,
+  },
+
+  {
+    productId: 381,
+    productType: "slider",
+    label: "#8 Plastic Tooth Slider - Double Pull",
+    imageFn: () =>
+      import(
+        "@/product-data/product-images/381_plastic-tooth_8mm_double_non-locking_v.jpg"
+      ),
+    toothType: "plastic",
+    sliderSize: 8,
+    pullStyle: "double",
+    lockingType: "non-locking",
+    teethPerInch: 6.5,
+  },
+
   {
     productId: 382,
     productType: "slider",
-    label: "#10 Plastic Tooth Slider (Marine)",
+    label: "#10 Plastic Tooth Slider (Plastic)",
     imageFn: () =>
       import(
-        "@/product-data/product-images/plastic-tooth_10mm_single_locking_marine_v_ID-382.jpg"
+        "@/product-data/product-images/382_plastic-tooth_10mm_single_locking_marine_v.jpg"
       ),
     toothType: "plastic",
     sliderSize: 10,
     pullStyle: "single",
     lockingType: "locking",
-    teethPerInch: 12,
+    teethPerInch: 5,
   },
 
-  // plastic-tooth_10mm_single_locking_v_ID-1517.jpg
+  {
+    productId: 383,
+    productType: "slider",
+    label: "#4.5 Coil Slider - Double Pull",
+    imageFn: () =>
+      import(
+        "@/product-data/product-images/383_coil_4.5mm_double_non-locking.jpg"
+      ),
+    toothType: "coil",
+    sliderSize: 4.5,
+    pullStyle: "double",
+    lockingType: "non-locking",
+    teethPerInch: 20,
+  },
+
+  {
+    productId: 384,
+    productType: "slider",
+    label: "#4.5 Coil Slider",
+    imageFn: () =>
+      import(
+        "@/product-data/product-images/384_coil_4.5mm_single_non-locking.jpg"
+      ),
+    toothType: "coil",
+    sliderSize: 4.5,
+    pullStyle: "single",
+    lockingType: "non-locking",
+    teethPerInch: 20,
+  },
+
+  {
+    productId: 385,
+    productType: "slider",
+    label: "#5 Coil Slider - Double Pull",
+    imageFn: () =>
+      import(
+        "@/product-data/product-images/385_coil_5mm_double_non-locking.jpg"
+      ),
+    toothType: "coil",
+    sliderSize: 5,
+    pullStyle: "double",
+    lockingType: "non-locking",
+    teethPerInch: 16.5,
+  },
+
+  {
+    productId: 386,
+    productType: "slider",
+    label: "#5 Coil Slider",
+    imageFn: () =>
+      import(
+        "@/product-data/product-images/386_coil_5mm_single_non-locking.jpg"
+      ),
+    toothType: "coil",
+    sliderSize: 5,
+    pullStyle: "single",
+    lockingType: "non-locking",
+    teethPerInch: 16.5,
+  },
+
+  {
+    productId: 387,
+    productType: "slider",
+    label: "#5 Plastic Tooth Slider (Locking)",
+    imageFn: () =>
+      import(
+        "@/product-data/product-images/387_plastic-tooth_5mm_single_locking_v.jpg"
+      ),
+    toothType: "plastic",
+    sliderSize: 5,
+    pullStyle: "single",
+    lockingType: "locking",
+    teethPerInch: 7.5,
+  },
+
+  {
+    productId: 388,
+    productType: "slider",
+    label: "#8 Coil Slider",
+    imageFn: () =>
+      import(
+        "@/product-data/product-images/388_coil_8mm_single_non-locking.jpg"
+      ),
+    toothType: "coil",
+    sliderSize: 8,
+    pullStyle: "single",
+    lockingType: "non-locking",
+    teethPerInch: 14,
+  },
+
+  {
+    productId: 389,
+    productType: "slider",
+    label: "#8 Coil Slider - Double Pull",
+    imageFn: () =>
+      import(
+        "@/product-data/product-images/389_coil_8mm_double_non-locking_id_389.jpeg"
+      ),
+    toothType: "coil",
+    sliderSize: 8,
+    pullStyle: "double",
+    lockingType: "non-locking",
+    teethPerInch: 14,
+  },
+
+  {
+    productId: 1514,
+    productType: "slider",
+    label: "#3 Coil Slider - Double Pull",
+    imageFn: () =>
+      import(
+        "@/product-data/product-images/1514_coil_3mm_double_non-locking.jpg"
+      ),
+    toothType: "coil",
+    sliderSize: 3,
+    pullStyle: "double",
+    lockingType: "non-locking",
+    teethPerInch: 24,
+  },
+
+  {
+    productId: 1515,
+    productType: "slider",
+    label: "#5 Plastic Tooth Slider - Double Pull",
+    imageFn: () =>
+      import(
+        "@/product-data/product-images/1515_plastic-tooth_5mm_double_non-locking_v.jpg"
+      ),
+    toothType: "plastic",
+    sliderSize: 5,
+    pullStyle: "double",
+    lockingType: "non-locking",
+    teethPerInch: 7.5,
+  },
+
+  {
+    productId: 1516,
+    productType: "slider",
+    label: "#5 Plastic Tooth Slider (Locking) (VS)",
+    imageFn: () =>
+      import(
+        "@/product-data/product-images/1516_plastic-tooth_5mm_single_locking_vs.jpg"
+      ),
+    toothType: "plastic",
+    sliderSize: 5,
+    pullStyle: "single",
+    lockingType: "locking",
+    teethPerInch: 7.5,
+  },
+
   {
     productId: 1517,
     productType: "slider",
     label: "#10 Plastic Tooth Slider (Locking)",
     imageFn: () =>
       import(
-        "@/product-data/product-images/plastic-tooth_10mm_single_locking_v_ID-1517.jpg"
+        "@/product-data/product-images/1517_plastic-tooth_10mm_single_locking_v.jpg"
       ),
     toothType: "plastic",
     sliderSize: 10,
     pullStyle: "single",
     lockingType: "locking",
-    teethPerInch: 12,
+    teethPerInch: 5,
   },
 
-  // ===========================================================================
-  // Zipper Rescue Kits
-  //
-
-  // clothing-zipper-rescue-kit_ID-292.jpg
   {
-    productId: 292,
-    productType: "kit",
-    label: "Clothing Zipper Rescue Kit®",
-    imageFn: () => import("@/product-data/product-images/292_clothing-kit.jpg"),
-    containedSkus: [],
+    productId: 1518,
+    productType: "slider",
+    label: "#10 Plastic Tooth Slider - 2-Way Set (Locking)",
+    imageFn: () =>
+      import(
+        "@/product-data/product-images/1518_plastic-tooth_10mm_single_2-way-set_locking_v.jpg"
+      ),
+    toothType: "plastic",
+    sliderSize: 10,
+    pullStyle: "single",
+    lockingType: "locking",
+    teethPerInch: 5,
   },
 
-  // outdoor-zipper-rescue-kit_ID-296.jpg
   {
-    productId: 296,
-    productType: "kit",
-    label: "Outdoor Zipper Rescue Kit®",
-    imageFn: () => import("@/product-data/product-images/296_outdoor-kit.jpg"),
-    containedSkus: [],
+    productId: 2265,
+    productType: "slider",
+    label: "#8 Reverse Coil Slider (Locking)",
+    imageFn: () =>
+      import(
+        "@/product-data/product-images/2265_coil_reverse_5mm_single_locking_id-.jpg"
+      ),
+    toothType: "coil-reverse",
+    sliderSize: 8,
+    pullStyle: "single",
+    lockingType: "locking",
+    teethPerInch: 14,
   },
 
-  // moto-zipper-rescue-kit_ID-315.jpg
   {
-    productId: 315,
-    productType: "kit",
-    label: "Moto Zipper Rescue Kit®",
-    imageFn: () => import("@/product-data/product-images/315_moto-kit.jpg"),
-    containedSkus: [],
+    productId: 2266,
+    productType: "slider",
+    label: "#3 Reverse Coil Slider (Locking)",
+    imageFn: () =>
+      import(
+        "@/product-data/product-images/2266_coil_reverse_5mm_single_locking_id-.jpg"
+      ),
+    toothType: "coil-reverse",
+    sliderSize: 3,
+    pullStyle: "single",
+    lockingType: "locking",
+    teethPerInch: 24,
   },
 
-  // marine-zipper-rescue-kit_ID-295.jpg
   {
-    productId: 295,
-    productType: "kit",
-    label: "Marine Zipper Rescue Kit®",
-    imageFn: () => import("@/product-data/product-images/295_marine-kit.jpg"),
-    containedSkus: [],
+    productId: 2267,
+    productType: "slider",
+    label: "#5 Reverse Coil Slider",
+    imageFn: () =>
+      import(
+        "@/product-data/product-images/2267_coil_5mm_single_non-locking.jpg"
+      ),
+    toothType: "coil-reverse",
+    sliderSize: 5,
+    pullStyle: "single",
+    lockingType: "non-locking",
+    teethPerInch: 15,
+  },
+
+  {
+    productId: 2271,
+    productType: "slider",
+    label: "#8 VS Plastic Tooth Slider (Locking)",
+    imageFn: () =>
+      import(
+        "@/product-data/product-images/2271_plastic-tooth_8mm_single_locking_v.jpg"
+      ),
+    toothType: "plastic",
+    sliderSize: 8,
+    pullStyle: "single",
+    lockingType: "locking",
+    teethPerInch: 6.5,
+  },
+
+  {
+    productId: 2272,
+    productType: "slider",
+    label: "#8 VS Plastic Tooth Slider - 2-Way Set (Locking)",
+    imageFn: () =>
+      import(
+        "@/product-data/product-images/2272_plastic-tooth_10mm_single_2-way-set_locking_v.jpg"
+      ),
+    toothType: "plastic",
+    sliderSize: 8,
+    pullStyle: "single",
+    lockingType: "locking",
+    teethPerInch: 6.5,
+  },
+
+  {
+    productId: 2274,
+    productType: "slider",
+    label: "#8 Plastic Tooth Slider - 2-Way Set (Locking)",
+    imageFn: () =>
+      import(
+        "@/product-data/product-images/2274_plastic-tooth_10mm_single_2-way-set_locking_v.jpg"
+      ),
+    toothType: "plastic",
+    sliderSize: 8,
+    pullStyle: "single",
+    lockingType: "locking",
+    teethPerInch: 6.5,
   },
 ];
-
-export type SkuItem = StopSku | SliderSku | KitSku;
-
-export interface SkuBase {
-  productId: number;
-  productType: "slider" | "stop" | "kit";
-  label: string;
-  imageFn: () => Promise<{ default: string }>;
-}
-
-export interface StopSku extends SkuBase {
-  productType: "stop";
-  label: string;
-}
-
-export interface SliderSku extends SkuBase {
-  label: string;
-  productType: "slider";
-  sliderSize: number;
-  pullStyle: "single" | "double";
-  lockingType: "locking" | "non-locking";
-  toothType: "coil" | "coil-reverse" | "coil-invisible" | "metal" | "plastic";
-  teethPerInch: number;
-}
-
-export interface KitSku extends SkuBase {
-  productType: "kit";
-  label: string;
-  containedSkus: SkuItem[];
-  imageFn: () => Promise<{ default: string }>;
-}
-
-export type ZipperToothType =
-  | "coil"
-  | "coil-reverse"
-  | "coil-invisible"
-  | "metal"
-  | "plastic";
-
-export type ZipperToothMaterial = "coil" | "metal" | "plastic";
-export type ZipperCoilStyle = "standard" | "reverse" | "invisible";

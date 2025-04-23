@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { SkuItem } from "@/product-data/sku-data";
+import { SkuItem } from "@/product-data/sku-types.ts";
 
 import { postAddToCartMessage } from "./postAddToCartMessage";
 

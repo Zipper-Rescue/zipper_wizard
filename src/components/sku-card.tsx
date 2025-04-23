@@ -1,5 +1,5 @@
 import { cn } from "@/lib/util/cn.ts";
-import { SkuItem } from "@/product-data/sku-data.js";
+import { SkuItem } from "@/product-data/sku-types.ts";
 
 import { AsyncImage } from "./async-image.tsx";
 
