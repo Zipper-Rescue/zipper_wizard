@@ -6,7 +6,7 @@ export function iframeSafeScrollIntoView(
 ) {
   if (!elm) return; // If no element, do nothing.
 
-  if (RequiresIframeScrollFix())
+  if (isIframeScrollHackRequired()) {
     window.parent.postMessage(
       {
         command: "scroll",
@@ -15,14 +15,13 @@ export function iframeSafeScrollIntoView(
       },
       "*",
     );
-  // Tell IFrame parent to do the scrolling. If this is not a test environment, replace "*" with the parent domain.
-  else elm.scrollIntoView(options); // If not scroll into view as usual.
+  } else elm.scrollIntoView(options);
 }
 
 // Detects an issue on mobile where the Parent is an iframe which cannot have it's scroll bars removed.
 // Presumably not a bug as safari will autosize it's iframes: https://salomvary.com/iframe-resize-ios-safari.html
 // Can use "scrolling=no" fix instead if the parent knows the initial size of your iframe.
-function RequiresIframeScrollFix() {
+function isIframeScrollHackRequired() {
   try {
     // We know this issue happens inside an IFrame on;
     // Safari iPhone
