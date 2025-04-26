@@ -37,24 +37,6 @@ export function SkuCard({
           alt={sku.label}
           className="w-full h-full object-contain"
         />
-        {/* Item Type Images Overlay */}
-        {sku.productType === "slider" && (
-          <div className="absolute top-2 left-2 flex flex-wrap gap-1 justify-start">
-            {sku.applicableItemTypes.map((itemType) => (
-              <div
-                key={itemType}
-                className={cn("rounded-md bg-white p-1 border-2", "w-10 h-10")}
-              >
-                <AsyncImage
-                  src={itemTypeRecord[itemType].imageFn}
-                  alt={itemTypeRecord[itemType].label}
-                  className="w-full h-full object-contain"
-                  title={itemTypeRecord[itemType].label}
-                />
-              </div>
-            ))}
-          </div>
-        )}
       </div>
 
       {/* Content Container */}
@@ -65,20 +47,23 @@ export function SkuCard({
         {/* SKU Details */}
         {sku.productType === "slider" && (
           <div
-            className={cn("grid gap-2 text-sm text-gray-600", "grid-cols-2")}
+            className={cn(
+              "flex flex-wrap text-sm text-gray-600",
+              "grid-cols-2",
+            )}
           >
-            {[
-              `Size ${String(sku.sliderSize)}`,
-              `${String(sku.teethPerInch)} teeth per inch`,
-              sku.toothType
-                .replace("-", " ")
-                .replace(/^\w/, (c) => c.toUpperCase()),
-              `${sku.pullStyle.replace("-", " ").replace(/^\w/, (c) => c.toUpperCase())} pull`,
-              sku.lockingType
-                .replace("-", " ")
-                .replace(/^\w/, (c) => c.toUpperCase()),
-            ].map((value, index) => (
-              <div key={index}>{value}</div>
+            {sku.applicableItemTypes.map((itemType) => (
+              <div
+                key={itemType}
+                className={cn("rounded-md bg-white p-1", "w-10 h-10")}
+              >
+                <AsyncImage
+                  src={itemTypeRecord[itemType].imageFn}
+                  alt={itemTypeRecord[itemType].label}
+                  className="w-full h-full object-contain"
+                  title={itemTypeRecord[itemType].label}
+                />
+              </div>
             ))}
           </div>
         )}
