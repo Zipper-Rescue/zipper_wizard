@@ -6,51 +6,105 @@ import { SkuItem } from "@/product-data/sku-types.ts";
 import { postAddToCartMessage } from "./postAddToCartMessage";
 import { postNavigateMessage } from "./postNavigateMessage";
 
-export function AddToCartButton(props: {
+type WorkflowState =
+  | "add-to-cart"
+  | "adding-to-cart"
+  | "go-to-cart"
+  | "going-to-cart";
+
+export type AddToCartButtonProps = {
   skus?: SkuItem[];
   sku?: SkuItem;
   className?: string;
-}) {
-  const [isLoading, setIsLoading] = useState(false);
-  const [isAdded, setIsAdded] = useState(false);
-  const skus = [...(props.skus || []), ...(props.sku ? [props.sku] : [])];
+  workflowState?: WorkflowState;
+  onAddToCart?: (productIds: number[]) => Promise<void>;
+  onNavigate?: (path: string) => Promise<void>;
+};
+
+export function AddToCartButton({
+  skus = [],
+  sku,
+  className,
+  workflowState = "add-to-cart",
+  onAddToCart = postAddToCartMessage,
+  onNavigate = postNavigateMessage,
+}: AddToCartButtonProps) {
+  const skusList = [...skus, ...(sku ? [sku] : [])];
+  const [currentWorkflowState, setCurrentWorkflowState] =
+    useState<WorkflowState>(workflowState);
 
   const handleAddToCart = async () => {
-    setIsLoading(true);
     try {
-      await postAddToCartMessage(skus.map((it) => it.productId));
-      setIsAdded(true);
+      await onAddToCart(skusList.map((it) => it.productId));
     } finally {
-      setIsLoading(false);
+      setCurrentWorkflowState("go-to-cart");
     }
   };
 
-  const handleGoToCart = () => {
-    postNavigateMessage("/cart").catch((error: unknown) => {
+  const handleGoToCart = async () => {
+    try {
+      setCurrentWorkflowState("going-to-cart");
+      await onNavigate("/cart");
+    } catch (error) {
       console.error("Failed to navigate to cart:", error);
-    });
+    } finally {
+      // Done
+    }
   };
+
+  const getButtonLabel = () => {
+    switch (currentWorkflowState) {
+      case "adding-to-cart":
+        return "Adding to cart...";
+      case "go-to-cart":
+        return "Go to cart";
+      case "going-to-cart":
+        return "Going to cart...";
+      default:
+        return "Add to cart";
+    }
+  };
+
+  const getButtonTitle = () => {
+    switch (currentWorkflowState) {
+      case "go-to-cart":
+      case "going-to-cart":
+        return "Go to cart";
+      default:
+        return `Add ${skusList.map((it) => it.label).join(", ")} to cart`;
+    }
+  };
+
+  const handleClick = async () => {
+    if (currentWorkflowState === "go-to-cart") {
+      await handleGoToCart();
+    }
+
+    if (currentWorkflowState === "add-to-cart") {
+      await handleAddToCart();
+    }
+  };
+
+  const showSpinner =
+    currentWorkflowState === "adding-to-cart" ||
+    currentWorkflowState === "going-to-cart";
 
   return (
     <Button
-      onClick={isAdded ? handleGoToCart : handleAddToCart}
-      title={
-        isAdded
-          ? "Go to cart"
-          : `Add ${skus.map((it) => it.label).join(", ")} to cart`
-      }
-      className={props.className}
-      disabled={isLoading}
+      onClick={() => {
+        handleClick().catch(console.error);
+      }}
+      title={getButtonTitle()}
+      className={className}
+      disabled={showSpinner}
     >
-      {isLoading ? (
+      {showSpinner ? (
         <div className="flex items-center gap-2">
           <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
-          Adding to cart...
+          {getButtonLabel()}
         </div>
-      ) : isAdded ? (
-        "Go to cart"
       ) : (
-        "Add to cart"
+        getButtonLabel()
       )}
     </Button>
   );

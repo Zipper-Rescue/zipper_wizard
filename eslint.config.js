@@ -96,6 +96,8 @@ export default tseslint.config(
           varsIgnorePattern: "^_",
         },
       ],
+
+      "@typescript-eslint/require-await": "off",
     },
   },
 );
