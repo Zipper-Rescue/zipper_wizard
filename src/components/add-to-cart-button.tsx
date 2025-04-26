@@ -38,7 +38,7 @@ export function AddToCartButton({
       setCurrentWorkflowState("adding-to-cart");
       await onAddToCart(skusList.map((it) => it.productId));
     } finally {
-      setCurrentWorkflowState("go-to-cart");
+      await handleAddToCart();
     }
   };
 
