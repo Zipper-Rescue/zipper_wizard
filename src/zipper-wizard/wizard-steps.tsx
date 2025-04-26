@@ -519,11 +519,15 @@ export const wizardSteps = stepBuilder()
     );
 
     return {
-      label: "Congratulations!",
+      label: "All done!",
       description: (
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-4">
+          <div className="font-semibold text-lg">
+            We found the slider you need:
+          </div>
           <div>
-            <em>Et volia!</em> We have what you need to fix your zipper!
+            <strong>Get free shipping</strong> with purchase of Zipper Rescue
+            Kit®!
           </div>
           <div className="grid grid-cols-2 gap-2">
             {suggestedKitProduct && <SkuCard sku={suggestedKitProduct} />}
