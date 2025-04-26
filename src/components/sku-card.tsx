@@ -43,7 +43,7 @@ export function SkuCard({
             {sku.applicableItemTypes.map((itemType) => (
               <div
                 key={itemType}
-                className="w-10 h-10 rounded-md bg-white p-1 border-2"
+                className={cn("rounded-md bg-white p-1 border-2", "w-10 h-10")}
               >
                 <AsyncImage
                   src={itemTypeRecord[itemType].imageFn}
@@ -60,11 +60,13 @@ export function SkuCard({
       {/* Content Container */}
       <div className="p-4 flex flex-col gap-2 flex-grow w-full">
         {/* Title */}
-        <h3 className="font-medium text-gray-900">{sku.label}</h3>
+        <h3 className={cn("font-medium text-gray-900")}>{sku.label}</h3>
 
         {/* SKU Details */}
         {sku.productType === "slider" && (
-          <div className="grid grid-cols-2 gap-2 text-sm text-gray-600">
+          <div
+            className={cn("grid gap-2 text-sm text-gray-600", "grid-cols-2")}
+          >
             {[
               `Size ${String(sku.sliderSize)}`,
               `${String(sku.teethPerInch)} teeth per inch`,

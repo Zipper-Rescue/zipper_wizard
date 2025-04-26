@@ -1,5 +1,6 @@
-import { AddToCartButton } from "@/components/add-to-cart-button.tsx";
+import { AddToCartButton } from "@/components/add-to-cart-button";
 import { SkuCard } from "@/components/sku-card";
+import { WizardIntro } from "@/components/wizard-intro/wizard-intro";
 import { matchSkuForWizardResult } from "@/product-data/match-sku-for-wizard-result";
 import { skuData } from "@/product-data/sku-data.generated";
 import { itemTypeRecord, ItemTypeId, SkuItem } from "@/product-data/sku-types";
@@ -7,6 +8,22 @@ import { stepBuilder } from "@/zipper-wizard/step-builder.ts";
 import { StepDescription } from "@/zipper-wizard/step-description.tsx";
 
 export const wizardSteps = stepBuilder()
+  // ===========================================================================
+  // Introduction
+  //
+  .step("introduction", {}, () => {
+    return {
+      description: <WizardIntro />,
+      options: [
+        {
+          label: "Start the wizard!",
+          value: "start",
+          imageClass: "p-8 w-60 text-primary",
+        },
+      ],
+    };
+  })
+
   // ===========================================================================
   // Zipper Type
   //
@@ -383,6 +400,11 @@ export const wizardSteps = stepBuilder()
               ],
             } as const),
   )
+
+  // ===========================================================================
+  // Item Type
+  //
+
   .stepConditional(
     "itemType",
     Object.fromEntries(
@@ -441,44 +463,96 @@ export const wizardSteps = stepBuilder()
       };
     },
   )
-  .step("lastStep", {}, (_, result) => {
-    const products = skuData.filter((it) => {
-      const matchesWizard = matchSkuForWizardResult(result, it);
-      if (!matchesWizard) return false;
 
-      // If item type is selected and not "all", filter by it
-      if (
-        result.itemType &&
-        result.itemType !== "all" &&
-        it.productType === "slider"
-      ) {
-        return it.applicableItemTypes.includes(result.itemType as ItemTypeId);
-      }
+  // ===========================================================================
+  // Refine products if multiple match
+  //
 
-      return true;
-    });
+  .stepConditional("selectedProductId", {}, (_, result) => {
+    const products = productsForWizard(result);
+
+    if (products.length === 1) {
+      return null;
+    }
 
     return {
-      label: "Matching Products",
+      label: "Multiple matches",
+      description:
+        "We found more than one product that matches your criteria. Select " +
+        "the one that best matches your needs.",
+      options: [
+        ...products.map((product) => ({
+          label: product.label,
+          value: String(product.productId),
+          imageUrl: product.imageFn,
+        })),
+      ],
+    };
+  })
+
+  // ===========================================================================
+  // Last Step
+  //
+
+  .step("lastStep", {}, (_, result) => {
+    const matchingProducts = productsForWizard(result);
+    if (matchingProducts.length === 0) {
+      return {
+        label: "No products found",
+        description: "Please try again with different criteria.",
+        options: [],
+      };
+    }
+
+    const product = matchingProducts[0];
+    const suggestedKitId =
+      product.productType === "slider" ? product.suggestedKitProductId : null;
+    const suggestedKitProduct = skuData.find(
+      (it) => it.productId === suggestedKitId,
+    );
+
+    return {
+      label: "Congratulations!",
       description: (
         <div className="flex flex-col gap-2">
           <div>
-            <em>Et volia!</em> We found {products.length} parts to help you fix
-            your zipper.
+            <em>Et volia!</em> We have what you need to fix your zipper!
           </div>
-          <div className="flex flex-wrap gap-2 justify-center">
-            {products.map((skuItem) => (
-              <SkuCard sku={skuItem} key={skuItem.productId}>
-                <AddToCartButton className="w-full" sku={skuItem} />
-              </SkuCard>
-            ))}
+          <div className="grid grid-cols-2 gap-2">
+            {suggestedKitProduct && <SkuCard sku={suggestedKitProduct} />}
+            <SkuCard sku={product} />
+          </div>
+          <div>
+            <AddToCartButton
+              className="w-full"
+              skus={[
+                ...(suggestedKitProduct ? [suggestedKitProduct] : []),
+                product,
+              ]}
+            />
           </div>
         </div>
       ),
       options: [],
     };
   });
-export type WizardResult = Omit<
-  (typeof wizardSteps)["T"],
-  "lastStep" | "itemType"
->;
+
+function productsForWizard(wizardState: Partial<WizardResult>): SkuItem[] {
+  return skuData
+    .filter((it) => matchSkuForWizardResult(wizardState, it))
+    .filter((it) => {
+      if (!wizardState.itemType) return true;
+      if (wizardState.itemType === "all") return it.productType === "slider";
+      if (it.productType !== "slider") return true;
+
+      return it.applicableItemTypes.includes(
+        wizardState.itemType as ItemTypeId,
+      );
+    })
+    .filter((it) => {
+      if (!wizardState.selectedProductId) return true;
+      return Number(wizardState.selectedProductId) === it.productId;
+    });
+}
+
+export type WizardResult = (typeof wizardSteps)["T"];

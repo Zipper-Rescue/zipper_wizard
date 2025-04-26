@@ -1,6 +1,5 @@
 import { ZipperWizard } from "@/zipper-wizard/zipper-wizard.tsx";
 
-import { WizardIntro } from "./components/wizard-intro/wizard-intro";
 import { cn } from "./lib/util/cn";
 
 export default function App() {
@@ -13,7 +12,6 @@ export default function App() {
         "pt-[100px] md:pt-[120px]",
       )}
     >
-      <WizardIntro />
       <ZipperWizard />
     </div>
   );

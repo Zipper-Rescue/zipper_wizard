@@ -3,20 +3,20 @@ import { SkuItem } from "@/product-data/sku-types.ts";
 
 import { postAddToCartMessage } from "./postAddToCartMessage";
 
-export function AddToCartButton({
-  sku,
-  className,
-}: {
-  sku: SkuItem;
+export function AddToCartButton(props: {
+  skus?: SkuItem[];
+  sku?: SkuItem;
   className?: string;
 }) {
+  const skus = [...(props.skus || []), ...(props.sku ? [props.sku] : [])];
+
   return (
     <Button
       onClick={() => {
-        postAddToCartMessage(sku.productId);
+        postAddToCartMessage(skus.map((it) => it.productId));
       }}
-      title={`Add ${sku.label} to cart`}
-      className={className}
+      title={`Add ${skus.map((it) => it.label).join(", ")} to cart`}
+      className={props.className}
     >
       Add to cart
     </Button>

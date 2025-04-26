@@ -30,6 +30,11 @@ export function stepBuilder<
     >(key: TKey, images: TImages, stepFn: (images: TImages, data: T) => TStep) {
       preloadImages(Object.values(images));
 
+      // ensure the name is unique
+      if (stepData.some((step) => step.key === key)) {
+        throw new Error(`Step with key "${key}" already exists`);
+      }
+
       return stepBuilder<T & Record<TKey, TStep["options"][number]["value"]>>([
         ...stepData,
         {
@@ -102,7 +107,7 @@ export function stepBuilder<
 
 export interface StepInfo {
   key: string;
-  label: string;
+  label?: string | JSX.Element;
   description?: string | JSX.Element;
 
   imageWidth?: string;

@@ -1,6 +1,6 @@
-export function postAddToCartMessage(productId: number) {
+export function postAddToCartMessage(productIds: number[]) {
   window.parent.postMessage(
-    { command: "add-to-cart", productId, quantity: 1 },
+    { command: "add-to-cart", productIds, quantity: 1 },
     "*",
   );
 }

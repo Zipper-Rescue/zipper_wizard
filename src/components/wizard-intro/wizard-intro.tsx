@@ -2,11 +2,11 @@ import { AsyncImage } from "../async-image";
 
 export function WizardIntro() {
   return (
-    <div className="space-y-4">
+    <>
       <h1 className="text-4xl p-4 text-center">
         Welcome to the <strong className="text-nowrap">Zipper Wizard!</strong>
       </h1>
-      <div className="flex flex-col md:flex-row gap-4">
+      <div className="flex flex-col md:flex-row gap-4 my-4 md:my-10">
         <AsyncImage
           src={() => import("./images/wizard.svg")}
           alt={"Wizard Intro"}
@@ -25,11 +25,11 @@ export function WizardIntro() {
             </div>
           </div>
 
-          <div className="flex gap-2">
+          <div className="flex gap-3">
             {...[
               {
                 image: () => import("./images/zipper-icon.svg"),
-                label: "Item you're repairing",
+                label: "Broken item",
               },
               {
                 image: () => import("./images/ruler-icon.svg"),
@@ -48,6 +48,6 @@ export function WizardIntro() {
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
