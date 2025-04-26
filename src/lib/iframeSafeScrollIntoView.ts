@@ -10,10 +10,8 @@ export function iframeSafeScrollIntoView(
     window.parent.postMessage(
       {
         command: "scroll",
-        data: {
-          top: elm.getBoundingClientRect().top,
-          options,
-        },
+        top: elm.getBoundingClientRect().top,
+        options,
       },
       "*",
     );
