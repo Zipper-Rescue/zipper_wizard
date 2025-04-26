@@ -6,7 +6,8 @@ export function iframeSafeScrollIntoView(
 ) {
   if (!elm) return; // If no element, do nothing.
 
-  if (isIframeScrollHackRequired()) {
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition,no-constant-condition
+  if (true) {
     window.parent.postMessage(
       {
         command: "scroll",
@@ -21,6 +22,7 @@ export function iframeSafeScrollIntoView(
 // Detects an issue on mobile where the Parent is an iframe which cannot have it's scroll bars removed.
 // Presumably not a bug as safari will autosize it's iframes: https://salomvary.com/iframe-resize-ios-safari.html
 // Can use "scrolling=no" fix instead if the parent knows the initial size of your iframe.
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function isIframeScrollHackRequired() {
   try {
     // We know this issue happens inside an IFrame on;
@@ -36,6 +38,10 @@ function isIframeScrollHackRequired() {
     if (is_chrome && is_safari) {
       is_safari = false;
     }
+
+    console.info("is_safari", is_safari);
+    console.info("is_chrome", is_chrome);
+    console.info("userAgent", navigator.userAgent);
 
     // If we need to narrow this down even further we can use a more robust browser detection (https://stackoverflow.com/questions/5916900)
     // Problematic browsers can be adjusted here.
