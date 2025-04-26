@@ -35,6 +35,7 @@ export function AddToCartButton({
 
   const handleAddToCart = async () => {
     try {
+      setCurrentWorkflowState("adding-to-cart");
       await onAddToCart(skusList.map((it) => it.productId));
     } finally {
       setCurrentWorkflowState("go-to-cart");
