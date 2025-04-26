@@ -1,11 +1,11 @@
 import { AddToCartButton } from "@/components/add-to-cart-button";
+import { postNavigateMessage } from "@/components/postNavigateMessage.tsx";
 import { SkuCard } from "@/components/sku-card";
 import { WizardIntro } from "@/components/wizard-intro/wizard-intro";
 import { matchSkuForWizardResult } from "@/product-data/match-sku-for-wizard-result";
 import { skuData } from "@/product-data/sku-data.generated";
 import { itemTypeRecord, ItemTypeId, SkuItem } from "@/product-data/sku-types";
 import { stepBuilder } from "@/zipper-wizard/step-builder.ts";
-import { StepDescription } from "@/zipper-wizard/step-description.tsx";
 
 export const wizardSteps = stepBuilder()
   // ===========================================================================
@@ -43,8 +43,15 @@ export const wizardSteps = stepBuilder()
     (images) =>
       ({
         label: "Select zipper type",
-        description:
-          "Inspect only the end / bottom where it unzips, do not compare the tooth material.",
+        description: (
+          <div className="space-y-2">
+            <div>Inspect only the end / bottom where it unzips.</div>
+            <div>
+              <strong>HINT: </strong>
+              No need to compare the tooth material just yet!
+            </div>
+          </div>
+        ),
         options: [
           {
             label: "One-way Separating",
@@ -83,15 +90,17 @@ export const wizardSteps = stepBuilder()
     },
     (images, { zipperType }) =>
       ({
-        label: "Select Failure Type",
+        label: "Select failure type",
         description: (
-          <StepDescription>
-            <span>
-              <strong>Worn or Broken Slider</strong> is the most common and easy
-              to fix! If the teeth won&apos;t stay closed it&apos;s likely a
-              worn slider. This step is very important!
-            </span>
-          </StepDescription>
+          <div className="space-y-2">
+            <div>
+              Worn/Broken Sliders cause over 80% of zipper malfunctions.
+            </div>
+            <div>
+              <strong>HINT:</strong> If the teeth won’t stay closed the slider
+              is likely worn out.
+            </div>
+          </div>
         ),
 
         options: [
@@ -134,13 +143,13 @@ export const wizardSteps = stepBuilder()
         ? ({
             label: "Select tooth type",
             description: (
-              <StepDescription>
+              <div className="space-y-2">
                 <div>Look closely at the shape of the teeth.</div>
                 <div>
-                  Some zippers may appear to be metal but are actually plastic.
+                  Some may plastic zippers may appear to be metal, and coil
+                  zippers can be small and hard to see.
                 </div>
-                <div>Coil zippers can be very small and hard to see.</div>
-              </StepDescription>
+              </div>
             ),
             options: [
               {
@@ -189,22 +198,16 @@ export const wizardSteps = stepBuilder()
         ? ({
             label: "Select coil type",
             description: (
-              <StepDescription>
-                <ul>
-                  <li>
-                    <strong>Standard Coil</strong> - you&apos;ll see and feel
-                    the coils on the outside
-                  </li>
-                  <li>
-                    <strong>Reverse Coil</strong> - same as standard but the
-                    coils face inwards
-                  </li>
-                  <li>
-                    <strong>Invisible coil</strong> - not common, most often
-                    found on dresses and skirts
-                  </li>
-                </ul>
-              </StepDescription>
+              <div className="space-y-2">
+                <div>
+                  Coils come in three main types. If you’re stumped, use{" "}
+                  {helpFormLink} to send us a photo.
+                </div>
+
+                <div>
+                  <strong>HINT:</strong> Standard coil is the most common
+                </div>
+              </div>
             ),
             options: [
               {
@@ -288,12 +291,16 @@ export const wizardSteps = stepBuilder()
         ? ({
             label: "Count the teeth in 1 inch",
             description: (
-              <StepDescription>
-                <div className="font-bold">
-                  This is not always exact, select the closest match!
+              <div className="space-y-2">
+                <div>
+                  Start measuring midway between two teeth and select the
+                  closest match. If you’re stuck, use {helpFormLink} to send us
+                  a photo.
                 </div>
-                <div>Start counting midway between two teeth as shown.</div>
-              </StepDescription>
+                <div>
+                  <strong>HINT:</strong> This is not always exact!
+                </div>
+              </div>
             ),
 
             options: [
@@ -328,13 +335,13 @@ export const wizardSteps = stepBuilder()
           ? ({
               label: "Count the teeth in 1 inch",
               description: (
-                <StepDescription>
+                <div className="space-y-2">
                   <div>
                     This is not always an exact science. Select the closest
                     match!
                   </div>
                   <div>Start midway between two teeth as shown.</div>
-                </StepDescription>
+                </div>
               ),
               options: [
                 {
@@ -440,11 +447,11 @@ export const wizardSteps = stepBuilder()
       }
 
       return {
-        label: "Select Item Type",
+        label: "Select item type",
         description: (
-          <StepDescription>
+          <div>
             <div>Select the type of item your zipper is on.</div>
-          </StepDescription>
+          </div>
         ),
         options: [
           ...Array.from(itemTypes).map((type) => ({
@@ -554,5 +561,18 @@ function productsForWizard(wizardState: Partial<WizardResult>): SkuItem[] {
       return Number(wizardState.selectedProductId) === it.productId;
     });
 }
+
+const helpFormLink = (
+  <a
+    className="text-blue-500 active:underline hover:underline"
+    href="javascipript:void(0)"
+    target="_top"
+    onClick={() => {
+      postNavigateMessage("/wizard-help-form").catch(console.error);
+    }}
+  >
+    this help form
+  </a>
+);
 
 export type WizardResult = (typeof wizardSteps)["T"];
