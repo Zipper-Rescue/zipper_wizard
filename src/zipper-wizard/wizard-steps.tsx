@@ -451,7 +451,7 @@ export const wizardSteps = stepBuilder()
             label: itemTypeRecord[type].label,
             value: type,
             imageUrl: itemTypeRecord[type].imageFn,
-            imageClass: "w-[120px] p-2",
+            imageClass: "w-[120px] p-2 w-[160px]",
           })),
           {
             label: "Show all",

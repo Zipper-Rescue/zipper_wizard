@@ -3,7 +3,7 @@ import { AsyncImage } from "../async-image";
 export function WizardIntro() {
   return (
     <>
-      <h1 className="text-4xl p-4 text-center">
+      <h1 className="text-4xl p-4 text-center" style={{ lineHeight: "1.5" }}>
         Welcome to the <strong className="text-nowrap">Zipper Wizard!</strong>
       </h1>
       <div className="flex flex-col md:flex-row gap-12 my-4 md:my-10">
