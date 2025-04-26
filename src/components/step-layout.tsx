@@ -27,7 +27,7 @@ export function StepLayout({
   return (
     <div
       ref={ref}
-      className={cn("flex flex-col items-center gap-1", "p-2", "bg-white")}
+      className={cn("flex flex-col items-center gap-1 p-2 bg-white pt-10")}
     >
       {title && <h1 className={"text-3xl font-semibold"}>{title}</h1>}
       <section className={"mb-4 text-center"}>{description}</section>

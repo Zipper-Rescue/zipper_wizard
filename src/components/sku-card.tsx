@@ -19,7 +19,7 @@ export function SkuCard({
       onClick={onClick}
       className={cn(
         "flex flex-col",
-        "w-[320px]",
+        "max-w-[320px]",
         "border rounded-lg",
         "overflow-hidden",
         "transition-all duration-200",
