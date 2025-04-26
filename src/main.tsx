@@ -4,7 +4,7 @@ import { createRoot } from "react-dom/client";
 import { Route } from "wouter";
 
 import App from "./App.tsx";
-import "@open-iframe-resizer/core";
+//import "@open-iframe-resizer/core";
 
 const rootElement = document.getElementById("root");
 

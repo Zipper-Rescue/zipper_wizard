@@ -1,7 +1,6 @@
 import * as React from "react";
 import { useEffect } from "react";
 
-import { iframeSafeScrollIntoView } from "@/lib/iframeSafeScrollIntoView.ts";
 import { cn } from "@/lib/util/cn.ts";
 
 export function StepLayout({
@@ -20,7 +19,7 @@ export function StepLayout({
       // Wait for the component to render, and iframe to resize, before
       // scrolling into view.
       setTimeout(() => {
-        iframeSafeScrollIntoView(ref.current, {
+        ref.current?.scrollIntoView({
           behavior: "smooth",
           block: "start",
         });
