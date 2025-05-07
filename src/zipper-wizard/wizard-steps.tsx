@@ -1,6 +1,8 @@
 import { AddToCartButton } from "@/components/add-to-cart-button";
+import { AsyncImage } from "@/components/async-image.tsx";
 import { postNavigateMessage } from "@/components/postNavigateMessage.tsx";
 import { SkuCard } from "@/components/sku-card";
+import { Button } from "@/components/ui/button.tsx";
 import { WizardIntro } from "@/components/wizard-intro/wizard-intro";
 import { matchSkuForWizardResult } from "@/product-data/match-sku-for-wizard-result";
 import { skuData } from "@/product-data/sku-data.generated";
@@ -18,7 +20,7 @@ export const wizardSteps = stepBuilder()
         {
           label: "Start the wizard!",
           value: "start",
-          imageClass: "p-8 w-60 text-primary",
+          imageClass: "p-8 w-60 text-primary rounded-full",
         },
       ],
     };
@@ -137,6 +139,12 @@ export const wizardSteps = stepBuilder()
       coil: import("./zipper-wizard-step-images/03-tooth-type/coil.png"),
       metal: import("./zipper-wizard-step-images/03-tooth-type/metal.png"),
       plastic: import("./zipper-wizard-step-images/03-tooth-type/plastic.png"),
+      missingBoxOrPin: import(
+        "./zipper-wizard-step-images/02-failure-type/missing-box-or-pin.png"
+      ),
+      damagedTeeth: import(
+        "./zipper-wizard-step-images/02-failure-type/damaged-teeth.png"
+      ),
     },
     (images, { failureType }) =>
       failureType === "worn-broken-slider"
@@ -169,12 +177,77 @@ export const wizardSteps = stepBuilder()
               },
             ],
           } as const)
-        : ({
-            label: "Can't fix",
-            description:
-              "Sorry, you need to take that to a seamstress or tailor.",
-            options: [],
-          } as const),
+        : failureType === "missing-box-or-pin"
+          ? ({
+              label: "Missing box or pin",
+              description: (
+                <>
+                  <AsyncImage
+                    className="max-w-[320px]"
+                    src={images.missingBoxOrPin}
+                    alt="Missing box or pin"
+                  />
+                  A missing retainer box or pin cannot be easily replaced by
+                  hand, click your item type below for alternative repair
+                  options.
+                  <div className="flex gap-2">
+                    <Button
+                      size="lg"
+                      onClick={() => {
+                        postNavigateMessage(
+                          "/faq#sleeping-bag-troubleshooting",
+                        ).catch(console.error);
+                      }}
+                    >
+                      Sleeping bag
+                    </Button>
+
+                    <Button
+                      size="lg"
+                      onClick={() => {
+                        postNavigateMessage(
+                          "/faq#slider-came-off-bottom",
+                        ).catch(console.error);
+                      }}
+                    >
+                      Everything else
+                    </Button>
+                  </div>
+                </>
+              ),
+              options: [],
+            } as const)
+          : ({
+              label: "Damaged/missing teeth",
+              description: (
+                <>
+                  <AsyncImage
+                    className="max-w-[320px]"
+                    src={images.damagedTeeth}
+                    alt="Damaged teeth"
+                  />
+
+                  <div className="max-w-screen-md">
+                    Damaged or missing teeth cannot always be easily fixed and
+                    our kits are not designed to repair or replace zipper teeth.
+                    There are some exceptions, click this link to see more info
+                    about damaged teeth and see what your options are.
+                  </div>
+
+                  <Button
+                    size="lg"
+                    onClick={() => {
+                      postNavigateMessage("/faq#damaged-tooth-info").catch(
+                        console.error,
+                      );
+                    }}
+                  >
+                    Visit the FAQ
+                  </Button>
+                </>
+              ),
+              options: [],
+            } as const),
   )
 
   // ===========================================================================
@@ -193,7 +266,7 @@ export const wizardSteps = stepBuilder()
         "./zipper-wizard-step-images/04-coil-type/invisible-coil.png"
       ),
     },
-    (images, { toothMaterial }) =>
+    (images, { toothMaterial, zipperType }) =>
       toothMaterial === "coil"
         ? ({
             label: "Select coil type",
@@ -220,11 +293,17 @@ export const wizardSteps = stepBuilder()
                 value: "reverse",
                 imageUrl: images.reverseCoil,
               },
-              {
-                label: "Invisible",
-                value: "invisible",
-                imageUrl: images.invisibleCoil,
-              },
+
+              // Invisible coil is only available for non-separating zippers
+              ...(zipperType === "non-sep"
+                ? [
+                    {
+                      label: "Invisible",
+                      value: "invisible",
+                      imageUrl: images.invisibleCoil,
+                    },
+                  ]
+                : []),
             ],
           } as const)
         : null,
@@ -287,6 +366,9 @@ export const wizardSteps = stepBuilder()
       ),
     },
     (images, { toothMaterial }) =>
+      // -----------------------------------------------------------------------
+      // Coil
+      //
       toothMaterial === "coil"
         ? ({
             label: "Count the teeth in 1 inch",
@@ -331,7 +413,10 @@ export const wizardSteps = stepBuilder()
               },
             ],
           } as const)
-        : toothMaterial === "metal"
+        : // -------------------------------------------------------------------
+          // Metal
+          //
+          toothMaterial === "metal"
           ? ({
               label: "Count the teeth in 1 inch",
               description: (
@@ -376,7 +461,10 @@ export const wizardSteps = stepBuilder()
                 },
               ],
             } as const)
-          : ({
+          : // -----------------------------------------------------------------
+            // Plastic
+            //
+            ({
               label: "Tooth Count",
               options: [
                 {

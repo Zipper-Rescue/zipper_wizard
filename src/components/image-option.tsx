@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 
 import { cn } from "@/lib/util/cn.ts";
 
+import { ImageWithLightbox } from "./ui/image-with-lightbox";
+
 // TODO: Zoom function
 
 export function ImageOption({
@@ -67,9 +69,9 @@ export function ImageOption({
       )}
       onClick={() => onClick?.()}
     >
-      {imageUrl ? (
+      {imageUrl && resolvedImageUrl ? (
         <>
-          <img
+          <ImageWithLightbox
             src={resolvedImageUrl}
             alt={label}
             className={cn("h-auto", imageClass ?? "w-[320px]")}
