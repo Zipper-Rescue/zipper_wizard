@@ -365,54 +365,81 @@ export const wizardSteps = stepBuilder()
         "@/zipper-wizard/zipper-wizard-step-images/05-tooth-count/plastic-10_5-tpi.jpg"
       ),
     },
-    (images, { toothMaterial }) =>
+    (images, { toothMaterial, coilType }) =>
       // -----------------------------------------------------------------------
       // Coil
       //
       toothMaterial === "coil"
-        ? ({
-            label: "Count the teeth in 1 inch",
-            description: (
-              <div className="space-y-2">
-                <div>
-                  Start measuring midway between two teeth and select the
-                  closest match. If you’re stuck, use {helpFormLink} to send us
-                  a photo.
+        ? coilType === "invisible"
+          ? // Invisible coil (dead end)
+            {
+              label: "Invisible zippers",
+              description: (
+                <>
+                  <div>
+                    Invisible zippers are not included in the Wizard, use the
+                    help form below to find your size.
+                  </div>
+                  <div>
+                    <Button
+                      size="lg"
+                      onClick={() => {
+                        postNavigateMessage(
+                          "/invisible-zipper-help-form",
+                        ).catch(console.error);
+                      }}
+                    >
+                      Visit the help form
+                    </Button>
+                  </div>
+                </>
+              ),
+              options: [],
+            }
+          : // Regular coil
+            ({
+              label: "Count the teeth in 1 inch",
+              description: (
+                <div className="space-y-2">
+                  <div>
+                    Start measuring midway between two teeth and select the
+                    closest match. If you’re stuck, use {helpFormLink} to send
+                    us a photo.
+                  </div>
+                  <div>
+                    <strong>HINT:</strong> This is not always exact!
+                  </div>
                 </div>
-                <div>
-                  <strong>HINT:</strong> This is not always exact!
-                </div>
-              </div>
-            ),
+              ),
 
-            options: [
-              {
-                label: "24 teeth per inch",
-                value: "3",
-                imageUrl: images.coil324Tpi,
-              },
-              {
-                label: "20 teeth per inch",
-                value: "4.5",
-                imageUrl: images.coil4520Tpi,
-              },
-              {
-                label: "16.5 teeth per inch",
-                value: "5",
-                imageUrl: images.coil5165Tpi,
-              },
-              {
-                label: "14 teeth per inch",
-                value: "8",
-                imageUrl: images.coil814Tpi,
-              },
-              {
-                label: "10 teeth per inch",
-                value: "10",
-                imageUrl: images.coil1010Tpi,
-              },
-            ],
-          } as const)
+              options: [
+                {
+                  label: "24 teeth per inch",
+                  value: "3",
+                  imageUrl: images.coil324Tpi,
+                },
+                {
+                  label: "20 teeth per inch",
+                  value: "4.5",
+                  imageUrl: images.coil4520Tpi,
+                },
+                {
+                  label: "16.5 teeth per inch",
+                  value: "5",
+                  imageUrl: images.coil5165Tpi,
+                },
+                {
+                  label: "14 teeth per inch",
+                  value: "8",
+                  imageUrl: images.coil814Tpi,
+                },
+                {
+                  label: "10 teeth per inch",
+                  value: "10",
+                  imageUrl: images.coil1010Tpi,
+                },
+              ],
+            } as const)
         : // -------------------------------------------------------------------
           // Metal
           //
