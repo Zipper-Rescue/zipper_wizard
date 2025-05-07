@@ -597,6 +597,29 @@ export const wizardSteps = stepBuilder()
       return null;
     }
 
+    if (products.length === 0) {
+      return {
+        label: "More info needed",
+        description: (
+          <>
+            <div>
+              It&apos;s likely we have the right size but we want to be sure!
+              Please write down the tooth count and tooth type and we&apos;ll
+              help you find an exact match.
+            </div>
+            <div>{helpFormButton}</div>
+          </>
+        ),
+        options: [
+          ...products.map((product) => ({
+            label: product.label,
+            value: String(product.productId),
+            imageUrl: product.imageFn,
+          })),
+        ],
+      };
+    }
+
     return {
       label: "Multiple matches",
       description:
@@ -692,6 +715,17 @@ const helpFormLink = (
   >
     this help form
   </a>
+);
+
+const helpFormButton = (
+  <Button
+    size="lg"
+    onClick={() => {
+      postNavigateMessage("/wizard-help-form").catch(console.error);
+    }}
+  >
+    Visit the help form
+  </Button>
 );
 
 export type WizardResult = (typeof wizardSteps)["T"];
