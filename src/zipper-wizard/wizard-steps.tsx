@@ -154,8 +154,11 @@ export const wizardSteps = stepBuilder()
               <div className="space-y-2">
                 <div>Look closely at the shape of the teeth.</div>
                 <div>
-                  Some may plastic zippers may appear to be metal, and coil
-                  zippers can be small and hard to see.
+                  If you’re stuck, use {helpFormLink} to send us a photo.
+                </div>
+                <div>
+                  <strong>HINT:</strong> Some may plastic zippers may appear to
+                  be metal, and coil zippers can be small and hard to see.
                 </div>
               </div>
             ),
@@ -449,10 +452,13 @@ export const wizardSteps = stepBuilder()
               description: (
                 <div className="space-y-2">
                   <div>
-                    This is not always an exact science. Select the closest
-                    match!
+                    Start measuring midway between two teeth and select the
+                    closest match. If you’re stuck, use {helpFormLink} to send
+                    us a photo.
                   </div>
-                  <div>Start midway between two teeth as shown.</div>
+                  <div>
+                    <strong>HINT:</strong> This is not always exact!
+                  </div>
                 </div>
               ),
               options: [
@@ -492,7 +498,19 @@ export const wizardSteps = stepBuilder()
             // Plastic
             //
             ({
-              label: "Tooth Count",
+              label: "Count the teeth in 1 inch",
+              description: (
+                <div className="space-y-2">
+                  <div>
+                    Start measuring midway between two teeth and select the
+                    closest match. If you’re stuck, use {helpFormLink} to send
+                    us a photo.
+                  </div>
+                  <div>
+                    <strong>HINT:</strong> This is not always exact!
+                  </div>
+                </div>
+              ),
               options: [
                 {
                   label: "10 teeth per inch",
