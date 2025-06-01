@@ -740,4 +740,22 @@ export const skuData: SkuItem[] = [
     containedInProductIds: undefined,
     suggestedKitProductId: 292,
   },
+
+  {
+    productId: 2363,
+    productType: "slider",
+    label: "#5 Plastic Tooth Slider - 2-Way Set (Locking)",
+    imageFn: () =>
+      import(
+        "@/product-data/product-images/2363_plastic-tooth_10mm_single_2-way-set_locking_v.jpg"
+      ),
+    toothType: "plastic",
+    sliderSize: 5,
+    pullStyle: "single",
+    lockingType: "locking",
+    teethPerInch: 7.5,
+    applicableItemTypes: ["jacketsAndCoats"],
+    containedInProductIds: undefined,
+    suggestedKitProductId: 292,
+  },
 ];
