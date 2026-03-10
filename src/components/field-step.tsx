@@ -1,35 +1,23 @@
 import { ImageOption } from "@/components/image-option.tsx";
 import { StepIndicator } from "@/components/step-indicator.tsx";
 import { StepLayout } from "@/components/step-layout.tsx";
-import { StepInfo } from "@/zipper-wizard/step-builder.ts";
+
+import type { StepInfo, StepStatus } from "@/zipper-wizard/step-builder.ts";
 
 export function FieldStep({
   fieldData,
   onDataChanged,
   selectedValue,
-  stepIndex,
-  totalSteps,
-  uncertainCount,
+  stepStatuses,
 }: {
   fieldData: StepInfo;
   onDataChanged?: (key: string, value: string) => void;
   selectedValue?: string;
-  stepIndex?: number;
-  totalSteps?: number;
-  uncertainCount?: number;
+  stepStatuses?: StepStatus[];
 }) {
-  // const selectedOption = fieldData.options.find(
-  //   (option) => option.value === selectedValue,
-  // );
-
-  const indicator =
-    stepIndex != null && totalSteps != null ? (
-      <StepIndicator
-        currentStep={stepIndex}
-        totalSteps={totalSteps}
-        uncertainCount={uncertainCount ?? 0}
-      />
-    ) : undefined;
+  const indicator = stepStatuses ? (
+    <StepIndicator statuses={stepStatuses} />
+  ) : undefined;
 
   return (
     <StepLayout

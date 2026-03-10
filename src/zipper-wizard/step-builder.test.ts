@@ -80,8 +80,7 @@ describe("conditional step near end", () => {
       { key: "size", label: "Size", options },
       { key: "lastStep", label: "Results", options: [] },
     ]);
-    expect(result.remainingRequiredCount).toBe(0);
-    expect(result.remainingConditionalCount).toBe(0);
+    expect(result.stepStatuses).toEqual(["completed", "completed"]);
   });
 
   test("without conditional step (metal material)", () => {
@@ -95,8 +94,7 @@ describe("conditional step near end", () => {
       { key: "size", label: "Size", options },
       { key: "lastStep", label: "Results", options: [] },
     ]);
-    expect(result.remainingRequiredCount).toBe(0);
-    expect(result.remainingConditionalCount).toBe(0);
+    expect(result.stepStatuses).toEqual(["skipped", "completed"]);
   });
 
   test("partial steps with conditional", () => {
@@ -106,8 +104,7 @@ describe("conditional step near end", () => {
       { key: "material", label: "Material", options },
       { key: "coilType", label: "Coil Type", options },
     ]);
-    expect(result.remainingRequiredCount).toBe(2);
-    expect(result.remainingConditionalCount).toBe(0);
+    expect(result.stepStatuses).toEqual(["current", "upcoming"]);
   });
 
   test("partial steps without conditional", () => {
@@ -117,7 +114,45 @@ describe("conditional step near end", () => {
       { key: "material", label: "Material", options },
       { key: "size", label: "Size", options },
     ]);
-    expect(result.remainingRequiredCount).toBe(1);
-    expect(result.remainingConditionalCount).toBe(0);
+    expect(result.stepStatuses).toEqual(["skipped", "current"]);
+  });
+
+  test("stepStatuses - at start", () => {
+    const result = builder.buildSteps([]);
+    expect(result.stepStatuses).toEqual(["uncertain", "upcoming"]);
+  });
+
+  test("stepStatuses - all done with coil", () => {
+    const result = builder.buildSteps([
+      ["material", "coil"],
+      ["coilType", "standard"],
+      ["size", "5"],
+    ]);
+    expect(result.stepStatuses).toEqual(["completed", "completed"]);
+  });
+
+  test("stepStatuses - all done without coil", () => {
+    const result = builder.buildSteps([
+      ["material", "metal"],
+      ["size", "5"],
+    ]);
+    expect(result.stepStatuses).toEqual(["skipped", "completed"]);
+  });
+});
+
+describe("indicatorTemplate", () => {
+  const builder = stepBuilder()
+    .step("intro", {}, () => ({ label: "Intro", options }))
+    .step("a", {}, () => ({ label: "A", options }))
+    .stepConditional("b", {}, () => ({ label: "B", options }))
+    .step("c", {}, () => ({ label: "C", options }))
+    .step("last", {}, () => ({ label: "Last", options: [] as StepOption[] }));
+
+  test("returns middle steps with conditional flag", () => {
+    expect(builder.indicatorTemplate).toEqual([
+      { key: "a", isConditional: false },
+      { key: "b", isConditional: true },
+      { key: "c", isConditional: false },
+    ]);
   });
 });
