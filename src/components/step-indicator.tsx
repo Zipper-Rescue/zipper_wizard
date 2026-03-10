@@ -2,50 +2,65 @@ import { cn } from "@/lib/util/cn.ts";
 
 import type { StepStatus } from "@/zipper-wizard/step-builder.ts";
 
+const circleBase =
+  "rounded-full flex items-center justify-center font-bold shrink-0";
+
+const lineHeavy = "h-[2.5px] bg-primary";
+const lineThin = "h-px bg-primary";
+
+const circleStrokeStyle: Record<StepStatus, string> = {
+  completed: "border-[2.5px] border-primary",
+  current: "",
+  upcoming: "border border-primary",
+  uncertain: "border border-dashed border-primary/40",
+  skipped: "border border-primary/20",
+};
+
+const circleStyles: Record<StepStatus, string> = {
+  completed: "w-8 h-8 text-sm bg-primary/5 text-primary",
+  current: "w-9 h-9 text-sm bg-primary text-primary-foreground",
+  upcoming: "w-7 h-7 text-xs text-primary",
+  uncertain: "w-7 h-7 text-xs text-primary/40",
+  skipped: "w-7 h-7 text-xs text-primary/20",
+};
+
+const lineStrokeStyle: Record<StepStatus, string> = {
+  completed: lineHeavy,
+  current: lineHeavy,
+  skipped: lineHeavy,
+  upcoming: lineThin,
+  uncertain: lineThin,
+};
+
+function isHeavy(status: StepStatus) {
+  return status === "completed" || status === "current" || status === "skipped";
+}
+
 export function StepIndicator({ statuses }: { statuses: StepStatus[] }) {
+  const lastStatus = statuses[statuses.length - 1];
   const destinationReached = statuses.every(
     (s) => s === "completed" || s === "skipped",
   );
-  const lastStatus = statuses[statuses.length - 1];
-  const lineToDestinationHeavy =
-    lastStatus === "completed" || lastStatus === "skipped";
 
   return (
     <div className="flex items-center justify-center gap-0 mt-2">
       {statuses.map((status, i) => {
-        const stepNumber = i + 1;
-        const nextStatus = statuses[i + 1];
-
-        const nextHeavy =
-          nextStatus === "completed" ||
-          nextStatus === "current" ||
-          nextStatus === "skipped";
-
         return (
-          <div key={stepNumber} className="flex items-center flex-1 max-w-12">
+          <div key={i} className="flex items-center flex-1 max-w-12">
             <div
               className={cn(
-                "w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold shrink-0",
-                status === "completed" &&
-                  "border-[3px] border-primary bg-primary/10 text-primary",
-                status === "current" && "bg-primary text-primary-foreground",
-                status === "upcoming" && "border border-primary text-primary",
-                status === "uncertain" &&
-                  "border border-dashed border-primary/40 text-primary/40",
-                status === "skipped" &&
-                  "border border-primary/20 text-primary/20",
+                circleBase,
+                circleStrokeStyle[status],
+                circleStyles[status],
               )}
             >
-              {stepNumber}
+              {i + 1}
             </div>
             {i < statuses.length - 1 && (
               <div
                 className={cn(
                   "flex-1 min-w-3",
-                  nextHeavy ? "h-[3px] bg-primary" : "h-px",
-                  !nextHeavy && nextStatus === "uncertain"
-                    ? "border-t border-dashed border-primary/40"
-                    : !nextHeavy && "bg-primary",
+                  lineStrokeStyle[statuses[i + 1]],
                 )}
               />
             )}
@@ -57,12 +72,13 @@ export function StepIndicator({ statuses }: { statuses: StepStatus[] }) {
         <div
           className={cn(
             "flex-1 min-w-3",
-            lineToDestinationHeavy ? "h-[3px] bg-primary" : "h-px bg-primary",
+            isHeavy(lastStatus) ? lineHeavy : lineThin,
           )}
         />
         <div
           className={cn(
-            "w-8 h-8 rounded-full flex items-center justify-center shrink-0",
+            circleBase,
+            "w-8 h-8",
             destinationReached
               ? "bg-primary text-primary-foreground"
               : "border border-primary text-primary",
