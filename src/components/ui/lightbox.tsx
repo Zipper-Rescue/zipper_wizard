@@ -42,25 +42,30 @@ export function Lightbox({ isOpen, onClose, imageUrl, alt }: LightboxProps) {
       )}
       onClick={onClose}
     >
-      <button
-        className={cn(
-          "absolute top-4 right-4",
-          "text-white hover:text-gray-300",
-          "p-2 rounded-full",
-          "transition-colors",
-        )}
-        onClick={onClose}
-      >
-        <X className="w-6 h-6" />
-      </button>
-      <img
-        src={imageUrl}
-        alt={alt}
-        className="max-h-[90vh] max-w-[90vw] object-contain"
+      <div
+        className="relative inline-block max-w-[90vw] max-h-[90vh]"
         onClick={(e) => {
           e.stopPropagation();
         }}
-      />
+      >
+        <img
+          src={imageUrl}
+          alt={alt}
+          className="max-h-[90vh] max-w-[90vw] w-auto h-auto object-contain block"
+        />
+        <button
+          className={cn(
+            "absolute top-2 right-2",
+            "bg-black/60 text-white hover:bg-black/80 hover:text-white",
+            "p-2 rounded-full",
+            "transition-colors",
+            "touch-manipulation",
+          )}
+          onClick={onClose}
+        >
+          <X className="w-6 h-6" />
+        </button>
+      </div>
     </div>
   );
 }
