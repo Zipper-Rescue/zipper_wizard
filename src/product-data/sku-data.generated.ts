@@ -39,7 +39,7 @@ export const skuData: SkuItem[] = [
     label: "#4 Plastic Tooth Slider - (Locking)",
     imageFn: () =>
       import(
-        "@/product-data/product-images/297_plastic-tooth_4mm_single_locking_vs.jpg"
+        "@/product-data/product-images/297_plastic-tooth_4mm_vs_locking_slider_measurements.jpg"
       ),
     toothType: "plastic",
     sliderSize: 4,
@@ -57,7 +57,7 @@ export const skuData: SkuItem[] = [
     label: "#8 Plastic Tooth Slider (Locking)",
     imageFn: () =>
       import(
-        "@/product-data/product-images/298_plastic-tooth_8mm_single_locking_v.jpg"
+        "@/product-data/product-images/298_plastic-tooth_8mm_locking_slider_measurements.jpg"
       ),
     toothType: "plastic",
     sliderSize: 8,
@@ -75,7 +75,7 @@ export const skuData: SkuItem[] = [
     label: "#8 Metal Tooth Slider (Locking)",
     imageFn: () =>
       import(
-        "@/product-data/product-images/299_metal-tooth_8mm_single_locking.jpg"
+        "@/product-data/product-images/299_metal-tooth_8mm_locking_slider_measurements.jpg"
       ),
     toothType: "metal",
     sliderSize: 8,
@@ -93,7 +93,7 @@ export const skuData: SkuItem[] = [
     label: "#7 Metal Tooth Slider (Locking)",
     imageFn: () =>
       import(
-        "@/product-data/product-images/300_metal-tooth_7mm_single_locking.jpg"
+        "@/product-data/product-images/300_metal-tooth_7mm_locking_slider_measurements.jpg"
       ),
     toothType: "metal",
     sliderSize: 7,
@@ -111,7 +111,7 @@ export const skuData: SkuItem[] = [
     label: "#3 Metal Tooth Slider (Locking)",
     imageFn: () =>
       import(
-        "@/product-data/product-images/301_metal-tooth_3mm_single_locking.jpg"
+        "@/product-data/product-images/301_metal-tooth_3mm_locking_slider_measurements.jpg"
       ),
     toothType: "metal",
     sliderSize: 3,
@@ -132,7 +132,10 @@ export const skuData: SkuItem[] = [
     productId: 302,
     productType: "slider",
     label: "#10 Coil Slider",
-    imageFn: () => import("@/product-data/product-images/302_10-c-sp.jpg"),
+    imageFn: () =>
+      import(
+        "@/product-data/product-images/302_coil_10mm_slider_measurements.jpg"
+      ),
     toothType: "coil",
     sliderSize: 10,
     pullStyle: "single",
@@ -153,7 +156,10 @@ export const skuData: SkuItem[] = [
     productId: 303,
     productType: "slider",
     label: "#10 Coil Slider - Double Pull",
-    imageFn: () => import("@/product-data/product-images/303_10-c-dp.jpg"),
+    imageFn: () =>
+      import(
+        "@/product-data/product-images/303_coil_10mm_double-pull_slider_measurements.jpg"
+      ),
     toothType: "coil",
     sliderSize: 10,
     pullStyle: "double",
@@ -174,7 +180,7 @@ export const skuData: SkuItem[] = [
     label: "#10 Metal Tooth Slider (Locking)",
     imageFn: () =>
       import(
-        "@/product-data/product-images/304_metal-tooth_10mm_single_locking.jpg"
+        "@/product-data/product-images/304_metal-tooth_10mm_locking_slider_measurements.jpg"
       ),
     toothType: "metal",
     sliderSize: 10,
@@ -192,7 +198,7 @@ export const skuData: SkuItem[] = [
     label: "#4.5 Coil Slider (Locking)",
     imageFn: () =>
       import(
-        "@/product-data/product-images/356_coil_4.5mm_single_locking_id-356.jpg"
+        "@/product-data/product-images/356_coil_4.5mm_locking_slider_measurements.jpg"
       ),
     toothType: "coil",
     sliderSize: 4.5,
@@ -210,13 +216,13 @@ export const skuData: SkuItem[] = [
     label: "#5 Reverse Coil Slider (Locking)",
     imageFn: () =>
       import(
-        "@/product-data/product-images/361_coil_reverse_5mm_single_locking_id-.jpg"
+        "@/product-data/product-images/361_reverse_coil_5mm_locking_slider_measurements.jpg"
       ),
     toothType: "coil-reverse",
     sliderSize: 5,
     pullStyle: "single",
     lockingType: "locking",
-    teethPerInch: 15,
+    teethPerInch: { min: 14, max: 15 },
     applicableItemTypes: ["bootsAndShoes", "jacketsAndCoats", "pantsAndShorts"],
     containedInProductIds: [292],
     suggestedKitProductId: 292,
@@ -227,7 +233,9 @@ export const skuData: SkuItem[] = [
     productType: "slider",
     label: "#5 Coil Slider (Locking)",
     imageFn: () =>
-      import("@/product-data/product-images/364_coil_5mm_single_locking.jpg"),
+      import(
+        "@/product-data/product-images/364_coil_5mm_locking_slider_measurements.jpg"
+      ),
     toothType: "coil",
     sliderSize: 5,
     pullStyle: "single",
@@ -249,7 +257,7 @@ export const skuData: SkuItem[] = [
     label: "#10 Plastic Tooth Slider - Double Pull (Locking)",
     imageFn: () =>
       import(
-        "@/product-data/product-images/366_plastic-tooth_10mm_double_locking_v.jpg"
+        "@/product-data/product-images/366_plastic-tooth_10mm_double-pull_locking_slider_measurements_2.jpg"
       ),
     toothType: "plastic",
     sliderSize: 10,
@@ -267,7 +275,7 @@ export const skuData: SkuItem[] = [
     label: "#3 Plastic Tooth Slider (Locking)",
     imageFn: () =>
       import(
-        "@/product-data/product-images/375_plastic-tooth_3mm_single_locking_vs.jpg"
+        "@/product-data/product-images/375_plastic-tooth_3mm_vs_locking_slider_measurements.jpg"
       ),
     toothType: "plastic",
     sliderSize: 3,
@@ -284,7 +292,9 @@ export const skuData: SkuItem[] = [
     productType: "slider",
     label: "#3 Coil Slider (Locking)",
     imageFn: () =>
-      import("@/product-data/product-images/376_coil_3_single_locking.jpg"),
+      import(
+        "@/product-data/product-images/376_coil_3mm_locking_slider_measurements.jpg"
+      ),
     toothType: "coil",
     sliderSize: 3,
     pullStyle: "single",
@@ -306,7 +316,7 @@ export const skuData: SkuItem[] = [
     label: "#4.5 Metal Tooth Slider (Locking)",
     imageFn: () =>
       import(
-        "@/product-data/product-images/377_metal-tooth_4.5mm_single_locking.jpg"
+        "@/product-data/product-images/377_metal-tooth_4.5mm_locking_slider_measurements.jpg"
       ),
     toothType: "metal",
     sliderSize: 4.5,
@@ -324,7 +334,7 @@ export const skuData: SkuItem[] = [
     label: "#5 Metal Tooth Slider (Locking)",
     imageFn: () =>
       import(
-        "@/product-data/product-images/378_metal-tooth_5mm_single_locking.jpg"
+        "@/product-data/product-images/378_metal-tooth_5mm_locking_slider_measurements.jpg"
       ),
     toothType: "metal",
     sliderSize: 5,
@@ -342,7 +352,7 @@ export const skuData: SkuItem[] = [
     label: "#5 Coil Slider (Plastic)",
     imageFn: () =>
       import(
-        "@/product-data/product-images/379_coil_5mm_single_non-locking_marine.jpg"
+        "@/product-data/product-images/379_coil_5mm_plastic_slider_measurements.jpg"
       ),
     toothType: "coil",
     sliderSize: 5,
@@ -360,7 +370,7 @@ export const skuData: SkuItem[] = [
     label: "#5 Plastic Tooth Slider (Plastic, Locking)",
     imageFn: () =>
       import(
-        "@/product-data/product-images/380_plastic-tooth_5mm_single__locking_marine_v.jpg"
+        "@/product-data/product-images/380_plastic-tooth_5mm_vs_plastic_locking_slider_measurements.jpg"
       ),
     toothType: "plastic",
     sliderSize: 5,
@@ -378,7 +388,7 @@ export const skuData: SkuItem[] = [
     label: "#8 Plastic Tooth Slider - Double Pull",
     imageFn: () =>
       import(
-        "@/product-data/product-images/381_plastic-tooth_8mm_double_non-locking_v.jpg"
+        "@/product-data/product-images/381_plastic-tooth_8mm_double-pull_slider_measurements.jpg"
       ),
     toothType: "plastic",
     sliderSize: 8,
@@ -396,7 +406,7 @@ export const skuData: SkuItem[] = [
     label: "#10 Plastic Tooth Slider (Plastic)",
     imageFn: () =>
       import(
-        "@/product-data/product-images/382_plastic-tooth_10mm_single_locking_marine_v.jpg"
+        "@/product-data/product-images/382_plastic-tooth_10mm_plastic_locking_slider_measurements.jpg"
       ),
     toothType: "plastic",
     sliderSize: 10,
@@ -414,7 +424,7 @@ export const skuData: SkuItem[] = [
     label: "#4.5 Coil Slider - Double Pull",
     imageFn: () =>
       import(
-        "@/product-data/product-images/383_coil_4.5mm_double_non-locking.jpg"
+        "@/product-data/product-images/383_coil_4.5mm_double-pull_slider_measurements.jpg"
       ),
     toothType: "coil",
     sliderSize: 4.5,
@@ -432,7 +442,7 @@ export const skuData: SkuItem[] = [
     label: "#4.5 Coil Slider",
     imageFn: () =>
       import(
-        "@/product-data/product-images/384_coil_4.5mm_single_non-locking.jpg"
+        "@/product-data/product-images/384_coil_4.5mm_slider_measurements.jpg"
       ),
     toothType: "coil",
     sliderSize: 4.5,
@@ -450,7 +460,7 @@ export const skuData: SkuItem[] = [
     label: "#5 Coil Slider - Double Pull",
     imageFn: () =>
       import(
-        "@/product-data/product-images/385_coil_5mm_double_non-locking.jpg"
+        "@/product-data/product-images/385_coil_5mm_double-pull_slider_measurements.jpg"
       ),
     toothType: "coil",
     sliderSize: 5,
@@ -468,7 +478,7 @@ export const skuData: SkuItem[] = [
     label: "#5 Coil Slider",
     imageFn: () =>
       import(
-        "@/product-data/product-images/386_coil_5mm_single_non-locking.jpg"
+        "@/product-data/product-images/386_coil_5mm_slider_measurements.jpg"
       ),
     toothType: "coil",
     sliderSize: 5,
@@ -486,7 +496,7 @@ export const skuData: SkuItem[] = [
     label: "#5 Plastic Tooth Slider (Locking)",
     imageFn: () =>
       import(
-        "@/product-data/product-images/387_plastic-tooth_5mm_single_locking_v.jpg"
+        "@/product-data/product-images/387_plastic-tooth_5mm_locking_slider_measurements.jpg"
       ),
     toothType: "plastic",
     sliderSize: 5,
@@ -504,7 +514,7 @@ export const skuData: SkuItem[] = [
     label: "#8 Coil Slider",
     imageFn: () =>
       import(
-        "@/product-data/product-images/388_coil_8mm_single_non-locking.jpg"
+        "@/product-data/product-images/388_coil_8mm_slider_measurements.jpg"
       ),
     toothType: "coil",
     sliderSize: 8,
@@ -522,7 +532,7 @@ export const skuData: SkuItem[] = [
     label: "#8 Coil Slider - Double Pull",
     imageFn: () =>
       import(
-        "@/product-data/product-images/389_coil_8mm_double_non-locking_id_389.jpeg"
+        "@/product-data/product-images/389_coil_8mm_double-pull_slider_measurements.jpg"
       ),
     toothType: "coil",
     sliderSize: 8,
@@ -540,7 +550,7 @@ export const skuData: SkuItem[] = [
     label: "#3 Coil Slider - Double Pull",
     imageFn: () =>
       import(
-        "@/product-data/product-images/1514_coil_3mm_double_non-locking.jpg"
+        "@/product-data/product-images/1514_coil_3mm_double-pull_slider_measurements.jpg"
       ),
     toothType: "coil",
     sliderSize: 3,
@@ -558,7 +568,7 @@ export const skuData: SkuItem[] = [
     label: "#5 Plastic Tooth Slider - Double Pull",
     imageFn: () =>
       import(
-        "@/product-data/product-images/1515_plastic-tooth_5mm_double_non-locking_v.jpg"
+        "@/product-data/product-images/1515_plastic-tooth_5mm_double-pull_slider_measurements.jpg"
       ),
     toothType: "plastic",
     sliderSize: 5,
@@ -576,7 +586,7 @@ export const skuData: SkuItem[] = [
     label: "#5 Plastic Tooth Slider (Locking) (VS)",
     imageFn: () =>
       import(
-        "@/product-data/product-images/1516_plastic-tooth_5mm_single_locking_vs.jpg"
+        "@/product-data/product-images/1516_plastic-tooth_5mm_vs_locking_slider_measurements.jpg"
       ),
     toothType: "plastic",
     sliderSize: 5,
@@ -594,7 +604,7 @@ export const skuData: SkuItem[] = [
     label: "#10 Plastic Tooth Slider (Locking)",
     imageFn: () =>
       import(
-        "@/product-data/product-images/1517_plastic-tooth_10mm_single_locking_v.jpg"
+        "@/product-data/product-images/1517_plastic-tooth_10mm_locking_slider_measurements.jpg"
       ),
     toothType: "plastic",
     sliderSize: 10,
@@ -602,6 +612,7 @@ export const skuData: SkuItem[] = [
     lockingType: "locking",
     teethPerInch: 5,
     applicableItemTypes: [
+      "automotiveTops",
       "boatCoversAndCushions",
       "jacketsAndCoats",
       "wetsuitsAndLifejackets",
@@ -616,7 +627,7 @@ export const skuData: SkuItem[] = [
     label: "#10 Plastic Tooth Slider - 2-Way Set (Locking)",
     imageFn: () =>
       import(
-        "@/product-data/product-images/1518_plastic-tooth_10mm_single_2-way-set_locking_v.jpg"
+        "@/product-data/product-images/1518_plastic-tooth_10mm_2-way-set_locking_slider_measurements.jpg"
       ),
     toothType: "plastic",
     sliderSize: 10,
@@ -634,13 +645,13 @@ export const skuData: SkuItem[] = [
     label: "#8 Reverse Coil Slider (Locking)",
     imageFn: () =>
       import(
-        "@/product-data/product-images/2265_coil_reverse_5mm_single_locking_id-.jpg"
+        "@/product-data/product-images/2265_reverse_coil_8mm_locking_slider_measurements.jpg"
       ),
     toothType: "coil-reverse",
     sliderSize: 8,
     pullStyle: "single",
     lockingType: "locking",
-    teethPerInch: 14,
+    teethPerInch: { min: 13, max: 14 },
     applicableItemTypes: ["bootsAndShoes", "jacketsAndCoats", "pantsAndShorts"],
     containedInProductIds: undefined,
     suggestedKitProductId: 292,
@@ -652,13 +663,13 @@ export const skuData: SkuItem[] = [
     label: "#3 Reverse Coil Slider (Locking)",
     imageFn: () =>
       import(
-        "@/product-data/product-images/2266_coil_reverse_5mm_single_locking_id-.jpg"
+        "@/product-data/product-images/2266_reverse_coil_3mm_locking_slider_measurements.jpg"
       ),
     toothType: "coil-reverse",
     sliderSize: 3,
     pullStyle: "single",
     lockingType: "locking",
-    teethPerInch: 24,
+    teethPerInch: { min: 20, max: 24 },
     applicableItemTypes: [
       "dressesAndSkirts",
       "jacketsAndCoats",
@@ -675,13 +686,13 @@ export const skuData: SkuItem[] = [
     label: "#5 Reverse Coil Slider",
     imageFn: () =>
       import(
-        "@/product-data/product-images/2267_coil_5mm_single_non-locking.jpg"
+        "@/product-data/product-images/2267_reverse_coil_5mm_slider_measurements.jpg"
       ),
     toothType: "coil-reverse",
     sliderSize: 5,
     pullStyle: "single",
     lockingType: "non-locking",
-    teethPerInch: 15,
+    teethPerInch: { min: 14, max: 15 },
     applicableItemTypes: ["backpacksAndBags", "luggage"],
     containedInProductIds: undefined,
     suggestedKitProductId: 296,
@@ -693,7 +704,7 @@ export const skuData: SkuItem[] = [
     label: "#8 VS Plastic Tooth Slider (Locking)",
     imageFn: () =>
       import(
-        "@/product-data/product-images/2271_plastic-tooth_8mm_single_locking_v.jpg"
+        "@/product-data/product-images/2271_plastic-tooth_8mm_vs_locking_slider_measurements.jpg"
       ),
     toothType: "plastic",
     sliderSize: 8,
@@ -711,7 +722,7 @@ export const skuData: SkuItem[] = [
     label: "#8 VS Plastic Tooth Slider - 2-Way Set (Locking)",
     imageFn: () =>
       import(
-        "@/product-data/product-images/2272_plastic-tooth_10mm_single_2-way-set_locking_v.jpg"
+        "@/product-data/product-images/2272_plastic-tooth_8mm_vs_2-way-set_locking_slider_measurements.jpg"
       ),
     toothType: "plastic",
     sliderSize: 8,
@@ -729,7 +740,7 @@ export const skuData: SkuItem[] = [
     label: "#8 Plastic Tooth Slider - 2-Way Set (Locking)",
     imageFn: () =>
       import(
-        "@/product-data/product-images/2274_plastic-tooth_10mm_single_2-way-set_locking_v.jpg"
+        "@/product-data/product-images/2274_plastic-tooth_8mm_2-way-set_locking_slider_measurements.jpg"
       ),
     toothType: "plastic",
     sliderSize: 8,
@@ -747,7 +758,7 @@ export const skuData: SkuItem[] = [
     label: "#5 Plastic Tooth Slider - 2-Way Set (Locking)",
     imageFn: () =>
       import(
-        "@/product-data/product-images/2363_plastic-tooth_10mm_single_2-way-set_locking_v.jpg"
+        "@/product-data/product-images/2363_plastic-tooth_5mm_v_2-way-set_locking_slider_measurements.jpg"
       ),
     toothType: "plastic",
     sliderSize: 5,
@@ -755,6 +766,155 @@ export const skuData: SkuItem[] = [
     lockingType: "locking",
     teethPerInch: 7.5,
     applicableItemTypes: ["jacketsAndCoats"],
+    containedInProductIds: undefined,
+    suggestedKitProductId: 292,
+  },
+
+  {
+    productId: 9251,
+    productType: "slider",
+    label: "#5VS Plastic Tooth Slider - 2-Way Set (Locking)",
+    imageFn: () =>
+      import(
+        "@/product-data/product-images/9251_plastic-tooth_5mm_vs_2-way-set_locking_slider_measurements.jpg"
+      ),
+    toothType: "plastic",
+    sliderSize: 5,
+    pullStyle: "single",
+    lockingType: "locking",
+    teethPerInch: 7.5,
+    applicableItemTypes: ["jacketsAndCoats"],
+    containedInProductIds: undefined,
+    suggestedKitProductId: 292,
+  },
+
+  {
+    productId: 9244,
+    productType: "slider",
+    label: "#8 Coil Slider (Locking)",
+    imageFn: () =>
+      import(
+        "@/product-data/product-images/9244_coil_8mm_locking_slider_measurements.jpg"
+      ),
+    toothType: "coil",
+    sliderSize: 8,
+    pullStyle: "single",
+    lockingType: "locking",
+    teethPerInch: 14,
+    applicableItemTypes: ["bootsAndShoes", "jacketsAndCoats", "pantsAndShorts"],
+    containedInProductIds: undefined,
+    suggestedKitProductId: 292,
+  },
+
+  {
+    productId: 2273,
+    productType: "slider",
+    label: "#8 Reverse Coil Slider",
+    imageFn: () =>
+      import(
+        "@/product-data/product-images/2273_reverse_coil_8mm_slider_measurements.jpg"
+      ),
+    toothType: "coil-reverse",
+    sliderSize: 8,
+    pullStyle: "single",
+    lockingType: "locking",
+    teethPerInch: { min: 13, max: 14 },
+    applicableItemTypes: [
+      "automotiveTops",
+      "backpacksAndBags",
+      "boatCoversAndCushions",
+      "luggage",
+      "tentsAndCanopies",
+    ],
+    containedInProductIds: undefined,
+    suggestedKitProductId: 296,
+  },
+
+  {
+    productId: 9426,
+    productType: "slider",
+    label: "#10 Reverse Coil Slider",
+    imageFn: () =>
+      import(
+        "@/product-data/product-images/9426_reverse_coil_10mm_slider_measurements.jpg"
+      ),
+    toothType: "coil-reverse",
+    sliderSize: 10,
+    pullStyle: "single",
+    lockingType: "non-locking",
+    teethPerInch: 10,
+    applicableItemTypes: [
+      "automotiveTops",
+      "backpacksAndBags",
+      "boatCoversAndCushions",
+      "luggage",
+      "tentsAndCanopies",
+    ],
+    containedInProductIds: undefined,
+    suggestedKitProductId: 296,
+  },
+
+  {
+    productId: 9425,
+    productType: "slider",
+    label: "#3 Reverse Coil Slider",
+    imageFn: () =>
+      import(
+        "@/product-data/product-images/9425_reverse_coil_3mm_slider_measurements.jpg"
+      ),
+    toothType: "coil-reverse",
+    sliderSize: 3,
+    pullStyle: "single",
+    lockingType: "non-locking",
+    teethPerInch: { min: 20, max: 24 },
+    applicableItemTypes: [
+      "automotiveTops",
+      "backpacksAndBags",
+      "luggage",
+      "purses",
+    ],
+    containedInProductIds: undefined,
+    suggestedKitProductId: 292,
+  },
+
+  {
+    productId: 9422,
+    productType: "slider",
+    label: "#3 Coil Slider",
+    imageFn: () =>
+      import(
+        "@/product-data/product-images/9422_coil_3mm_slider_measurements.jpg"
+      ),
+    toothType: "coil",
+    sliderSize: 3,
+    pullStyle: "single",
+    lockingType: "non-locking",
+    teethPerInch: 24,
+    applicableItemTypes: [
+      "automotiveTops",
+      "backpacksAndBags",
+      "boatCoversAndCushions",
+      "luggage",
+      "tentsAndCanopies",
+    ],
+    containedInProductIds: undefined,
+    suggestedKitProductId: 296,
+  },
+
+  {
+    productId: 9423,
+    productType: "slider",
+    label: "#10 Coil Slider (Locking)",
+    imageFn: () =>
+      import(
+        "@/product-data/product-images/9423_coil_10mm_locking_slider_measurements.jpg"
+      ),
+    toothType: "coil",
+    sliderSize: 10,
+    pullStyle: "single",
+    lockingType: "locking",
+    teethPerInch: 10,
+    applicableItemTypes: ["bootsAndShoes", "jacketsAndCoats"],
     containedInProductIds: undefined,
     suggestedKitProductId: 292,
   },

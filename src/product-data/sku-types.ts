@@ -1,3 +1,10 @@
+export type TeethPerInch = number | { min: number; max: number };
+
+export function formatTpi(tpi: TeethPerInch): string {
+  if (typeof tpi === "number") return `${tpi} teeth per inch`;
+  return `${tpi.min}-${tpi.max} teeth per inch`;
+}
+
 export type SkuItem = StopSku | SliderSku | KitSku;
 
 export interface SkuBase {
@@ -19,7 +26,7 @@ export interface SliderSku extends SkuBase {
   pullStyle: "single" | "double";
   lockingType: "locking" | "non-locking";
   toothType: "coil" | "coil-reverse" | "coil-invisible" | "metal" | "plastic";
-  teethPerInch: number;
+  teethPerInch: TeethPerInch;
   containedInProductIds?: number[]; // IDs of kits that include this slider
   suggestedKitProductId?: number; // ID of the suggested kit for this slider
   applicableItemTypes: ItemTypeId[]; // List of item types this slider is applicable for
