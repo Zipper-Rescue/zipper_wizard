@@ -7,6 +7,15 @@ export function matchSkuForWizardResult(
 ): boolean {
   if (item.productType !== "slider") return false;
 
+  // 2-Way Slider Sets only apply to two-way separating zippers
+  if (
+    result.zipperType &&
+    result.zipperType !== "two-way" &&
+    item.label.includes("2-Way Set")
+  ) {
+    return false;
+  }
+
   if (result.observedTpi) {
     const observed = parseFloat(result.observedTpi);
     if (!tpiMatches(observed, item.teethPerInch)) return false;
