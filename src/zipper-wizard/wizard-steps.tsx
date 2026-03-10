@@ -691,7 +691,11 @@ export const wizardSteps = stepBuilder()
       description: (
         <div className="flex flex-col gap-4">
           <div className="font-semibold text-lg">
-            We found the slider you need:
+            We found the slider you need.
+          </div>
+          <div className="text-md">
+            Please double check the measurements. They should be close, its not
+            always an exact match.
           </div>
           <div>
             <strong>Get free shipping</strong> with purchase of Zipper Rescue
