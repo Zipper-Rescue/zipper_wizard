@@ -49,3 +49,14 @@ export const Stop: Story = {
     sku: stopSkus[0],
   },
 };
+
+const sliderWithRangeTpi: SkuItem = {
+  ...sliderSkus[0],
+  teethPerInch: { min: 20, max: 25 },
+};
+
+export const SliderWithRangeToothCount: Story = {
+  args: {
+    sku: sliderWithRangeTpi,
+  },
+};

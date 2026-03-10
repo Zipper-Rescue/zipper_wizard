@@ -21,7 +21,7 @@ const BaseSkuDataRowSchema = z.object({
   ID: z.number(),
   "Product Type": z.string(),
   Size: z.string().nullable(),
-  "Tooth Count": z.number().nullable(),
+  "Tooth Count": z.union([z.number(), z.string()]).nullable(),
   "Special Notes": z.string().nullable(),
   "Zipper Tooth Type": z.string().nullable(),
   "Slider Type": z.string().nullable(),
@@ -97,7 +97,7 @@ interface SkuItem {
   sliderSize?: number;
   pullStyle?: "single" | "double";
   lockingType?: "locking" | "non-locking";
-  teethPerInch?: number;
+  teethPerInch?: number | { min: number; max: number };
   containedInProductIds?: number[];
   suggestedKitProductId?: number;
   applicableItemTypes?: ItemTypeId[];
@@ -254,6 +254,40 @@ function determineToothType(
 }
 
 /**
+ * Parses a Tooth Count value from the source data (number or string like "20-25").
+ * @param value The raw value from the row
+ * @returns Parsed teethPerInch (number or range object)
+ */
+function parseToothCount(
+  value: number | string | null,
+): number | { min: number; max: number } {
+  if (value == null || value === "") {
+    throw new Error("Tooth Count is required");
+  }
+  if (typeof value === "number") {
+    return value;
+  }
+  const trimmed = String(value).trim();
+  if (trimmed.includes("-")) {
+    const parts = trimmed.split("-").map((p) => p.trim());
+    if (parts.length !== 2) {
+      throw new Error(`Invalid Tooth Count range: "${trimmed}"`);
+    }
+    const min = parseFloat(parts[0]);
+    const max = parseFloat(parts[1]);
+    if (Number.isNaN(min) || Number.isNaN(max) || min > max) {
+      throw new Error(`Invalid Tooth Count range: "${trimmed}"`);
+    }
+    return { min, max };
+  }
+  const num = parseFloat(trimmed);
+  if (Number.isNaN(num)) {
+    throw new Error(`Invalid Tooth Count: "${trimmed}"`);
+  }
+  return num;
+}
+
+/**
  * Converts a TSV row into a SkuItem
  * @param row The TSV row to convert
  * @param relationships The product relationships
@@ -328,7 +362,7 @@ function convertRowToSkuItem(
     item.lockingType = row["Slider Type"].toLowerCase().includes("locking")
       ? "locking"
       : "non-locking";
-    item.teethPerInch = row["Tooth Count"];
+    item.teethPerInch = parseToothCount(row["Tooth Count"]);
     item.applicableItemTypes = itemTypeIds;
 
     // Add relationship data if available

@@ -1,5 +1,9 @@
 import { cn } from "@/lib/util/cn.ts";
-import { SkuItem, itemTypeRecord } from "@/product-data/sku-types.ts";
+import {
+  SkuItem,
+  itemTypeRecord,
+  formatTpi,
+} from "@/product-data/sku-types.ts";
 
 import { AsyncImage } from "./async-image.tsx";
 
@@ -46,25 +50,23 @@ export function SkuCard({
 
         {/* SKU Details */}
         {sku.productType === "slider" && (
-          <div
-            className={cn(
-              "flex flex-wrap text-sm text-gray-600",
-              "grid-cols-2",
-            )}
-          >
-            {sku.applicableItemTypes.map((itemType) => (
-              <div
-                key={itemType}
-                className={cn("rounded-md bg-white p-1", "w-10 h-10")}
-              >
-                <AsyncImage
-                  src={itemTypeRecord[itemType].imageFn}
-                  alt={itemTypeRecord[itemType].label}
-                  className="w-full h-full object-contain"
-                  title={itemTypeRecord[itemType].label}
-                />
-              </div>
-            ))}
+          <div className={cn("flex flex-col gap-1 text-sm text-gray-600")}>
+            <div>{formatTpi(sku.teethPerInch)}</div>
+            <div className={cn("flex flex-wrap", "grid-cols-2")}>
+              {sku.applicableItemTypes.map((itemType) => (
+                <div
+                  key={itemType}
+                  className={cn("rounded-md bg-white p-1", "w-10 h-10")}
+                >
+                  <AsyncImage
+                    src={itemTypeRecord[itemType].imageFn}
+                    alt={itemTypeRecord[itemType].label}
+                    className="w-full h-full object-contain"
+                    title={itemTypeRecord[itemType].label}
+                  />
+                </div>
+              ))}
+            </div>
           </div>
         )}
 

@@ -12,7 +12,7 @@ The product data is updated on build from the spreadsheet: [the google sheet](ht
 It can be manually updated with:
 
 ```shell
-npm run update-product-info
+npm run update-sku-data
 ```
 
 ## Deployment

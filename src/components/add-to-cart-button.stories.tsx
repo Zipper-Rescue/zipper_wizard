@@ -108,3 +108,17 @@ export const GoingToCart: Story = {
     onNavigate: mockNavigate,
   },
 };
+
+const mockSkuWithRangeTpi: SkuItem = {
+  ...mockSku,
+  label: "Test Product (20-25 TPI)",
+  teethPerInch: { min: 20, max: 25 },
+};
+
+export const WithRangeToothCount: Story = {
+  args: {
+    sku: mockSkuWithRangeTpi,
+    onAddToCart: mockAddToCart,
+    onNavigate: mockNavigate,
+  },
+};
