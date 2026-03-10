@@ -5,6 +5,14 @@ export function formatTpi(tpi: TeethPerInch): string {
   return `${tpi.min}-${tpi.max} teeth per inch`;
 }
 
+export function tpiMatches(
+  observed: number,
+  productTpi: TeethPerInch,
+): boolean {
+  if (typeof productTpi === "number") return productTpi === observed;
+  return observed >= productTpi.min && observed <= productTpi.max;
+}
+
 export type SkuItem = StopSku | SliderSku | KitSku;
 
 export interface SkuBase {

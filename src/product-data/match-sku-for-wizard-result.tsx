@@ -1,4 +1,4 @@
-import { SkuItem } from "@/product-data/sku-types.ts";
+import { SkuItem, tpiMatches } from "@/product-data/sku-types.ts";
 import { WizardResult } from "@/zipper-wizard/wizard-steps.tsx";
 
 export function matchSkuForWizardResult(
@@ -6,7 +6,12 @@ export function matchSkuForWizardResult(
   item: SkuItem,
 ): boolean {
   if (item.productType !== "slider") return false;
-  if (item.sliderSize.toString() !== result.sliderSize) return false;
+
+  if (result.observedTpi) {
+    const observed = parseFloat(result.observedTpi);
+    if (!tpiMatches(observed, item.teethPerInch)) return false;
+  }
+
   if (result.toothMaterial === "coil") {
     switch (result.coilType) {
       case "standard":

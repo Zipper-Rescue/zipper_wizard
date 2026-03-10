@@ -317,7 +317,7 @@ export const wizardSteps = stepBuilder()
   //
 
   .step(
-    "sliderSize",
+    "observedTpi",
     {
       coil324Tpi: import(
         "@/zipper-wizard/zipper-wizard-step-images/05-tooth-count/coil-3_24-tpi.jpg"
@@ -366,6 +366,9 @@ export const wizardSteps = stepBuilder()
       ),
       plastic105Tpi: import(
         "@/zipper-wizard/zipper-wizard-step-images/05-tooth-count/plastic-10_5-tpi.jpg"
+      ),
+      reverseCoil515Tpi: import(
+        "@/zipper-wizard/zipper-wizard-step-images/05-tooth-count/reverse-coil-5_15-tpi.jpg"
       ),
     },
     (images, { toothMaterial, coilType }) =>
@@ -418,22 +421,31 @@ export const wizardSteps = stepBuilder()
               options: [
                 {
                   label: "24 teeth per inch",
-                  value: "3",
+                  value: "24",
                   imageUrl: images.coil324Tpi,
                 },
                 {
                   label: "20 teeth per inch",
-                  value: "4.5",
+                  value: "20",
                   imageUrl: images.coil4520Tpi,
                 },
                 {
                   label: "16.5 teeth per inch",
-                  value: "5",
+                  value: "16.5",
                   imageUrl: images.coil5165Tpi,
                 },
+                ...(coilType === "reverse"
+                  ? [
+                      {
+                        label: "15 teeth per inch",
+                        value: "15",
+                        imageUrl: images.reverseCoil515Tpi,
+                      },
+                    ]
+                  : []),
                 {
                   label: "14 teeth per inch",
-                  value: "8",
+                  value: "14",
                   imageUrl: images.coil814Tpi,
                 },
                 {
@@ -464,22 +476,22 @@ export const wizardSteps = stepBuilder()
               options: [
                 {
                   label: "12 teeth per inch",
-                  value: "3",
+                  value: "12",
                   imageUrl: images.metal312Tpi,
                 },
                 {
                   label: "11 teeth per inch",
-                  value: "4.5",
+                  value: "11",
                   imageUrl: images.metal4511Tpi,
                 },
                 {
                   label: "10 teeth per inch",
-                  value: "5",
+                  value: "10",
                   imageUrl: images.metal510Tpi,
                 },
                 {
                   label: "9 teeth per inch",
-                  value: "7",
+                  value: "9",
                   imageUrl: images.metal79Tpi,
                 },
                 {
@@ -489,7 +501,7 @@ export const wizardSteps = stepBuilder()
                 },
                 {
                   label: "7 teeth per inch",
-                  value: "10",
+                  value: "7",
                   imageUrl: images.metal107Tpi,
                 },
               ],
@@ -514,27 +526,27 @@ export const wizardSteps = stepBuilder()
               options: [
                 {
                   label: "10 teeth per inch",
-                  value: "3",
+                  value: "10",
                   imageUrl: images.plastic310Tpi,
                 },
                 {
                   label: "8.5 teeth per inch",
-                  value: "4",
+                  value: "8.5",
                   imageUrl: images.plastic485Tpi,
                 },
                 {
                   label: "7.5 teeth per inch",
-                  value: "5",
+                  value: "7.5",
                   imageUrl: images.plastic575Tpi,
                 },
                 {
                   label: "6.5 teeth per inch",
-                  value: "8",
+                  value: "6.5",
                   imageUrl: images.plastic86Tpi,
                 },
                 {
                   label: "5 teeth per inch",
-                  value: "10",
+                  value: "5",
                   imageUrl: images.plastic105Tpi,
                 },
               ],
