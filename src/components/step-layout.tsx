@@ -7,10 +7,12 @@ export function StepLayout({
   title,
   description,
   links,
+  indicator,
 }: {
   title?: string | React.ReactNode | null;
   description?: string | React.ReactNode;
   links?: React.ReactNode[];
+  indicator?: React.ReactNode;
 }) {
   const ref = React.useRef<HTMLDivElement>(null);
 
@@ -35,6 +37,7 @@ export function StepLayout({
       )}
     >
       {title && <h1 className={"text-3xl font-semibold"}>{title}</h1>}
+      {indicator}
       <section className={"mb-4 text-center flex flex-col items-center gap-6"}>
         {description}
       </section>

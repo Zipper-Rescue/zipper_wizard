@@ -13,6 +13,7 @@ type BuilderStep = {
   key: string;
   images: Record<string, Promise<{ default: string }>>;
   stepFn: StepFn;
+  isConditional: boolean;
 };
 
 export function stepBuilder<
@@ -41,6 +42,7 @@ export function stepBuilder<
           key,
           images,
           stepFn,
+          isConditional: false,
         },
       ] as BuilderStep[]);
     },
@@ -60,11 +62,12 @@ export function stepBuilder<
           key,
           images,
           stepFn,
+          isConditional: true,
         },
       ] as BuilderStep[]);
     },
 
-    buildSteps(input: Array<[string, string]>): StepInfo[] {
+    buildSteps(input: Array<[string, string]>): BuildStepsResult {
       const inputRecord = Object.fromEntries(input);
 
       const inputKeys = input.map(([key]) => key);
@@ -82,27 +85,43 @@ export function stepBuilder<
         )
         .find(([, step]) => step !== null);
 
-      return [
-        // Known steps
-        ...stepData
-          .slice(0, lastStepIndex)
-          .flatMap(({ stepFn, images, key }) => {
-            const result = stepFn(images, inputRecord);
-            return result ? [{ key, ...result } as StepInfo] : [];
-          }),
+      const currentStepDataIndex = nextStep
+        ? stepData.findIndex((s) => s.key === nextStep[0])
+        : stepData.length;
 
-        // Find the next step that doesn't return nullish for the given input
-        ...(nextStep != null
-          ? [
-              {
-                key: nextStep[0],
-                ...nextStep[1],
-              } as StepInfo,
-            ]
-          : []),
-      ];
+      const remaining = stepData.slice(currentStepDataIndex + 1);
+
+      return {
+        steps: [
+          ...stepData
+            .slice(0, lastStepIndex)
+            .flatMap(({ stepFn, images, key }) => {
+              const result = stepFn(images, inputRecord);
+              return result ? [{ key, ...result } as StepInfo] : [];
+            }),
+
+          ...(nextStep != null
+            ? [
+                {
+                  key: nextStep[0],
+                  ...nextStep[1],
+                } as StepInfo,
+              ]
+            : []),
+        ],
+        remainingRequiredCount: remaining.filter((s) => !s.isConditional)
+          .length,
+        remainingConditionalCount: remaining.filter((s) => s.isConditional)
+          .length,
+      };
     },
   };
+}
+
+export interface BuildStepsResult {
+  steps: StepInfo[];
+  remainingRequiredCount: number;
+  remainingConditionalCount: number;
 }
 
 export interface StepInfo {

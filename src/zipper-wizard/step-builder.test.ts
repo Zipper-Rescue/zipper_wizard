@@ -15,7 +15,7 @@ describe("basic steps", () => {
     .step("third", {}, thirdFn);
 
   test("builds step after last data", () => {
-    expect(builder.buildSteps([["first", "value"]])).toEqual([
+    expect(builder.buildSteps([["first", "value"]]).steps).toEqual([
       { key: "first", label: "First", options },
       { key: "second", label: "Second", options },
     ]);
@@ -35,14 +35,14 @@ describe("conditional steps", () => {
     .step("third", {}, thirdFn);
 
   test("true", () => {
-    expect(builder.buildSteps([["first", "a"]])).toEqual([
+    expect(builder.buildSteps([["first", "a"]]).steps).toEqual([
       { key: "first", label: "First", options },
       { key: "second", label: "Second", options },
     ]);
   });
 
   test("false", () => {
-    expect(builder.buildSteps([["first", "b"]])).toEqual([
+    expect(builder.buildSteps([["first", "b"]]).steps).toEqual([
       { key: "first", label: "First", options },
       { key: "third", label: "Third", options },
     ]);
@@ -68,48 +68,56 @@ describe("conditional step near end", () => {
     .step("lastStep", {}, lastStepFn);
 
   test("with conditional step (coil material)", () => {
-    const steps = builder.buildSteps([
+    const result = builder.buildSteps([
       ["material", "coil"],
       ["coilType", "standard"],
       ["size", "5"],
     ]);
 
-    expect(steps).toEqual([
+    expect(result.steps).toEqual([
       { key: "material", label: "Material", options },
       { key: "coilType", label: "Coil Type", options },
       { key: "size", label: "Size", options },
       { key: "lastStep", label: "Results", options: [] },
     ]);
+    expect(result.remainingRequiredCount).toBe(0);
+    expect(result.remainingConditionalCount).toBe(0);
   });
 
   test("without conditional step (metal material)", () => {
-    const steps = builder.buildSteps([
+    const result = builder.buildSteps([
       ["material", "metal"],
       ["size", "5"],
     ]);
 
-    expect(steps).toEqual([
+    expect(result.steps).toEqual([
       { key: "material", label: "Material", options },
       { key: "size", label: "Size", options },
       { key: "lastStep", label: "Results", options: [] },
     ]);
+    expect(result.remainingRequiredCount).toBe(0);
+    expect(result.remainingConditionalCount).toBe(0);
   });
 
   test("partial steps with conditional", () => {
-    const steps = builder.buildSteps([["material", "coil"]]);
+    const result = builder.buildSteps([["material", "coil"]]);
 
-    expect(steps).toEqual([
+    expect(result.steps).toEqual([
       { key: "material", label: "Material", options },
       { key: "coilType", label: "Coil Type", options },
     ]);
+    expect(result.remainingRequiredCount).toBe(2);
+    expect(result.remainingConditionalCount).toBe(0);
   });
 
   test("partial steps without conditional", () => {
-    const steps = builder.buildSteps([["material", "metal"]]);
+    const result = builder.buildSteps([["material", "metal"]]);
 
-    expect(steps).toEqual([
+    expect(result.steps).toEqual([
       { key: "material", label: "Material", options },
       { key: "size", label: "Size", options },
     ]);
+    expect(result.remainingRequiredCount).toBe(1);
+    expect(result.remainingConditionalCount).toBe(0);
   });
 });
