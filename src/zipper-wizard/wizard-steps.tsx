@@ -136,9 +136,9 @@ export const wizardSteps = stepBuilder()
   .step(
     "toothMaterial",
     {
-      coil: import("./zipper-wizard-step-images/03-tooth-type/coil.png"),
-      metal: import("./zipper-wizard-step-images/03-tooth-type/metal.png"),
-      plastic: import("./zipper-wizard-step-images/03-tooth-type/plastic.png"),
+      coil: import("./zipper-wizard-step-images/03-tooth-type/coil.jpg"),
+      metal: import("./zipper-wizard-step-images/03-tooth-type/metal.jpg"),
+      plastic: import("./zipper-wizard-step-images/03-tooth-type/plastic.jpg"),
       missingBoxOrPin: import(
         "./zipper-wizard-step-images/02-failure-type/missing-box-or-pin.png"
       ),
@@ -260,10 +260,10 @@ export const wizardSteps = stepBuilder()
     "coilType",
     {
       standardCoil: import(
-        "./zipper-wizard-step-images/04-coil-type/standard-coil.png"
+        "./zipper-wizard-step-images/04-coil-type/standard-coil.jpg"
       ),
       reverseCoil: import(
-        "./zipper-wizard-step-images/04-coil-type/reverse-coil.png"
+        "./zipper-wizard-step-images/04-coil-type/reverse-coil.jpg"
       ),
       invisibleCoil: import(
         "./zipper-wizard-step-images/04-coil-type/invisible-coil.png"
