@@ -1,6 +1,10 @@
 import { test, expect, describe, vitest } from "vitest";
 
-import { stepBuilder, StepOption } from "@/zipper-wizard/step-builder.ts";
+import {
+  computeStepStatuses,
+  stepBuilder,
+  StepOption,
+} from "@/zipper-wizard/step-builder.ts";
 
 const options = [{ value: "test", label: "Test", imageUrl: "test.jpg" }];
 
@@ -15,7 +19,7 @@ describe("basic steps", () => {
     .step("third", {}, thirdFn);
 
   test("builds step after last data", () => {
-    expect(builder.buildSteps([["first", "value"]]).steps).toEqual([
+    expect(builder.buildSteps([["first", "value"]])).toEqual([
       { key: "first", label: "First", options },
       { key: "second", label: "Second", options },
     ]);
@@ -35,14 +39,14 @@ describe("conditional steps", () => {
     .step("third", {}, thirdFn);
 
   test("true", () => {
-    expect(builder.buildSteps([["first", "a"]]).steps).toEqual([
+    expect(builder.buildSteps([["first", "a"]])).toEqual([
       { key: "first", label: "First", options },
       { key: "second", label: "Second", options },
     ]);
   });
 
   test("false", () => {
-    expect(builder.buildSteps([["first", "b"]]).steps).toEqual([
+    expect(builder.buildSteps([["first", "b"]])).toEqual([
       { key: "first", label: "First", options },
       { key: "third", label: "Third", options },
     ]);
@@ -68,75 +72,45 @@ describe("conditional step near end", () => {
     .step("lastStep", {}, lastStepFn);
 
   test("with conditional step (coil material)", () => {
-    const result = builder.buildSteps([
-      ["material", "coil"],
-      ["coilType", "standard"],
-      ["size", "5"],
-    ]);
-
-    expect(result.steps).toEqual([
+    expect(
+      builder.buildSteps([
+        ["material", "coil"],
+        ["coilType", "standard"],
+        ["size", "5"],
+      ]),
+    ).toEqual([
       { key: "material", label: "Material", options },
       { key: "coilType", label: "Coil Type", options },
       { key: "size", label: "Size", options },
       { key: "lastStep", label: "Results", options: [] },
     ]);
-    expect(result.stepStatuses).toEqual(["completed", "completed"]);
   });
 
   test("without conditional step (metal material)", () => {
-    const result = builder.buildSteps([
-      ["material", "metal"],
-      ["size", "5"],
-    ]);
-
-    expect(result.steps).toEqual([
+    expect(
+      builder.buildSteps([
+        ["material", "metal"],
+        ["size", "5"],
+      ]),
+    ).toEqual([
       { key: "material", label: "Material", options },
       { key: "size", label: "Size", options },
       { key: "lastStep", label: "Results", options: [] },
     ]);
-    expect(result.stepStatuses).toEqual(["skipped", "completed"]);
   });
 
   test("partial steps with conditional", () => {
-    const result = builder.buildSteps([["material", "coil"]]);
-
-    expect(result.steps).toEqual([
+    expect(builder.buildSteps([["material", "coil"]])).toEqual([
       { key: "material", label: "Material", options },
       { key: "coilType", label: "Coil Type", options },
     ]);
-    expect(result.stepStatuses).toEqual(["current", "upcoming"]);
   });
 
   test("partial steps without conditional", () => {
-    const result = builder.buildSteps([["material", "metal"]]);
-
-    expect(result.steps).toEqual([
+    expect(builder.buildSteps([["material", "metal"]])).toEqual([
       { key: "material", label: "Material", options },
       { key: "size", label: "Size", options },
     ]);
-    expect(result.stepStatuses).toEqual(["skipped", "current"]);
-  });
-
-  test("stepStatuses - at start", () => {
-    const result = builder.buildSteps([]);
-    expect(result.stepStatuses).toEqual(["uncertain", "upcoming"]);
-  });
-
-  test("stepStatuses - all done with coil", () => {
-    const result = builder.buildSteps([
-      ["material", "coil"],
-      ["coilType", "standard"],
-      ["size", "5"],
-    ]);
-    expect(result.stepStatuses).toEqual(["completed", "completed"]);
-  });
-
-  test("stepStatuses - all done without coil", () => {
-    const result = builder.buildSteps([
-      ["material", "metal"],
-      ["size", "5"],
-    ]);
-    expect(result.stepStatuses).toEqual(["skipped", "completed"]);
   });
 });
 
@@ -154,5 +128,68 @@ describe("indicatorTemplate", () => {
       { key: "b", isConditional: true },
       { key: "c", isConditional: false },
     ]);
+  });
+});
+
+describe("computeStepStatuses", () => {
+  // Template: [coilType(cond), size(req)] — matching the "conditional step
+  // near end" builder (material=intro, lastStep=terminal, sliced off)
+  const template = [
+    { key: "coilType", isConditional: true },
+    { key: "size", isConditional: false },
+  ];
+
+  test("before template (intro is current)", () => {
+    expect(
+      computeStepStatuses(template, new Set(["material"]), "material"),
+    ).toEqual(["uncertain", "upcoming"]);
+  });
+
+  test("coil selected, at coilType", () => {
+    expect(
+      computeStepStatuses(
+        template,
+        new Set(["material", "coilType"]),
+        "coilType",
+      ),
+    ).toEqual(["current", "upcoming"]);
+  });
+
+  test("metal selected, coilType skipped, at size", () => {
+    expect(
+      computeStepStatuses(template, new Set(["material", "size"]), "size"),
+    ).toEqual(["skipped", "current"]);
+  });
+
+  test("all done with coil (terminal is current)", () => {
+    expect(
+      computeStepStatuses(
+        template,
+        new Set(["material", "coilType", "size", "lastStep"]),
+        "lastStep",
+      ),
+    ).toEqual(["completed", "completed"]);
+  });
+
+  test("all done without coil (terminal is current)", () => {
+    expect(
+      computeStepStatuses(
+        template,
+        new Set(["material", "size", "lastStep"]),
+        "lastStep",
+      ),
+    ).toEqual(["skipped", "completed"]);
+  });
+
+  test("fog of war - step 1 only sees itself as current", () => {
+    expect(
+      computeStepStatuses(template, new Set(["coilType"]), "coilType"),
+    ).toEqual(["current", "upcoming"]);
+  });
+
+  test("fog of war - step 2 sees step 1 completed", () => {
+    expect(
+      computeStepStatuses(template, new Set(["coilType", "size"]), "size"),
+    ).toEqual(["completed", "current"]);
   });
 });

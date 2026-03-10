@@ -74,7 +74,7 @@ export function stepBuilder<
       ] as BuilderStep[]);
     },
 
-    buildSteps(input: Array<[string, string]>): BuildStepsResult {
+    buildSteps(input: Array<[string, string]>): StepInfo[] {
       const inputRecord = Object.fromEntries(input);
 
       const inputKeys = input.map(([key]) => key);
@@ -92,7 +92,7 @@ export function stepBuilder<
         )
         .find(([, step]) => step !== null);
 
-      const steps: StepInfo[] = [
+      return [
         ...stepData
           .slice(0, lastStepIndex)
           .flatMap(({ stepFn, images, key }) => {
@@ -109,35 +109,6 @@ export function stepBuilder<
             ]
           : []),
       ];
-
-      const template = stepData.slice(1, -1);
-      const builtStepKeys = new Set(steps.map((s) => s.key));
-      const currentStepKey = nextStep?.[0];
-      const frontierIndex = currentStepKey
-        ? template.findIndex((t) => t.key === currentStepKey)
-        : -1;
-      const currentStepDataIndex = currentStepKey
-        ? stepData.findIndex((s) => s.key === currentStepKey)
-        : stepData.length;
-      const isBeforeTemplate = currentStepDataIndex <= 0;
-
-      const stepStatuses: StepStatus[] = template.map((t, i) => {
-        if (frontierIndex >= 0) {
-          if (i < frontierIndex) {
-            return builtStepKeys.has(t.key) ? "completed" : "skipped";
-          }
-          if (i === frontierIndex) {
-            return "current";
-          }
-          return t.isConditional ? "uncertain" : "upcoming";
-        }
-        if (isBeforeTemplate) {
-          return t.isConditional ? "uncertain" : "upcoming";
-        }
-        return builtStepKeys.has(t.key) ? "completed" : "skipped";
-      });
-
-      return { steps, stepStatuses };
     },
   };
 }
@@ -149,9 +120,36 @@ export type StepStatus =
   | "uncertain"
   | "skipped";
 
-export interface BuildStepsResult {
-  steps: StepInfo[];
-  stepStatuses: StepStatus[];
+export type IndicatorTemplate = Array<{
+  key: string;
+  isConditional: boolean;
+}>;
+
+export function computeStepStatuses(
+  template: IndicatorTemplate,
+  builtStepKeys: Set<string>,
+  currentStepKey: string,
+): StepStatus[] {
+  const frontierIndex = template.findIndex((t) => t.key === currentStepKey);
+
+  return template.map((t, i) => {
+    if (frontierIndex >= 0) {
+      if (i < frontierIndex) {
+        return builtStepKeys.has(t.key) ? "completed" : "skipped";
+      }
+      if (i === frontierIndex) {
+        return "current";
+      }
+      return t.isConditional ? "uncertain" : "upcoming";
+    }
+    // Current step is outside the template (intro or terminal).
+    // If none of the template keys have been built, we're before the template.
+    const anyBuilt = template.some((t) => builtStepKeys.has(t.key));
+    if (!anyBuilt) {
+      return t.isConditional ? "uncertain" : "upcoming";
+    }
+    return builtStepKeys.has(t.key) ? "completed" : "skipped";
+  });
 }
 
 export interface StepInfo {

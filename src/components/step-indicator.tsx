@@ -7,7 +7,7 @@ export function StepIndicator({ statuses }: { statuses: StepStatus[] }) {
     (s) => s === "completed" || s === "skipped",
   );
   const lastStatus = statuses[statuses.length - 1];
-  const lineToDestinationSolid =
+  const lineToDestinationHeavy =
     lastStatus === "completed" || lastStatus === "skipped";
 
   return (
@@ -16,7 +16,7 @@ export function StepIndicator({ statuses }: { statuses: StepStatus[] }) {
         const stepNumber = i + 1;
         const nextStatus = statuses[i + 1];
 
-        const nextReached =
+        const nextHeavy =
           nextStatus === "completed" ||
           nextStatus === "current" ||
           nextStatus === "skipped";
@@ -26,26 +26,26 @@ export function StepIndicator({ statuses }: { statuses: StepStatus[] }) {
             <div
               className={cn(
                 "w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold shrink-0",
-                status === "completed" && "bg-primary text-primary-foreground",
-                (status === "current" || status === "upcoming") &&
-                  "border-2 border-primary text-primary",
+                status === "completed" &&
+                  "border-[3px] border-primary bg-primary/10 text-primary",
+                status === "current" && "bg-primary text-primary-foreground",
+                status === "upcoming" && "border border-primary text-primary",
                 status === "uncertain" &&
-                  "border-2 border-dashed border-primary/40 text-primary/40",
+                  "border border-dashed border-primary/40 text-primary/40",
                 status === "skipped" &&
-                  "border-2 border-dashed border-primary/20 text-primary/20",
+                  "border border-primary/20 text-primary/20",
               )}
             >
-              {status === "skipped" ? "—" : stepNumber}
+              {stepNumber}
             </div>
             {i < statuses.length - 1 && (
               <div
                 className={cn(
-                  "flex-1 h-0.5 min-w-2 mx-0.5",
-                  nextReached
-                    ? "bg-primary"
-                    : nextStatus === "uncertain"
-                      ? "border border-dashed border-primary/40"
-                      : "border border-primary",
+                  "flex-1 min-w-3",
+                  nextHeavy ? "h-[3px] bg-primary" : "h-px",
+                  !nextHeavy && nextStatus === "uncertain"
+                    ? "border-t border-dashed border-primary/40"
+                    : !nextHeavy && "bg-primary",
                 )}
               />
             )}
@@ -56,8 +56,8 @@ export function StepIndicator({ statuses }: { statuses: StepStatus[] }) {
       <div className="flex items-center flex-1 max-w-12">
         <div
           className={cn(
-            "flex-1 h-0.5 min-w-2 mx-0.5",
-            lineToDestinationSolid ? "bg-primary" : "border border-primary",
+            "flex-1 min-w-3",
+            lineToDestinationHeavy ? "h-[3px] bg-primary" : "h-px bg-primary",
           )}
         />
         <div
@@ -65,10 +65,10 @@ export function StepIndicator({ statuses }: { statuses: StepStatus[] }) {
             "w-8 h-8 rounded-full flex items-center justify-center shrink-0",
             destinationReached
               ? "bg-primary text-primary-foreground"
-              : "border-2 border-primary text-primary",
+              : "border border-primary text-primary",
           )}
         >
-          <ZipperPullIcon className="w-6 h-6" />
+          <ZipperPullIcon className="w-5 h-5" />
         </div>
       </div>
     </div>
